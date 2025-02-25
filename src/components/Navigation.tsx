@@ -30,7 +30,20 @@ const Navigation = () => {
   return (
     <>
       {/* Main Navigation - Top */}
-      <div className="fixed w-full top-0 p-8 flex justify-end z-50">
+      <div className="fixed w-full top-0 p-8 flex justify-between items-start z-50">
+        {/* Logo */}
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <img 
+            src="/lovable-uploads/e61b52bb-6221-41bf-addf-b14309feb0d1.png" 
+            alt="Logo"
+            className="h-12 w-auto object-contain"
+          />
+        </motion.div>
+
         <motion.nav 
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
