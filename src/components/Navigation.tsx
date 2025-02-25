@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('about');
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,6 +32,14 @@ const Navigation = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleLogoMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
+    });
+  };
+
   return (
     <>
       {/* Main Navigation - Top */}
@@ -40,6 +49,9 @@ const Navigation = () => {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
+          onMouseMove={handleLogoMouseMove}
+          className="relative"
+          style={{ isolation: 'isolate' }}
         >
           <a 
             href="#" 
@@ -47,12 +59,18 @@ const Navigation = () => {
               e.preventDefault();
               handleLogoClick();
             }}
-            className="block"
+            className="block relative"
           >
+            <div 
+              className="absolute inset-0 pointer-events-none mix-blend-screen"
+              style={{
+                background: `radial-gradient(circle 50px at ${mousePosition.x}px ${mousePosition.y}px, rgba(235, 89, 57, 0.7), transparent 100%)`,
+              }}
+            />
             <img 
               src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
               alt="Signature"
-              className="h-12 w-auto object-contain brightness-0 invert transition-colors hover:[filter:brightness(0)_invert(0.5)_sepia(1)_saturate(10)_hue-rotate(345deg)]"
+              className="h-12 w-auto object-contain brightness-0 invert relative"
             />
           </a>
         </motion.div>
