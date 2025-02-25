@@ -52,7 +52,7 @@ const Navigation = () => {
             <img 
               src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
               alt="Signature"
-              className="h-12 w-auto object-contain brightness-0 invert transition-colors hover:[filter:brightness(0)_invert(1)_sepia(1)_saturate(3000%)_hue-rotate(345deg)]"
+              className="h-12 w-auto object-contain brightness-0 invert transition-colors hover:[filter:brightness(0)_invert(0.5)_sepia(1)_saturate(10)_hue-rotate(345deg)]"
             />
           </a>
         </motion.div>
