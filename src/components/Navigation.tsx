@@ -87,7 +87,7 @@ const Navigation = () => {
             href="#about" 
             className={`transition-colors ${
               activeSection === 'about' 
-                ? 'text-[#FF5C41] font-medium' 
+                ? 'text-[#eb5939] font-medium' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -97,7 +97,7 @@ const Navigation = () => {
             href="#projects" 
             className={`transition-colors ${
               activeSection === 'projects' 
-                ? 'text-[#FF5C41] font-medium' 
+                ? 'text-[#eb5939] font-medium' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -107,7 +107,7 @@ const Navigation = () => {
             href="#contact" 
             className={`transition-colors ${
               activeSection === 'contact' 
-                ? 'text-[#FF5C41] font-medium' 
+                ? 'text-[#eb5939] font-medium' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -127,7 +127,7 @@ const Navigation = () => {
           href="https://linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors"
         >
           <Linkedin size={20} />
         </a>
@@ -135,7 +135,7 @@ const Navigation = () => {
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors"
         >
           <Twitter size={20} />
         </a>
@@ -143,13 +143,13 @@ const Navigation = () => {
           href="https://instagram.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors"
         >
           <Instagram size={20} />
         </a>
         <a
           href="mailto:contact@example.com"
-          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors"
         >
           <Mail size={20} />
         </a>
