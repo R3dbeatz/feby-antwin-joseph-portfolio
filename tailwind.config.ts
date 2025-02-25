@@ -33,9 +33,25 @@ export default {
           DEFAULT: "#1A1F2C",
           foreground: "#F1F1F1",
         },
+        destructive: {
+          DEFAULT: "#eb5939",
+          foreground: "#F1F1F1",
+        },
+        muted: {
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
         accent: {
-          DEFAULT: "#D6BCFA",
+          DEFAULT: "#eb5939",
           foreground: "#0F0F0F",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         dark: {
           DEFAULT: "#0F0F0F",
