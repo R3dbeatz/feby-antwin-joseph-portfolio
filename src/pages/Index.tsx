@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import Timeline from '../components/Timeline';
 import Projects from '../components/Projects';
@@ -21,6 +22,7 @@ const Index = () => {
       transition={{ duration: 0.5 }}
       className="min-h-screen bg-dark"
     >
+      <Navigation />
       <HeroSection />
       <Timeline />
       <Projects />
