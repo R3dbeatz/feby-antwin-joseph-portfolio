@@ -51,7 +51,6 @@ const Navigation = () => {
           transition={{ duration: 0.5 }}
           onMouseMove={handleLogoMouseMove}
           className="relative"
-          style={{ isolation: 'isolate' }}
         >
           <a 
             href="#" 
@@ -61,16 +60,19 @@ const Navigation = () => {
             }}
             className="block relative"
           >
-            <div 
-              className="absolute inset-0 pointer-events-none mix-blend-screen"
+            <img 
+              src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
+              alt="Signature"
+              className="h-12 w-auto object-contain brightness-0 invert hover:[filter:brightness(0)_invert(0.5)_sepia(1)_saturate(10)_hue-rotate(345deg)] relative"
               style={{
-                background: `radial-gradient(circle 50px at ${mousePosition.x}px ${mousePosition.y}px, rgba(235, 89, 57, 0.7), transparent 100%)`,
+                mask: `radial-gradient(circle 50px at ${mousePosition.x}px ${mousePosition.y}px, black, transparent 100%)`,
+                WebkitMask: `radial-gradient(circle 50px at ${mousePosition.x}px ${mousePosition.y}px, black, transparent 100%)`,
               }}
             />
             <img 
               src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
               alt="Signature"
-              className="h-12 w-auto object-contain brightness-0 invert relative"
+              className="h-12 w-auto object-contain brightness-0 invert absolute top-0 left-0 z-[-1]"
             />
           </a>
         </motion.div>
