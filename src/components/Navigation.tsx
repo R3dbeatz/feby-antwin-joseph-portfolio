@@ -63,7 +63,7 @@ const Navigation = () => {
             <img 
               src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
               alt="Signature"
-              className="h-12 w-auto object-contain brightness-0 invert hover:[filter:brightness(0)_invert(0.5)_sepia(1)_saturate(10)_hue-rotate(345deg)] relative"
+              className="h-12 w-auto object-contain brightness-0 invert hover:[filter:brightness(0)_invert(0.5)_sepia(1)_saturate(10)_hue-rotate(5deg)] relative"
               style={{
                 mask: `radial-gradient(circle 50px at ${mousePosition.x}px ${mousePosition.y}px, black, transparent 100%)`,
                 WebkitMask: `radial-gradient(circle 50px at ${mousePosition.x}px ${mousePosition.y}px, black, transparent 100%)`,
@@ -87,7 +87,7 @@ const Navigation = () => {
             href="#about" 
             className={`transition-colors ${
               activeSection === 'about' 
-                ? 'text-primary font-medium' 
+                ? 'text-[#FF5C41] font-medium' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -97,7 +97,7 @@ const Navigation = () => {
             href="#projects" 
             className={`transition-colors ${
               activeSection === 'projects' 
-                ? 'text-primary font-medium' 
+                ? 'text-[#FF5C41] font-medium' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -107,7 +107,7 @@ const Navigation = () => {
             href="#contact" 
             className={`transition-colors ${
               activeSection === 'contact' 
-                ? 'text-primary font-medium' 
+                ? 'text-[#FF5C41] font-medium' 
                 : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -127,7 +127,7 @@ const Navigation = () => {
           href="https://linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-primary transition-colors"
+          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
         >
           <Linkedin size={20} />
         </a>
@@ -135,7 +135,7 @@ const Navigation = () => {
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-primary transition-colors"
+          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
         >
           <Twitter size={20} />
         </a>
@@ -143,13 +143,13 @@ const Navigation = () => {
           href="https://instagram.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-primary transition-colors"
+          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
         >
           <Instagram size={20} />
         </a>
         <a
           href="mailto:contact@example.com"
-          className="text-gray-400 hover:text-primary transition-colors"
+          className="text-gray-400 hover:text-[#FF5C41] transition-colors"
         >
           <Mail size={20} />
         </a>
