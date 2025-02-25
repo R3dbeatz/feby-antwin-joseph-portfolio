@@ -27,6 +27,10 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleLogoClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <>
       {/* Main Navigation - Top */}
@@ -37,11 +41,20 @@ const Navigation = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <img 
-            src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
-            alt="Signature"
-            className="h-12 w-auto object-contain brightness-0 invert"
-          />
+          <a 
+            href="#" 
+            onClick={(e) => {
+              e.preventDefault();
+              handleLogoClick();
+            }}
+            className="block"
+          >
+            <img 
+              src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
+              alt="Signature"
+              className="h-12 w-auto object-contain brightness-0 invert transition-colors hover:[filter:brightness(0)_invert(1)_sepia(1)_saturate(3000%)_hue-rotate(345deg)]"
+            />
+          </a>
         </motion.div>
 
         <motion.nav 
