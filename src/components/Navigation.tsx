@@ -38,9 +38,9 @@ const Navigation = () => {
           transition={{ duration: 0.5 }}
         >
           <img 
-            src="/lovable-uploads/e61b52bb-6221-41bf-addf-b14309feb0d1.png" 
-            alt="Logo"
-            className="h-12 w-auto object-contain"
+            src="/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png" 
+            alt="Signature"
+            className="h-12 w-auto object-contain brightness-0 invert"
           />
         </motion.div>
 
