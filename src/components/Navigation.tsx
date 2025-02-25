@@ -35,7 +35,7 @@ const Navigation = () => {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-8"
+          className="flex flex-col items-end gap-4"
         >
           <a 
             href="#about" 
