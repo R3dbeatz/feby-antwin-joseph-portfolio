@@ -35,7 +35,10 @@ const Projects = () => {
           {projects.map((project, index) => (
             <motion.div
               key={index}
-              className="project-card bg-dark-lighter p-6 rounded-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="bg-dark-lighter p-6 rounded-lg"
             >
               <h3 className="text-xl font-bold mb-4">{project.title}</h3>
               <p className="text-gray-400 mb-4">{project.description}</p>
