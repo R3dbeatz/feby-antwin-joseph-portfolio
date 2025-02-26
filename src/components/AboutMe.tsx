@@ -73,7 +73,7 @@ const AboutMe = () => {
 
           {/* Mobile Version */}
           <div className="md:hidden">
-            <div className="flex flex-col items-start">
+            <div className="flex flex-col items-start px-4">
               <div className="mb-8">
                 <div className="w-8 h-8 rounded-full bg-[#eb5939]"></div>
               </div>
@@ -83,7 +83,7 @@ const AboutMe = () => {
               >
                 ABOUT ME
               </motion.h2>
-              <div className="max-w-[100%]">
+              <div className="w-full max-w-[335px]">
                 <p className="text-[32px] leading-[1.2] tracking-tight font-medium">
                   {mobileCharacters.map((char, index) => (
                     <motion.span
