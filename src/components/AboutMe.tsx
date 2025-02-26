@@ -34,15 +34,15 @@ const AboutMe = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="max-w-6xl mx-auto"
+          className="max-w-4xl mx-auto"
         >
           <motion.h2 
             style={{ opacity }}
-            className="text-3xl font-medium text-[#eb5939] mb-8"
+            className="text-2xl font-medium text-[#eb5939] mb-8"
           >
             ABOUT ME
           </motion.h2>
-          <div className="max-w-[95vw] mx-auto">
+          <div className="max-w-[90vw] mx-auto">
             <p className="text-[72px] leading-[1.1] tracking-tight font-semibold break-words">
               {characters.map((char, index) => (
                 <motion.span
