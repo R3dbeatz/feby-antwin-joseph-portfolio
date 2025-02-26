@@ -18,8 +18,8 @@ export const SocialIcons = () => {
     const y = e.clientY - rect.top - rect.height / 2;
     const distance = Math.sqrt(x * x + y * y);
     
-    // Increased maxDistance even further for earlier detection
-    const maxDistance = 300;
+    // Increased maxDistance to 400px for even earlier detection
+    const maxDistance = 400;
     // Reduced multiplier to make movement more subtle
     const multiplier = Math.max(0, 1 - distance / maxDistance) * 1.2;
     
@@ -94,3 +94,4 @@ export const SocialIcons = () => {
     </motion.div>
   );
 };
+
