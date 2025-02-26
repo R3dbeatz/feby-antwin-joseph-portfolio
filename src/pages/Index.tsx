@@ -10,7 +10,7 @@ import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/all';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
 
 // Register GSAP plugins before using them
 gsap.registerPlugin(ScrollTrigger);
