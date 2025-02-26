@@ -7,24 +7,38 @@ const AboutMe = () => {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start center", "75vh center"] // Changed to complete at 75% of viewport height
+    offset: ["start center", "75vh center"]
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
-  const text = "I'm a strategically focused digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth.";
-  const characters = text.split('');
+  // Split text into parts to handle different colors
+  const textParts = [
+    "I'm a ",
+    "strategically focused",
+    " digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth."
+  ];
 
-  // Pre-create all the color transforms with adjusted timing
-  const characterColors = characters.map((_, index) => {
-    const start = index / characters.length * 0.75; // Compress animation to complete at 75%
-    const end = start + (0.1 / characters.length);
-    return useTransform(
-      scrollYProgress,
-      [start, end],
-      ['#333333', '#aa9e8b']
-    );
-  });
+  // Create character arrays for each part
+  const beforeText = textParts[0].split('');
+  const highlightedText = textParts[1].split('');
+  const afterText = textParts[2].split('');
+
+  // Create color transforms for regular text
+  const createCharacterColors = (chars: string[], startOffset: number = 0) => {
+    return chars.map((_, index) => {
+      const start = (index + startOffset) / (beforeText.length + highlightedText.length + afterText.length) * 0.75;
+      const end = start + (0.1 / (beforeText.length + highlightedText.length + afterText.length));
+      return useTransform(
+        scrollYProgress,
+        [start, end],
+        ['#333333', '#aa9e8b']
+      );
+    });
+  };
+
+  const beforeColors = createCharacterColors(beforeText);
+  const afterColors = createCharacterColors(afterText, beforeText.length + highlightedText.length);
 
   return (
     <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
@@ -44,10 +58,26 @@ const AboutMe = () => {
           </motion.h2>
           <div className="max-w-[90vw] mx-auto">
             <p className="text-[72px] leading-[1.1] tracking-tight font-semibold break-words">
-              {characters.map((char, index) => (
+              {beforeText.map((char, index) => (
                 <motion.span
-                  key={index}
-                  style={{ color: characterColors[index] }}
+                  key={`before-${index}`}
+                  style={{ color: beforeColors[index] }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+              {highlightedText.map((char, index) => (
+                <motion.span
+                  key={`highlight-${index}`}
+                  className="text-[#eb5939]"
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+              {afterText.map((char, index) => (
+                <motion.span
+                  key={`after-${index}`}
+                  style={{ color: afterColors[index] }}
                 >
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>
