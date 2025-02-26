@@ -49,17 +49,29 @@ const Navigation = () => {
     const rect = icon?.getBoundingClientRect();
     if (!rect) return;
 
+    // Calculate distance from cursor to icon center
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-
+    
+    // Calculate distance from cursor to icon
+    const distance = Math.sqrt(x * x + y * y);
+    
+    // Stronger pull factor (increased from 0.3 to 0.5)
+    // Distance-based multiplier that decreases as cursor gets further away
+    const maxDistance = 100; // Increased detection radius
+    const multiplier = Math.max(0, 1 - distance / maxDistance);
+    
     if (icon) {
-      icon.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      // Apply smooth transition and stronger pull
+      icon.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
+      icon.style.transform = `translate(${x * 0.5 * multiplier}px, ${y * 0.5 * multiplier}px)`;
     }
   };
 
   const handleIconMouseLeave = (iconId: string) => {
     const icon = socialIconsRef.current[iconId];
     if (icon) {
+      icon.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
       icon.style.transform = 'translate(0, 0)';
     }
     setHoveredIcon(null);
@@ -153,7 +165,7 @@ const Navigation = () => {
           href="https://linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors transition-transform duration-200"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
           onMouseMove={(e) => handleIconMouseMove(e, 'linkedin')}
           onMouseEnter={() => setHoveredIcon('linkedin')}
           onMouseLeave={() => handleIconMouseLeave('linkedin')}
@@ -165,7 +177,7 @@ const Navigation = () => {
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors transition-transform duration-200"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
           onMouseMove={(e) => handleIconMouseMove(e, 'twitter')}
           onMouseEnter={() => setHoveredIcon('twitter')}
           onMouseLeave={() => handleIconMouseLeave('twitter')}
@@ -177,7 +189,7 @@ const Navigation = () => {
           href="https://instagram.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors transition-transform duration-200"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
           onMouseMove={(e) => handleIconMouseMove(e, 'instagram')}
           onMouseEnter={() => setHoveredIcon('instagram')}
           onMouseLeave={() => handleIconMouseLeave('instagram')}
@@ -187,7 +199,7 @@ const Navigation = () => {
         <a
           ref={el => socialIconsRef.current['mail'] = el}
           href="mailto:contact@example.com"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors transition-transform duration-200"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
           onMouseMove={(e) => handleIconMouseMove(e, 'mail')}
           onMouseEnter={() => setHoveredIcon('mail')}
           onMouseLeave={() => handleIconMouseLeave('mail')}
