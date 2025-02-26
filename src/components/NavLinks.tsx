@@ -17,7 +17,7 @@ export const NavLinks = () => {
         className={`transition-colors ${
           activeSection === 'about' 
             ? 'text-[#eb5939] font-medium' 
-            : 'text-[#aa9e8b] hover:text-white'
+            : 'text-gray-400 hover:text-white'
         }`}
       >
         ABOUT
@@ -27,7 +27,7 @@ export const NavLinks = () => {
         className={`transition-colors ${
           activeSection === 'projects' 
             ? 'text-[#eb5939] font-medium' 
-            : 'text-[#aa9e8b] hover:text-white'
+            : 'text-gray-400 hover:text-white'
         }`}
       >
         WORK
@@ -37,7 +37,7 @@ export const NavLinks = () => {
         className={`transition-colors ${
           activeSection === 'contact' 
             ? 'text-[#eb5939] font-medium' 
-            : 'text-[#aa9e8b] hover:text-white'
+            : 'text-gray-400 hover:text-white'
         }`}
       >
         CONTACT
