@@ -18,9 +18,7 @@ export const SocialIcons = () => {
     const y = e.clientY - rect.top - rect.height / 2;
     const distance = Math.sqrt(x * x + y * y);
     
-    // Increased maxDistance to 400px for even earlier detection
     const maxDistance = 400;
-    // Reduced multiplier to make movement more subtle
     const multiplier = Math.max(0, 1 - distance / maxDistance) * 1.2;
     
     if (icon) {
@@ -50,7 +48,7 @@ export const SocialIcons = () => {
         href="https://linkedin.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+        className="text-[#aa9e8b] hover:text-[#eb5939] transition-colors will-change-transform"
         onMouseMove={(e) => handleIconMouseMove(e, 'linkedin')}
         onMouseEnter={() => setHoveredIcon('linkedin')}
         onMouseLeave={() => handleIconMouseLeave('linkedin')}
@@ -62,7 +60,7 @@ export const SocialIcons = () => {
         href="https://twitter.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+        className="text-[#aa9e8b] hover:text-[#eb5939] transition-colors will-change-transform"
         onMouseMove={(e) => handleIconMouseMove(e, 'twitter')}
         onMouseEnter={() => setHoveredIcon('twitter')}
         onMouseLeave={() => handleIconMouseLeave('twitter')}
@@ -74,7 +72,7 @@ export const SocialIcons = () => {
         href="https://instagram.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+        className="text-[#aa9e8b] hover:text-[#eb5939] transition-colors will-change-transform"
         onMouseMove={(e) => handleIconMouseMove(e, 'instagram')}
         onMouseEnter={() => setHoveredIcon('instagram')}
         onMouseLeave={() => handleIconMouseLeave('instagram')}
@@ -84,7 +82,7 @@ export const SocialIcons = () => {
       <a
         ref={el => socialIconsRef.current['mail'] = el}
         href="mailto:contact@example.com"
-        className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+        className="text-[#aa9e8b] hover:text-[#eb5939] transition-colors will-change-transform"
         onMouseMove={(e) => handleIconMouseMove(e, 'mail')}
         onMouseEnter={() => setHoveredIcon('mail')}
         onMouseLeave={() => handleIconMouseLeave('mail')}
@@ -94,4 +92,3 @@ export const SocialIcons = () => {
     </motion.div>
   );
 };
-
