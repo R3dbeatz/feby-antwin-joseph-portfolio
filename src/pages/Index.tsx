@@ -21,7 +21,7 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { EaselPlugin } from "gsap/EaselPlugin";
 import { PixiPlugin } from "gsap/PixiPlugin";
 import { TextPlugin } from "gsap/TextPlugin";
-import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 // Register all GSAP plugins
 gsap.registerPlugin(
