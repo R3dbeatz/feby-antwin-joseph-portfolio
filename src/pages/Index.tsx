@@ -21,7 +21,6 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import { EaselPlugin } from "gsap/EaselPlugin";
 import { PixiPlugin } from "gsap/PixiPlugin";
 import { TextPlugin } from "gsap/TextPlugin";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
 
 // Register all GSAP plugins
 gsap.registerPlugin(
@@ -38,35 +37,34 @@ gsap.registerPlugin(
   RoughEase,
   ExpoScaleEase,
   SlowMo,
-  CustomEase,
-  ScrollSmoother
+  CustomEase
 );
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useLayoutEffect(() => {
-    // Create a wrapper for smooth scrolling with enhanced configuration
+    // Set up smooth scrolling with ScrollTrigger
     if (typeof window !== 'undefined') {
-      try {
-        ScrollSmoother.create({
-          wrapper: "#smooth-wrapper",
-          content: "#smooth-content",
-          smooth: 1.5,
-          effects: true,
-          normalizeScroll: true,
-          ignoreMobileResize: true,
-          smoothTouch: 0.1,
-          ease: "power2.out"
-        });
+      gsap.config({
+        autoSleep: 60,
+        force3D: true
+      });
 
-        // Initialize ScrollTrigger to work with ScrollSmoother
-        ScrollTrigger.defaults({
-          scroller: "#smooth-wrapper"
+      // Smooth scroll setup
+      const content = document.querySelector("#smooth-content");
+      if (content) {
+        gsap.to(content, {
+          y: () => -(content.scrollHeight - window.innerHeight),
+          ease: "none",
+          scrollTrigger: {
+            trigger: content,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 1.5,
+            invalidateOnRefresh: true
+          }
         });
-
-      } catch (error) {
-        console.error('Error creating ScrollSmoother:', error);
       }
     }
   }, []);
@@ -76,13 +74,13 @@ const Index = () => {
   }, []);
 
   return (
-    <div id="smooth-wrapper">
+    <div className="min-h-screen bg-dark overflow-hidden">
       <div id="smooth-content">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}
           transition={{ duration: 0.5 }}
-          className="min-h-screen bg-dark"
+          className="relative"
         >
           <Navigation />
           <HeroSection />
