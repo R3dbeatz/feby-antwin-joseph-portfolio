@@ -7,7 +7,7 @@ const AboutMe = () => {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start center", "end center"] // Changed offset values to trigger earlier
+    offset: ["start center", "center center"] // Changed offset to complete animation by center
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 1]);
@@ -17,8 +17,8 @@ const AboutMe = () => {
 
   // Pre-create all the color transforms
   const characterColors = characters.map((_, index) => {
-    const start = index / characters.length;
-    const end = start + (0.5 / characters.length); // Reduced the animation range to complete earlier
+    const start = index / characters.length * 0.5; // Compress the animation range to complete by 50%
+    const end = start + (0.1 / characters.length); // Reduce duration for each character
     return useTransform(
       scrollYProgress,
       [start, end],
