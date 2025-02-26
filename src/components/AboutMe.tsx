@@ -12,10 +12,7 @@ const AboutMe = () => {
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 1]);
 
-  const text = `I'm a strategically focused digital marketer
-with a passion for crafting data-driven campaigns
-& delivering measurable
-business growth.`;
+  const text = "I'm a strategically focused digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth.";
   const characters = text.split('');
 
   // Pre-create all the color transforms
@@ -45,16 +42,18 @@ business growth.`;
           >
             ABOUT ME
           </motion.h2>
-          <p className="text-[72px] leading-[1.1] tracking-tight font-semibold whitespace-pre-line">
-            {characters.map((char, index) => (
-              <motion.span
-                key={index}
-                style={{ color: characterColors[index] }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
-          </p>
+          <div className="max-w-[90vw] mx-auto">
+            <p className="text-[72px] leading-[1.1] tracking-tight font-semibold break-words">
+              {characters.map((char, index) => (
+                <motion.span
+                  key={index}
+                  style={{ color: characterColors[index] }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
