@@ -9,12 +9,13 @@ import Projects from '../components/Projects';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import gsap from 'gsap';
-import ScrollTrigger from 'gsap/ScrollTrigger';
-import ScrollSmoother from 'gsap/ScrollSmoother';
+import { ScrollTrigger } from 'gsap/all';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 // Register GSAP plugins before using them
+gsap.registerPlugin(ScrollTrigger);
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+  gsap.registerPlugin(ScrollSmoother);
 }
 
 const Index = () => {
@@ -23,15 +24,19 @@ const Index = () => {
   useLayoutEffect(() => {
     // Create a wrapper for smooth scrolling
     if (typeof window !== 'undefined') {
-      ScrollSmoother.create({
-        wrapper: "#smooth-wrapper",
-        content: "#smooth-content",
-        smooth: 2, // Adjust this value to control smoothness (higher = smoother)
-        smoothTouch: true, // Enable smooth scrolling on touch devices
-        effects: true, // Enable inertia/momentum effects
-        normalizeScroll: true, // Normalize scroll behavior across devices
-        ignoreMobileResize: true, // Prevent issues with mobile browser chrome
-      });
+      try {
+        ScrollSmoother.create({
+          wrapper: "#smooth-wrapper",
+          content: "#smooth-content",
+          smooth: 2, // Adjust this value to control smoothness (higher = smoother)
+          smoothTouch: true, // Enable smooth scrolling on touch devices
+          effects: true, // Enable inertia/momentum effects
+          normalizeScroll: true, // Normalize scroll behavior across devices
+          ignoreMobileResize: true, // Prevent issues with mobile browser chrome
+        });
+      } catch (error) {
+        console.error('Error creating ScrollSmoother:', error);
+      }
     }
   }, []);
 
