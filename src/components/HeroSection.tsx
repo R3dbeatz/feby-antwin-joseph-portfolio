@@ -29,7 +29,7 @@ const HeroSection = () => {
               className="gradient-text"
             />
           </h1>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-8">
+          <p className="text-lg md:text-xl text-[#aa9e8b] max-w-2xl mx-auto mb-8">
             Creating impactful digital experiences through strategic marketing and creative storytelling.
           </p>
           <motion.button
