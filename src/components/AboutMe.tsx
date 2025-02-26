@@ -24,20 +24,21 @@ const AboutMe = () => {
   const highlightedText = textParts[1].split('');
   const afterText = textParts[2].split('');
 
-  // Create color transforms for regular text
-  const createCharacterColors = (chars: string[], startOffset: number = 0) => {
+  // Create color transforms for all text parts
+  const createCharacterColors = (chars: string[], startOffset: number = 0, isHighlighted: boolean = false) => {
     return chars.map((_, index) => {
       const start = (index + startOffset) / (beforeText.length + highlightedText.length + afterText.length) * 0.75;
       const end = start + (0.1 / (beforeText.length + highlightedText.length + afterText.length));
       return useTransform(
         scrollYProgress,
         [start, end],
-        ['#333333', '#aa9e8b']
+        isHighlighted ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']
       );
     });
   };
 
   const beforeColors = createCharacterColors(beforeText);
+  const highlightedColors = createCharacterColors(highlightedText, beforeText.length, true);
   const afterColors = createCharacterColors(afterText, beforeText.length + highlightedText.length);
 
   return (
@@ -69,7 +70,7 @@ const AboutMe = () => {
               {highlightedText.map((char, index) => (
                 <motion.span
                   key={`highlight-${index}`}
-                  className="text-[#eb5939]"
+                  style={{ color: highlightedColors[index] }}
                 >
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>
