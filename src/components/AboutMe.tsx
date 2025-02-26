@@ -12,7 +12,10 @@ const AboutMe = () => {
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 1]);
 
-  const text = "I'm a strategically focused digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth.";
+  const text = `I'm a strategically focused digital marketer
+with a passion for crafting data-driven campaigns
+& delivering measurable
+business growth.`;
   const characters = text.split('');
 
   // Pre-create all the color transforms
@@ -42,7 +45,7 @@ const AboutMe = () => {
           >
             ABOUT ME
           </motion.h2>
-          <p className="text-[72px] leading-[1.1] tracking-tight font-semibold">
+          <p className="text-[72px] leading-[1.1] tracking-tight font-semibold whitespace-pre-line">
             {characters.map((char, index) => (
               <motion.span
                 key={index}
