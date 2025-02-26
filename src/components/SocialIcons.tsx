@@ -18,12 +18,15 @@ export const SocialIcons = () => {
     const y = e.clientY - rect.top - rect.height / 2;
     const distance = Math.sqrt(x * x + y * y);
     
-    const maxDistance = 100;
-    const multiplier = Math.max(0, 1 - distance / maxDistance);
+    // Increased maxDistance to detect cursor from further away
+    const maxDistance = 200;
+    // Modified multiplier calculation to create stronger pull effect
+    const multiplier = Math.max(0, 1 - distance / maxDistance) * 2;
     
     if (icon) {
       icon.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
-      icon.style.transform = `translate(${x * 0.5 * multiplier}px, ${y * 0.5 * multiplier}px)`;
+      // Increased movement range by adjusting the multiplier
+      icon.style.transform = `translate(${x * multiplier}px, ${y * multiplier}px)`;
     }
   };
 
