@@ -12,12 +12,22 @@ const AboutMe = () => {
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 1]);
 
-  // Split text into an array of characters with their indices
   const text = "I'm a strategically focused digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth.";
   const characters = text.split('');
 
+  // Pre-create all the color transforms
+  const characterColors = characters.map((_, index) => {
+    const start = index / characters.length;
+    const end = start + (1 / characters.length);
+    return useTransform(
+      scrollYProgress,
+      [start, end],
+      ['#333333', '#aa9e8b']
+    );
+  });
+
   return (
-    <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20">
+    <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
       <div className="container px-4 mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -33,26 +43,14 @@ const AboutMe = () => {
             ABOUT ME
           </motion.h2>
           <p className="text-[72px] leading-[1.1] tracking-tight font-semibold">
-            {characters.map((char, index) => {
-              // Calculate the reveal progress for each character
-              const start = index / characters.length;
-              const end = start + (1 / characters.length);
-              const charColor = useTransform(
-                scrollYProgress,
-                [start, end],
-                ['#333333', '#aa9e8b']
-              );
-
-              return (
-                <motion.span
-                  key={index}
-                  style={{ color: charColor }}
-                  className={char === 'strategically' ? 'text-[#eb5939]' : ''}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              );
-            })}
+            {characters.map((char, index) => (
+              <motion.span
+                key={index}
+                style={{ color: characterColors[index] }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
           </p>
         </motion.div>
       </div>
