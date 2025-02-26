@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import Timeline from '../components/Timeline';
+import AboutMe from '../components/AboutMe';
 import Projects from '../components/Projects';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
@@ -25,6 +26,7 @@ const Index = () => {
       <Navigation />
       <HeroSection />
       <Timeline />
+      <AboutMe />
       <Projects />
       <Testimonials />
       <Contact />
