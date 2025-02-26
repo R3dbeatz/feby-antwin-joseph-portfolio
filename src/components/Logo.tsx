@@ -1,9 +1,10 @@
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export const Logo = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const logoRef = useRef<HTMLDivElement>(null);
 
   const handleLogoClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -11,10 +12,30 @@ export const Logo = () => {
 
   const handleLogoMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    const distance = Math.sqrt(x * x + y * y);
+    
+    // Use the same maxDistance and multiplier as social icons
+    const maxDistance = 400;
+    const multiplier = Math.max(0, 1 - distance / maxDistance) * 1.2;
+    
+    if (logoRef.current) {
+      logoRef.current.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
+      logoRef.current.style.transform = `translate(${x * multiplier}px, ${y * multiplier}px)`;
+    }
+
     setMousePosition({
       x: e.clientX - rect.left,
       y: e.clientY - rect.top
     });
+  };
+
+  const handleLogoMouseLeave = () => {
+    if (logoRef.current) {
+      logoRef.current.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+      logoRef.current.style.transform = 'translate(0, 0)';
+    }
   };
 
   return (
@@ -23,7 +44,9 @@ export const Logo = () => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
       onMouseMove={handleLogoMouseMove}
-      className="relative"
+      onMouseLeave={handleLogoMouseLeave}
+      ref={logoRef}
+      className="relative will-change-transform"
     >
       <a 
         href="#" 
