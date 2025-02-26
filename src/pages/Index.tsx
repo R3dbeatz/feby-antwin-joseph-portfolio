@@ -8,32 +8,65 @@ import AboutMe from '../components/AboutMe';
 import Projects from '../components/Projects';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/all';
-import { ScrollSmoother } from 'gsap/dist/ScrollSmoother';
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { CustomEase } from "gsap/CustomEase";
+import { RoughEase, ExpoScaleEase, SlowMo } from "gsap/EasePack";
+import { Flip } from "gsap/Flip";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Observer } from "gsap/Observer";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { Draggable } from "gsap/Draggable";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+import { EaselPlugin } from "gsap/EaselPlugin";
+import { PixiPlugin } from "gsap/PixiPlugin";
+import { TextPlugin } from "gsap/TextPlugin";
+import { ScrollSmoother } from "gsap/dist/ScrollSmoother";
 
-// Register GSAP plugins before using them
-gsap.registerPlugin(ScrollTrigger);
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollSmoother);
-}
+// Register all GSAP plugins
+gsap.registerPlugin(
+  useGSAP,
+  Flip,
+  ScrollTrigger,
+  Observer,
+  ScrollToPlugin,
+  Draggable,
+  MotionPathPlugin,
+  EaselPlugin,
+  PixiPlugin,
+  TextPlugin,
+  RoughEase,
+  ExpoScaleEase,
+  SlowMo,
+  CustomEase,
+  ScrollSmoother
+);
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useLayoutEffect(() => {
-    // Create a wrapper for smooth scrolling
+    // Create a wrapper for smooth scrolling with enhanced configuration
     if (typeof window !== 'undefined') {
       try {
         ScrollSmoother.create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
-          smooth: 2, // Adjust this value to control smoothness (higher = smoother)
-          smoothTouch: true, // Enable smooth scrolling on touch devices
-          effects: true, // Enable inertia/momentum effects
-          normalizeScroll: true, // Normalize scroll behavior across devices
-          ignoreMobileResize: true, // Prevent issues with mobile browser chrome
+          smooth: 1.5, // Adjusted for smoother scrolling
+          effects: true,
+          normalizeScroll: true,
+          ignoreMobileResize: true,
+          smoothTouch: 0.1, // Added touch device support with reduced smoothness
+          ease: "power2.out", // Added easing function
+          speedMultiplier: 1.2, // Controls scroll speed
+          preventDefault: true // Prevents default scroll behavior
         });
+
+        // Initialize ScrollTrigger to work with ScrollSmoother
+        ScrollTrigger.defaults({
+          scroller: "#smooth-wrapper"
+        });
+
       } catch (error) {
         console.error('Error creating ScrollSmoother:', error);
       }
