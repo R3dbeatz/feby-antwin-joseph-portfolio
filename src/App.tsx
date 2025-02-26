@@ -19,7 +19,6 @@ const App = () => {
       orientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1,
-      smoothTouch: false,
       infinite: false,
     });
 
