@@ -14,11 +14,19 @@ const queryClient = new QueryClient();
 const App = () => {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      duration: 2.4,
+      easing: (t) => {
+        const c4 = (2 * Math.PI) / 3;
+        return t === 0
+          ? 0
+          : t === 1
+          ? 1
+          : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
+      },
       orientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 2,
+      wheelMultiplier: 1,
+      lerp: 0.06,
     });
 
     function raf(time: number) {
@@ -51,3 +59,4 @@ const App = () => {
 };
 
 export default App;
+
