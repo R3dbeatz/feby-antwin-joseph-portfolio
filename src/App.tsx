@@ -17,7 +17,7 @@ const App = () => {
       duration: 0.8,
       easing: (t) => 1 - Math.pow(1 - t, 5), // Improved easing function for smoother deceleration
       orientation: 'vertical',
-      smoothTouch: false,
+      smoothWheel: false, // Using the correct property instead of smoothTouch
       touchMultiplier: 2,
     });
 
