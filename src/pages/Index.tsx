@@ -52,14 +52,12 @@ const Index = () => {
         ScrollSmoother.create({
           wrapper: "#smooth-wrapper",
           content: "#smooth-content",
-          smooth: 1.5, // Adjusted for smoother scrolling
+          smooth: 1.5,
           effects: true,
           normalizeScroll: true,
           ignoreMobileResize: true,
-          smoothTouch: 0.1, // Added touch device support with reduced smoothness
-          ease: "power2.out", // Added easing function
-          speedMultiplier: 1.2, // Controls scroll speed
-          preventDefault: true // Prevents default scroll behavior
+          smoothTouch: 0.1,
+          ease: "power2.out"
         });
 
         // Initialize ScrollTrigger to work with ScrollSmoother
