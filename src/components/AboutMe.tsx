@@ -15,7 +15,7 @@ const AboutMe = () => {
           <h2 className="text-2xl font-medium text-[#eb5939] mb-8">
             ABOUT ME
           </h2>
-          <p className="text-[56px] leading-[1.2] tracking-tight font-medium text-neutral-200">
+          <p className="text-[56px] leading-[1.2] tracking-tight font-medium text-[#aa9e8b]">
             I'm a <span className="text-[#eb5939]">strategically focused</span> digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth.
           </p>
         </motion.div>
