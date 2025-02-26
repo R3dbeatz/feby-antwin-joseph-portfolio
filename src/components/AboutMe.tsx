@@ -7,18 +7,18 @@ const AboutMe = () => {
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start center", "end center"] // Changed offset values to trigger earlier
+    offset: ["start start", "center start"] // Adjusted to reveal text earlier
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3], [0.3, 1]);
 
   const text = "I'm a strategically focused digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth.";
   const characters = text.split('');
 
-  // Pre-create all the color transforms
+  // Pre-create all the color transforms with shorter animation range
   const characterColors = characters.map((_, index) => {
-    const start = index / characters.length;
-    const end = start + (0.5 / characters.length); // Reduced the animation range to complete earlier
+    const start = index / characters.length * 0.3; // Compress the animation range to 30% of scroll
+    const end = start + (0.3 / characters.length); // Each character completes within the compressed range
     return useTransform(
       scrollYProgress,
       [start, end],
