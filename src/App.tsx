@@ -14,19 +14,14 @@ const queryClient = new QueryClient();
 const App = () => {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 2.4,
-      easing: (t) => {
-        const c4 = (2 * Math.PI) / 3;
-        return t === 0
-          ? 0
-          : t === 1
-          ? 1
-          : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1;
-      },
+      duration: 0.6,
+      easing: (t) => 1 - Math.pow(1 - t, 5), // Quint out easing
       orientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      lerp: 0.06,
+      wheelMultiplier: 1.2,
+      lerp: 0.1,
+      infinite: false,
+      smoothTouch: false, // Disable smooth scrolling on touch devices for more responsive feel
     });
 
     function raf(time: number) {
