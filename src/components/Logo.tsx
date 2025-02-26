@@ -16,9 +16,9 @@ export const Logo = () => {
     const y = e.clientY - rect.top - rect.height / 2;
     const distance = Math.sqrt(x * x + y * y);
     
-    // Use the same maxDistance and multiplier as social icons
-    const maxDistance = 400;
-    const multiplier = Math.max(0, 1 - distance / maxDistance) * 1.2;
+    // Increased maxDistance to 600px and multiplier to 2.0 for stronger effect
+    const maxDistance = 600;
+    const multiplier = Math.max(0, 1 - distance / maxDistance) * 2.0;
     
     if (logoRef.current) {
       logoRef.current.style.transition = 'transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)';
