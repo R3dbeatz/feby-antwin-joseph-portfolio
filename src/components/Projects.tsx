@@ -27,7 +27,8 @@ const Projects = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const projectCards = gsap.utils.toArray('.project-card');
+      // Explicitly type the elements as HTMLElement[]
+      const projectCards = gsap.utils.toArray<HTMLElement>('.project-card');
       
       projectCards.forEach((card, index) => {
         gsap.from(card, {
