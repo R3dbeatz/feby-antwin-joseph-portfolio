@@ -17,7 +17,7 @@ export const NavLinks = () => {
         to="about"
         spy={true}
         smooth={true}
-        duration={800}
+        duration={1500}
         className={`transition-colors cursor-pointer ${
           activeSection === 'about' 
             ? 'text-[#eb5939] font-medium' 
@@ -30,7 +30,7 @@ export const NavLinks = () => {
         to="projects"
         spy={true}
         smooth={true}
-        duration={800}
+        duration={1500}
         className={`transition-colors cursor-pointer ${
           activeSection === 'projects' 
             ? 'text-[#eb5939] font-medium' 
@@ -43,7 +43,7 @@ export const NavLinks = () => {
         to="contact"
         spy={true}
         smooth={true}
-        duration={800}
+        duration={1500}
         className={`transition-colors cursor-pointer ${
           activeSection === 'contact' 
             ? 'text-[#eb5939] font-medium' 
@@ -55,3 +55,4 @@ export const NavLinks = () => {
     </motion.nav>
   );
 };
+
