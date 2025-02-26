@@ -21,7 +21,7 @@ const App = () => {
       wheelMultiplier: 1.2,
       lerp: 0.1,
       infinite: false,
-      smoothTouch: false, // Disable smooth scrolling on touch devices for more responsive feel
+      touch: false, // Disable smooth scrolling on touch devices for more responsive feel
     });
 
     function raf(time: number) {
@@ -54,4 +54,3 @@ const App = () => {
 };
 
 export default App;
-
