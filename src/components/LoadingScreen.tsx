@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
@@ -42,53 +43,55 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
       }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark"
     >
-      <div className="relative">
-        <div className="w-64 h-64 flex items-center justify-center">
-          <Logo />
-        </div>
+      <div className="relative flex flex-col items-center">
         <AnimatePresence>
           {showProgress && (
             <motion.div 
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="mb-8 text-foreground"
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <svg className="w-[400px] h-[400px]" viewBox="0 0 100 100">
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="45"
-                  fill="none"
-                  stroke="#1a1a1a"
-                  strokeWidth="1"
-                />
-                <motion.circle
-                  cx="50"
-                  cy="50"
-                  r="45"
-                  fill="none"
-                  stroke="#b7ab98"
-                  strokeWidth="1"
-                  strokeDasharray={283}
-                  strokeDashoffset={283 - (283 * progress) / 100}
-                  className="transform -rotate-90 origin-center"
-                />
-              </svg>
+              <span className="text-3xl font-medium">{progress}%</span>
             </motion.div>
           )}
         </AnimatePresence>
+        <div className="relative">
+          <div className="w-96 h-96 flex items-center justify-center">
+            <Logo />
+          </div>
+          <AnimatePresence>
+            {showProgress && (
+              <motion.div 
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <svg className="w-[500px] h-[500px]" viewBox="0 0 100 100">
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    fill="none"
+                    stroke="#1a1a1a"
+                    strokeWidth="1"
+                  />
+                  <motion.circle
+                    cx="50"
+                    cy="50"
+                    r="45"
+                    fill="none"
+                    stroke="#b7ab98"
+                    strokeWidth="1"
+                    strokeDasharray={283}
+                    strokeDashoffset={283 - (283 * progress) / 100}
+                    className="transform -rotate-90 origin-center"
+                  />
+                </svg>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
-      <AnimatePresence>
-        {showProgress && (
-          <motion.div 
-            className="mt-8 text-foreground"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <span className="text-xl font-medium">{progress}%</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
       <AnimatePresence>
         {showOptimize && (
           <motion.div
