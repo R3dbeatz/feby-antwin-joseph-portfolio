@@ -63,7 +63,7 @@ export const BlobCursor = ({
   ];
 
   return (
-    <div className="fixed top-0 left-0 w-full h-full pointer-events-none" style={{ zIndex: 100 }}>
+    <div className="fixed top-0 left-0 w-full h-full pointer-events-none" style={{ zIndex: 9999 }}>
       <svg style={{ position: "absolute", width: 0, height: 0 }}>
         <filter id="blob">
           <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="30" />
@@ -83,6 +83,7 @@ export const BlobCursor = ({
           KhtmlUserSelect: "none",
           MozUserSelect: "none",
           msUserSelect: "none",
+          zIndex: 9999,
         }}
         onMouseMove={(e) => handleMove(e as unknown as MouseEvent)}
         onTouchMove={(e) => handleMove(e as unknown as TouchEvent)}
@@ -99,6 +100,7 @@ export const BlobCursor = ({
               borderRadius: blobType === "circle" ? "50%" : "0%",
               backgroundColor: fillColor,
               boxShadow: "10px 10px 5px 0px rgba(0, 0, 0, 0.75)",
+              zIndex: 9999,
             }}
           >
             <div
