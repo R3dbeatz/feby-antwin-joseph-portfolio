@@ -29,7 +29,7 @@ const Index = () => {
 
     // Initialize Lenis with slower duration
     const lenis = new window.Lenis({
-      duration: 2.2, // Increased from 1.2 to 2.2 for slower scrolling
+      duration: 2.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
@@ -127,7 +127,6 @@ const Index = () => {
     }, mainRef);
 
     return () => {
-      // Cleanup ScrollTrigger instances and stop Lenis
       ctx.revert();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       lenis.destroy();
@@ -140,27 +139,30 @@ const Index = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: isLoaded ? 1 : 0 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-dark"
+      className="min-h-screen bg-dark-lighter"
     >
-      <Navigation />
-      <section id="hero">
-        <HeroSection />
-      </section>
-      <section id="about">
-        <AboutMe />
-      </section>
-      <section id="experience">
-        <Timeline />
-      </section>
-      <section id="projects">
-        <Projects />
-      </section>
-      <section id="testimonials">
-        <Testimonials />
-      </section>
-      <section id="contact">
-        <Contact />
-      </section>
+      {/* Remove top padding from Navigation component */}
+      <div className="min-h-screen flex flex-col">
+        <Navigation />
+        <section id="hero" className="pt-0">
+          <HeroSection />
+        </section>
+        <section id="about">
+          <AboutMe />
+        </section>
+        <section id="experience">
+          <Timeline />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        <section id="testimonials">
+          <Testimonials />
+        </section>
+        <section id="contact">
+          <Contact />
+        </section>
+      </div>
     </motion.div>
   );
 };
