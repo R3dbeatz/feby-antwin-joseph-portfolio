@@ -16,45 +16,39 @@ const Magnet = ({
   children,
   padding = 100,
   disabled = false,
-  magnetStrength = 2,
-  activeTransition = "transform 0.3s ease-out",
-  inactiveTransition = "transform 0.5s ease-in-out",
+  magnetStrength = 100,
+  activeTransition = "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+  inactiveTransition = "transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
   wrapperClassName = "",
   innerClassName = "",
-  ...props
 }: MagnetProps) => {
   const [isActive, setIsActive] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const magnetRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (disabled) {
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!magnetRef.current || disabled) return;
+
+    const bounds = magnetRef.current.getBoundingClientRect();
+    const centerX = bounds.left + bounds.width / 2;
+    const centerY = bounds.top + bounds.height / 2;
+
+    const distance = Math.sqrt(
+      Math.pow(e.clientX - centerX, 2) + Math.pow(e.clientY - centerY, 2)
+    );
+
+    if (distance < padding) {
+      setIsActive(true);
+      const x = (e.clientX - centerX) / magnetStrength;
+      const y = (e.clientY - centerY) / magnetStrength;
+      setPosition({ x, y });
+    } else {
+      setIsActive(false);
       setPosition({ x: 0, y: 0 });
-      return;
     }
+  };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!magnetRef.current) return;
-
-      const { left, top, width, height } = magnetRef.current.getBoundingClientRect();
-      const centerX = left + width / 2;
-      const centerY = top + height / 2;
-
-      const distX = Math.abs(centerX - e.clientX);
-      const distY = Math.abs(centerY - e.clientY);
-
-      if (distX < width / 2 + padding && distY < height / 2 + padding) {
-        setIsActive(true);
-
-        const offsetX = (e.clientX - centerX) / magnetStrength;
-        const offsetY = (e.clientY - centerY) / magnetStrength;
-        setPosition({ x: offsetX, y: offsetY });
-      } else {
-        setIsActive(false);
-        setPosition({ x: 0, y: 0 });
-      }
-    };
-
+  useEffect(() => {
     window.addEventListener("mousemove", handleMouseMove);
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
@@ -64,12 +58,11 @@ const Magnet = ({
   return (
     <div
       ref={magnetRef}
-      className={wrapperClassName}
-      style={{ position: "relative", display: "inline-block" }}
-      {...props}
+      className={`relative inline-block ${wrapperClassName}`}
+      style={{ cursor: "none" }}
     >
       <div
-        className={innerClassName}
+        className={`transform ${innerClassName}`}
         style={{
           transform: `translate3d(${position.x}px, ${position.y}px, 0)`,
           transition: isActive ? activeTransition : inactiveTransition,

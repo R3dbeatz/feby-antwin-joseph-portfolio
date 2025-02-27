@@ -14,12 +14,12 @@ export const SocialIcons = () => {
       transition={{ duration: 0.5 }}
       className="fixed bottom-8 left-8 flex flex-col gap-8 z-50"
     >
-      <Magnet padding={50} magnetStrength={100}>
+      <Magnet padding={100} magnetStrength={100}>
         <a
           href="https://linkedin.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform block p-4"
           onMouseEnter={() => setHoveredIcon('linkedin')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
@@ -27,12 +27,12 @@ export const SocialIcons = () => {
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={100}>
+      <Magnet padding={100} magnetStrength={100}>
         <a
           href="https://twitter.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform block p-4"
           onMouseEnter={() => setHoveredIcon('twitter')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
@@ -40,12 +40,12 @@ export const SocialIcons = () => {
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={100}>
+      <Magnet padding={100} magnetStrength={100}>
         <a
           href="https://instagram.com"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform block p-4"
           onMouseEnter={() => setHoveredIcon('instagram')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
@@ -53,10 +53,10 @@ export const SocialIcons = () => {
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={100}>
+      <Magnet padding={100} magnetStrength={100}>
         <a
           href="mailto:contact@example.com"
-          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
+          className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform block p-4"
           onMouseEnter={() => setHoveredIcon('mail')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
@@ -66,4 +66,3 @@ export const SocialIcons = () => {
     </motion.div>
   );
 };
-
