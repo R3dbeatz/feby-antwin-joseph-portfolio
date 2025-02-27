@@ -1,18 +1,19 @@
 
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import Squares from './Squares';
+import { Squares } from './ui/squares-background';
 
 const HeroSection = () => {
   return (
     <section className="section relative overflow-hidden">
       <div className="absolute inset-0">
         <Squares 
+          direction="diagonal"
           speed={0.5}
           squareSize={40}
-          direction="diagonal"
           borderColor="#ffffff20"
           hoverFillColor="#eb593920"
+          className="-z-10"
         />
       </div>
       <div className="container relative z-10">
