@@ -12,9 +12,9 @@ export const SocialIcons = () => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed bottom-8 left-8 flex flex-col gap-6 z-50"
+      className="fixed bottom-8 left-8 flex flex-col gap-8 z-50"
     >
-      <Magnet padding={50} magnetStrength={30}>
+      <Magnet padding={50} magnetStrength={50}>
         <a
           href="https://linkedin.com"
           target="_blank"
@@ -23,11 +23,11 @@ export const SocialIcons = () => {
           onMouseEnter={() => setHoveredIcon('linkedin')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
-          <Linkedin size={20} />
+          <Linkedin size={24} strokeWidth={1.5} />
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={30}>
+      <Magnet padding={50} magnetStrength={50}>
         <a
           href="https://twitter.com"
           target="_blank"
@@ -36,11 +36,11 @@ export const SocialIcons = () => {
           onMouseEnter={() => setHoveredIcon('twitter')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
-          <Twitter size={20} />
+          <Twitter size={24} strokeWidth={1.5} />
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={30}>
+      <Magnet padding={50} magnetStrength={50}>
         <a
           href="https://instagram.com"
           target="_blank"
@@ -49,18 +49,18 @@ export const SocialIcons = () => {
           onMouseEnter={() => setHoveredIcon('instagram')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
-          <Instagram size={20} />
+          <Instagram size={24} strokeWidth={1.5} />
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={30}>
+      <Magnet padding={50} magnetStrength={50}>
         <a
           href="mailto:contact@example.com"
           className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
           onMouseEnter={() => setHoveredIcon('mail')}
           onMouseLeave={() => setHoveredIcon(null)}
         >
-          <Mail size={20} />
+          <Mail size={24} strokeWidth={1.5} />
         </a>
       </Magnet>
     </motion.div>
