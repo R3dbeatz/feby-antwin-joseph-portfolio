@@ -47,7 +47,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         <AnimatePresence>
           {showProgress && (
             <motion.div 
-              className="mb-8 text-foreground"
+              className="mb-16 text-foreground"
               initial={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
@@ -56,7 +56,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           )}
         </AnimatePresence>
         <div className="relative">
-          <div className="w-96 h-96 flex items-center justify-center">
+          <div className="w-[600px] h-[600px] flex items-center justify-center">
             <Logo />
           </div>
           <AnimatePresence>
