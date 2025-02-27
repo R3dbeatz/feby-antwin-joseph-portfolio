@@ -20,6 +20,7 @@ declare global {
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [splineLoaded, setSplineLoaded] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -134,6 +135,11 @@ const Index = () => {
     };
   }, []);
 
+  const onSplineLoad = () => {
+    console.log('Spline scene loaded');
+    setSplineLoaded(true);
+  };
+
   return (
     <motion.div
       ref={mainRef}
@@ -144,7 +150,10 @@ const Index = () => {
     >
       {/* Spline Background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <Spline scene="https://my.spline.design/backlightbgeffect-58b0407f742bc2b80408b67d7fcca950/" />
+        <Spline 
+          scene="https://prod.spline.design/83fLANec8PGfTbg7/scene.splinecode"
+          onLoad={onSplineLoad}
+        />
       </div>
 
       {/* Main Content */}
