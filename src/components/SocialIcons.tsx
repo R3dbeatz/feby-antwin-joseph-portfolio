@@ -18,8 +18,10 @@ export const SocialIcons = () => {
     const y = e.clientY - rect.top - rect.height / 2;
     const distance = Math.sqrt(x * x + y * y);
     
-    const maxDistance = 100;
-    const multiplier = Math.max(0, 1 - distance / maxDistance) * 0.8;
+    // Increased maxDistance to detect cursor from further away
+    const maxDistance = 200;
+    // Increased multiplier for stronger magnetic pull
+    const multiplier = Math.max(0, 1 - distance / maxDistance) * 1.5;
     
     if (icon) {
       icon.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
