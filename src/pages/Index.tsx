@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
@@ -10,7 +9,6 @@ import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Spline from '@splinetool/react-spline';
 
 declare global {
   interface Window {
@@ -20,7 +18,6 @@ declare global {
 
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [splineLoaded, setSplineLoaded] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -135,27 +132,14 @@ const Index = () => {
     };
   }, []);
 
-  const onSplineLoad = () => {
-    console.log('Spline scene loaded');
-    setSplineLoaded(true);
-  };
-
   return (
     <motion.div
       ref={mainRef}
       initial={{ opacity: 0 }}
       animate={{ opacity: isLoaded ? 1 : 0 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-dark-lighter relative"
+      className="min-h-screen bg-gradient-to-b from-dark-lighter to-dark relative"
     >
-      {/* Spline Background */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <Spline 
-          scene="https://prod.spline.design/83fLANec8PGfTbg7/scene.splinecode"
-          onLoad={onSplineLoad}
-        />
-      </div>
-
       {/* Main Content */}
       <div className="relative z-10">
         <Navigation />
