@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
@@ -25,7 +24,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         }
         return prev + 5;
       });
-    }, 5); // Reduced to 5ms for faster progress (100ms total)
+    }, 15);
 
     return () => clearInterval(interval);
   }, []);
