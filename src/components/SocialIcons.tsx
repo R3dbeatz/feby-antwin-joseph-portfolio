@@ -14,7 +14,7 @@ export const SocialIcons = () => {
       transition={{ duration: 0.5 }}
       className="fixed bottom-8 left-8 flex flex-col gap-8 z-50"
     >
-      <Magnet padding={50} magnetStrength={50}>
+      <Magnet padding={50} magnetStrength={100}>
         <a
           href="https://linkedin.com"
           target="_blank"
@@ -27,7 +27,7 @@ export const SocialIcons = () => {
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={50}>
+      <Magnet padding={50} magnetStrength={100}>
         <a
           href="https://twitter.com"
           target="_blank"
@@ -40,7 +40,7 @@ export const SocialIcons = () => {
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={50}>
+      <Magnet padding={50} magnetStrength={100}>
         <a
           href="https://instagram.com"
           target="_blank"
@@ -53,7 +53,7 @@ export const SocialIcons = () => {
         </a>
       </Magnet>
 
-      <Magnet padding={50} magnetStrength={50}>
+      <Magnet padding={50} magnetStrength={100}>
         <a
           href="mailto:contact@example.com"
           className="text-gray-400 hover:text-[#eb5939] transition-colors will-change-transform"
@@ -66,3 +66,4 @@ export const SocialIcons = () => {
     </motion.div>
   );
 };
+
