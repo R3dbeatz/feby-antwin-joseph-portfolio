@@ -6,13 +6,15 @@ import Squares from './Squares';
 const HeroSection = () => {
   return (
     <section className="section relative overflow-hidden">
-      <Squares 
-        speed={0.5}
-        squareSize={40}
-        direction="diagonal"
-        borderColor="#ffffff20"
-        hoverFillColor="#eb593920"
-      />
+      <div className="absolute inset-0">
+        <Squares 
+          speed={0.5}
+          squareSize={40}
+          direction="diagonal"
+          borderColor="#ffffff20"
+          hoverFillColor="#eb593920"
+        />
+      </div>
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
