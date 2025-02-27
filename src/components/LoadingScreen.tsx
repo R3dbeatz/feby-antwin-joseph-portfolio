@@ -12,6 +12,7 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
   const [showOptimize, setShowOptimize] = useState(false);
+  const [showProgress, setShowProgress] = useState(true);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,6 +20,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         if (prev >= 100) {
           clearInterval(interval);
           setShowOptimize(true);
+          setShowProgress(false);
           return 100;
         }
         return prev + 5;
@@ -45,33 +47,49 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         <div className="w-64 h-64 flex items-center justify-center">
           <Logo />
         </div>
-        <div className="absolute -inset-12">
-          <svg className="w-[400px] h-[400px]" viewBox="0 0 100 100">
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#1a1a1a"
-              strokeWidth="2"
-            />
-            <motion.circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#b7ab98"
-              strokeWidth="2"
-              strokeDasharray={283}
-              strokeDashoffset={283 - (283 * progress) / 100}
-              className="transform -rotate-90 origin-center"
-            />
-          </svg>
-        </div>
+        <AnimatePresence>
+          {showProgress && (
+            <motion.div 
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+              initial={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <svg className="w-[400px] h-[400px]" viewBox="0 0 100 100">
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  fill="none"
+                  stroke="#1a1a1a"
+                  strokeWidth="1"
+                />
+                <motion.circle
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  fill="none"
+                  stroke="#b7ab98"
+                  strokeWidth="1"
+                  strokeDasharray={283}
+                  strokeDashoffset={283 - (283 * progress) / 100}
+                  className="transform -rotate-90 origin-center"
+                />
+              </svg>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      <div className="mt-8 text-foreground">
-        <span className="text-xl font-medium">{progress}%</span>
-      </div>
+      <AnimatePresence>
+        {showProgress && (
+          <motion.div 
+            className="mt-8 text-foreground"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <span className="text-xl font-medium">{progress}%</span>
+          </motion.div>
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {showOptimize && (
           <motion.div
@@ -115,4 +133,3 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 };
 
 export default LoadingScreen;
-
