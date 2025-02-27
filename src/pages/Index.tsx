@@ -10,6 +10,7 @@ import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Spline from '@splinetool/react-spline';
 
 declare global {
   interface Window {
@@ -139,10 +140,15 @@ const Index = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: isLoaded ? 1 : 0 }}
       transition={{ duration: 0.5 }}
-      className="min-h-screen bg-dark-lighter"
+      className="min-h-screen bg-dark-lighter relative"
     >
-      {/* Remove top padding from Navigation component */}
-      <div className="min-h-screen flex flex-col">
+      {/* Spline Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none">
+        <Spline scene="https://my.spline.design/backlightbgeffect-58b0407f742bc2b80408b67d7fcca950/" />
+      </div>
+
+      {/* Main Content */}
+      <div className="relative z-10">
         <Navigation />
         <section id="hero" className="pt-0">
           <HeroSection />
