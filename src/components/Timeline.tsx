@@ -1,5 +1,8 @@
 
 import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const timelineItems = [
   {
@@ -20,18 +23,71 @@ const timelineItems = [
 ];
 
 const Timeline = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const letterRef = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    if (sectionRef.current && titleRef.current && contentRef.current && letterRef.current) {
+      // Initial title animation
+      gsap.from(titleRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top center",
+          end: "top 20%",
+          scrub: 1,
+        },
+        scale: 0.5,
+        opacity: 0,
+        ease: "power2.out"
+      });
+
+      // Letter U zoom animation
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 20%",
+          end: "center center",
+          scrub: 1,
+          pin: true,
+        }
+      })
+      .to(letterRef.current, {
+        scale: 15,
+        opacity: 1,
+        duration: 2,
+      })
+      .to(letterRef.current, {
+        scale: 1,
+        opacity: 0,
+        duration: 1,
+      })
+      .from(contentRef.current, {
+        opacity: 0,
+        y: 100,
+        duration: 1,
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
+
   return (
-    <section className="section" id="experience">
-      <div className="container">
+    <section ref={sectionRef} className="section min-h-screen bg-dark" id="experience">
+      <div className="container relative">
         <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-serif font-bold mb-12 text-center"
+          ref={titleRef}
+          className="text-6xl md:text-8xl font-serif font-bold mb-12 text-center pt-20"
         >
-          My Journey
+          My Jo<span ref={letterRef} className="inline-block opacity-0">u</span>rney
         </motion.h2>
-        <div className="relative pl-8">
+        
+        <div ref={contentRef} className="relative pl-8">
           <div className="timeline-line"></div>
           {timelineItems.map((item, index) => (
             <motion.div
