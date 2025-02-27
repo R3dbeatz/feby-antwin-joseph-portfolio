@@ -44,107 +44,114 @@ const WhatTheySaid = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const testimonialRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const imagesContainerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
-    // Create a main ScrollTrigger for the entire section
-    const sectionTrigger = ScrollTrigger.create({
-      trigger: sectionRef.current,
-      start: "top top",
-      end: "bottom bottom",
-      onEnter: () => {
-        // When entering section, pin the images
-        if (window.innerWidth >= 1024) { // Only on desktop
-          gsap.to(".testimonial-images-container", {
-            position: "fixed",
-            top: "50%",
-            right: "calc((100vw - 1280px) / 2 + 30px)",
-            transform: "translateY(-50%)",
+    // Make sure the section and images container exist
+    if (!sectionRef.current || !imagesContainerRef.current) return;
+    
+    // Create a ScrollTrigger context
+    const ctx = gsap.context(() => {
+      // Create a main ScrollTrigger for the entire section
+      const sectionTrigger = ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top top",
+        end: "bottom bottom",
+        onEnter: () => {
+          // Only apply fixed positioning on desktop
+          if (window.innerWidth >= 1024) {
+            gsap.to(imagesContainerRef.current, {
+              position: "fixed",
+              top: "50%",
+              right: "10%",
+              transform: "translateY(-50%)",
+              duration: 0.3
+            });
+          }
+        },
+        onLeaveBack: () => {
+          // Reset when scrolling back up out of the section
+          gsap.to(imagesContainerRef.current, {
+            position: "relative",
+            top: "auto",
+            right: "auto",
+            transform: "none",
+            duration: 0.3
+          });
+        },
+        onLeave: () => {
+          // Reset when scrolling past the section
+          gsap.to(imagesContainerRef.current, {
+            position: "relative",
+            top: "auto",
+            right: "auto",
+            transform: "none",
             duration: 0.3
           });
         }
-      },
-      onLeaveBack: () => {
-        // Reset when scrolling back up
-        gsap.to(".testimonial-images-container", {
-          position: "relative",
-          top: "auto",
-          right: "auto",
-          transform: "translateY(0)",
-          duration: 0.3
-        });
-      },
-      onLeave: () => {
-        // Reset when scrolling past the section
-        gsap.to(".testimonial-images-container", {
-          position: "relative",
-          top: "auto",
-          right: "auto",
-          transform: "translateY(0)",
-          duration: 0.3
-        });
-      }
-    });
-    
-    // Create individual triggers for each testimonial
-    testimonialRefs.current.forEach((section, index) => {
-      if (!section) return;
-      
-      ScrollTrigger.create({
-        trigger: section,
-        start: "top center",
-        end: "bottom center",
-        onEnter: () => setActiveIndex(index),
-        onEnterBack: () => setActiveIndex(index),
       });
-
-      // Create animation timeline for each testimonial
-      const tl = gsap.timeline({
-        scrollTrigger: {
+      
+      // Create individual triggers for each testimonial
+      testimonialRefs.current.forEach((section, index) => {
+        if (!section) return;
+        
+        ScrollTrigger.create({
           trigger: section,
           start: "top center",
           end: "bottom center",
-          toggleActions: "play none none reverse"
-        }
-      });
+          onEnter: () => setActiveIndex(index),
+          onEnterBack: () => setActiveIndex(index),
+        });
 
-      // Animate the content
-      tl.fromTo(
-        `.testimonial-${index} .quote-text`,
-        { opacity: 0, x: -30 },
-        { opacity: 1, x: 0, duration: 0.7 }
-      ).fromTo(
-        `.testimonial-${index} .author-info`,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5 },
-        "-=0.3"
-      ).fromTo(
-        `.testimonial-${index} .testimonial-line`,
-        { scaleX: 0 },
-        { scaleX: 1, duration: 0.7, transformOrigin: "left center" },
-        "-=0.5"
-      );
+        // Create animation timeline for each testimonial
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top center",
+            end: "bottom center",
+            toggleActions: "play none none reverse"
+          }
+        });
+
+        // Animate the content
+        tl.fromTo(
+          `.testimonial-${index} .quote-text`,
+          { opacity: 0, x: -30 },
+          { opacity: 1, x: 0, duration: 0.7 }
+        ).fromTo(
+          `.testimonial-${index} .author-info`,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5 },
+          "-=0.3"
+        ).fromTo(
+          `.testimonial-${index} .testimonial-line`,
+          { scaleX: 0 },
+          { scaleX: 1, duration: 0.7, transformOrigin: "left center" },
+          "-=0.5"
+        );
+      });
     });
 
     return () => {
-      // Clean up all ScrollTrigger instances
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      // Clean up
+      ctx.revert();
     };
   }, []);
 
   return (
     <div 
       ref={sectionRef} 
-      className="min-h-screen bg-[#222222] py-20 overflow-hidden relative"
+      className="min-h-screen bg-[#333333] py-20 overflow-hidden relative"
     >
       <div className="container mx-auto px-4" ref={containerRef}>
         <div className="flex flex-col mb-16">
           <h2 className="text-4xl md:text-5xl font-serif text-[#F97316] mb-2">
             WHAT THEY SAID
           </h2>
-          <div className="w-full h-px bg-neutral-800 mt-4"></div>
+          <div className="w-full h-px bg-neutral-700 mt-4"></div>
         </div>
         
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative min-h-[60vh]">
@@ -174,22 +181,25 @@ const WhatTheySaid = () => {
           
           {/* Images Column - takes 1/3 of the grid on large screens */}
           <div className="hidden lg:block col-span-1">
-            <div className="testimonial-images-container flex flex-col items-end justify-center space-y-10 relative">
+            <div 
+              ref={imagesContainerRef}
+              className="testimonial-images-container relative flex flex-col items-center justify-center space-y-6"
+            >
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={testimonial.id} 
-                  className={`testimonial-image w-20 h-20 rounded-full overflow-hidden transition-all duration-500 relative
-                  ${index === activeIndex ? 'scale-150 border-2 border-[#F97316] z-10' : 'grayscale'}
-                  `}
+                  className={`testimonial-image relative transition-all duration-500 
+                    ${index === activeIndex ? 
+                      'w-24 h-24 border-2 border-[#F97316] z-10' : 
+                      'w-16 h-16 grayscale opacity-50'}`}
                 >
                   <img 
                     src={testimonial.image} 
                     alt={testimonial.name} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover rounded-full"
                   />
-                  <div className={`absolute inset-0 transition-opacity duration-500 ${index === activeIndex ? 'opacity-0' : 'opacity-50 bg-black'}`}></div>
                   {index === activeIndex && (
-                    <div className="absolute -left-2 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-[#F97316]"></div>
+                    <div className="absolute -left-3 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-[#F97316] rounded-full"></div>
                   )}
                 </div>
               ))}
