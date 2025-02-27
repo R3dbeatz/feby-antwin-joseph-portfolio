@@ -21,9 +21,9 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           setShowOptimize(true);
           return 100;
         }
-        return prev + 1;
+        return prev + 5;
       });
-    }, 30);
+    }, 5); // Reduced to 5ms for faster progress (100ms total)
 
     return () => clearInterval(interval);
   }, []);
@@ -31,15 +31,22 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      exit={{ 
+        opacity: 0,
+        scale: 1.1,
+        transition: {
+          duration: 0.8,
+          ease: [0.43, 0.13, 0.23, 0.96]
+        }
+      }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-dark"
     >
       <div className="relative">
-        <div className="w-48 h-48 flex items-center justify-center">
+        <div className="w-64 h-64 flex items-center justify-center">
           <Logo />
         </div>
-        <div className="absolute -inset-8">
-          <svg className="w-64 h-64" viewBox="0 0 100 100">
+        <div className="absolute -inset-12">
+          <svg className="w-[400px] h-[400px]" viewBox="0 0 100 100">
             <circle
               cx="50"
               cy="50"
@@ -53,7 +60,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               cy="50"
               r="45"
               fill="none"
-              stroke="#eb5939"
+              stroke="#b7ab98"
               strokeWidth="2"
               strokeDasharray={283}
               strokeDashoffset={283 - (283 * progress) / 100}
@@ -82,13 +89,13 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             }}
             whileHover={{ 
               scale: 1.05,
-              rotate: [0, -2, 2, -2, 0],
+              rotate: [0, -1, 1, -1, 0],
               transition: {
-                duration: 0.5,
+                duration: 0.3,
                 rotate: {
                   repeat: Infinity,
                   repeatType: "reverse",
-                  duration: 0.5
+                  duration: 0.3
                 }
               }
             }}
@@ -96,7 +103,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           >
             <Button
               onClick={onComplete}
-              className="px-8 py-2 text-lg bg-primary hover:bg-primary/90 transition-all duration-300"
+              className="px-8 py-2 text-lg border-2 border-[#b7ab98] text-[#b7ab98] bg-transparent hover:bg-[#b7ab98] hover:text-white transition-all duration-300"
             >
               Optimize
             </Button>
@@ -108,3 +115,4 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 };
 
 export default LoadingScreen;
+
