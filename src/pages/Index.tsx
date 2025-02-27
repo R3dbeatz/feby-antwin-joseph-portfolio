@@ -11,6 +11,12 @@ import Contact from '../components/Contact';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+declare global {
+  interface Window {
+    Lenis: any;
+  }
+}
+
 const Index = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
@@ -20,6 +26,25 @@ const Index = () => {
     
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
+
+    // Initialize Lenis
+    const lenis = new window.Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      gestureDirection: 'vertical',
+      smooth: true,
+      smoothTouch: false,
+      touchMultiplier: 2,
+    });
+
+    // Integrate GSAP with Lenis
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    
+    requestAnimationFrame(raf);
 
     const ctx = gsap.context(() => {
       // Hero Section Animation
@@ -99,18 +124,13 @@ const Index = () => {
         opacity: 0,
         duration: 1
       });
-
-      // Smooth scrolling
-      gsap.to("body", {
-        scrollBehavior: "smooth",
-        ease: "power2.inOut",
-      });
     }, mainRef);
 
     return () => {
-      // Cleanup ScrollTrigger instances
+      // Cleanup ScrollTrigger instances and stop Lenis
       ctx.revert();
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      lenis.destroy();
     };
   }, []);
 
