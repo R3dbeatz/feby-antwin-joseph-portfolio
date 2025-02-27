@@ -38,8 +38,8 @@ export default {
           foreground: "#0F0F0F",
         },
         dark: {
-          DEFAULT: "#0F0F0F",
-          lighter: "#1A1F2C",
+          DEFAULT: "#0d0d0d",
+          lighter: "#0d0d0d",
         },
       },
       fontFamily: {

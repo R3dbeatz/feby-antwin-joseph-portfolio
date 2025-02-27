@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 10%;
+  --background: 0 0% 5%;
   --foreground: 0 0% 98%;
   --border: 0 0% 14.9%;
   --input: 0 0% 14.9%;
@@ -18,7 +18,7 @@
 }
 
 body {
-  @apply bg-dark-lighter text-foreground antialiased overflow-x-hidden;
+  @apply bg-[#0d0d0d] text-foreground antialiased overflow-x-hidden;
   margin: 0;
   padding: 0;
 }
