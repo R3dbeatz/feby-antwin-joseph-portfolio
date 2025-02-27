@@ -23,9 +23,9 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           setShowProgress(false);
           return 100;
         }
-        return prev + 5;
+        return prev + 1;
       });
-    }, 15);
+    }, 50); // 50ms * 100 steps = 5000ms total duration for smoother animation
 
     return () => clearInterval(interval);
   }, []);
@@ -119,7 +119,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                 }
               }
             }}
-            className="mt-8"
+            className="mt-2" // Changed from mt-8 to mt-2 to bring the button closer to the logo
           >
             <Button
               onClick={onComplete}
