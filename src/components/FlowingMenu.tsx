@@ -1,6 +1,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState } from 'react';
+import DecryptedText from './DecryptedText';
 
 interface MenuContent {
   title: string;
@@ -78,7 +79,7 @@ const FlowingMenu = () => {
       <div className="container px-4 mx-auto">
         <motion.h2 
           style={{ opacity }}
-          className="text-2xl font-medium text-[#b7ab98] mb-12 tracking-wider"
+          className="text-2xl font-medium text-[#eb5939] mb-12 tracking-wider"
         >
           WHAT I DO
         </motion.h2>
@@ -120,7 +121,9 @@ const FlowingMenu = () => {
               className="text-[#b7ab98] leading-relaxed"
             >
               {activeItem !== null && (
-                <p className="text-lg">{menuItems[activeItem].content}</p>
+                <div className="text-xl">
+                  <DecryptedText text={menuItems[activeItem].content} />
+                </div>
               )}
             </motion.div>
           </div>
