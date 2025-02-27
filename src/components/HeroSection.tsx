@@ -2,10 +2,12 @@
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Squares } from './ui/squares-background';
+import { BlobCursor } from './ui/blob-cursor';
 
 const HeroSection = () => {
   return (
     <section className="section relative overflow-hidden">
+      <BlobCursor />
       <div className="absolute inset-0">
         <Squares 
           direction="diagonal"
