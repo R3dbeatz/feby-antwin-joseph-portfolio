@@ -1,126 +1,87 @@
 
-import { motion, useAnimation } from 'framer-motion';
-import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
+import { Timeline as TimelineComponent } from './ui/timeline';
 
-const timelineItems = [
+const timelineData = [
   {
-    year: '2024',
-    title: 'Senior Marketing Strategist',
-    description: 'Leading digital transformation initiatives and brand campaigns.',
+    title: '2024',
+    content: (
+      <div>
+        <p className="text-white text-sm md:text-base font-normal mb-8">
+          Leading digital transformation initiatives and brand campaigns as a Senior Marketing Strategist.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-dark-lighter rounded-lg p-6 shadow-lg">
+            <h4 className="text-primary text-lg font-bold mb-2">Campaign Strategy</h4>
+            <p className="text-neutral-300 text-sm">
+              Developed and executed comprehensive marketing campaigns that increased brand visibility by 45%.
+            </p>
+          </div>
+          <div className="bg-dark-lighter rounded-lg p-6 shadow-lg">
+            <h4 className="text-primary text-lg font-bold mb-2">Digital Transformation</h4>
+            <p className="text-neutral-300 text-sm">
+              Led initiatives that modernized marketing operations and improved efficiency across departments.
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
-    year: '2022',
-    title: 'Marketing Team Lead',
-    description: 'Managed successful product launches and marketing campaigns.',
+    title: '2022',
+    content: (
+      <div>
+        <p className="text-white text-sm md:text-base font-normal mb-8">
+          Managed successful product launches and marketing campaigns as a Marketing Team Lead.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-dark-lighter rounded-lg p-6 shadow-lg">
+            <h4 className="text-primary text-lg font-bold mb-2">Team Management</h4>
+            <p className="text-neutral-300 text-sm">
+              Led a cross-functional team of 8 marketers, designers, and content creators to achieve quarterly targets.
+            </p>
+          </div>
+          <div className="bg-dark-lighter rounded-lg p-6 shadow-lg">
+            <h4 className="text-primary text-lg font-bold mb-2">Product Launch</h4>
+            <p className="text-neutral-300 text-sm">
+              Orchestrated the successful launch of 3 major products, exceeding sales projections by 30%.
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
-    year: '2020',
-    title: 'Digital Marketing Specialist',
-    description: 'Developed and executed comprehensive digital marketing strategies.',
+    title: '2020',
+    content: (
+      <div>
+        <p className="text-white text-sm md:text-base font-normal mb-8">
+          Developed and executed comprehensive digital marketing strategies as a Digital Marketing Specialist.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-dark-lighter rounded-lg p-6 shadow-lg">
+            <h4 className="text-primary text-lg font-bold mb-2">SEO Optimization</h4>
+            <p className="text-neutral-300 text-sm">
+              Improved organic search rankings by 60% through strategic SEO initiatives and content optimization.
+            </p>
+          </div>
+          <div className="bg-dark-lighter rounded-lg p-6 shadow-lg">
+            <h4 className="text-primary text-lg font-bold mb-2">Social Media Growth</h4>
+            <p className="text-neutral-300 text-sm">
+              Expanded social media presence with strategies that increased engagement by 78% and followers by 10k.
+            </p>
+          </div>
+        </div>
+      </div>
+    ),
   },
 ];
 
 const Timeline = () => {
-  const [isZoomed, setIsZoomed] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const controls = useAnimation();
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    const timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top center",
-        onEnter: () => {
-          setIsZoomed(true);
-          // Lock scroll
-          document.body.style.overflow = 'hidden';
-          
-          // Unlock scroll after 3 seconds
-          setTimeout(() => {
-            document.body.style.overflow = 'auto';
-          }, 3000);
-          
-          // Animate background and zoom
-          controls.start({
-            scale: [1, 1.5],
-            transition: { 
-              duration: 1.5,
-              ease: "easeInOut"
-            }
-          });
-        }
-      }
-    });
-
-    return () => {
-      timeline.kill();
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, [controls]);
-
   return (
-    <section 
-      ref={sectionRef} 
-      className="section min-h-screen overflow-hidden relative"
-      id="experience"
-    >
-      <motion.div
-        animate={controls}
-        className={`absolute inset-0 w-full h-full transition-colors duration-1000 ${
-          isZoomed ? 'bg-[#b7ab98]' : 'bg-dark'
-        }`}
-      />
-      
-      <div className="container relative z-10">
-        <div className="flex flex-col items-center justify-center pt-20">
-          <motion.div
-            animate={controls}
-            className="relative mb-20"
-          >
-            <h2
-              ref={titleRef}
-              className={`text-6xl md:text-8xl font-serif font-bold text-center transition-colors duration-1000 ${
-                isZoomed ? 'text-dark' : 'text-white'
-              }`}
-            >
-              My Journey
-            </h2>
-          </motion.div>
-          
-          <div 
-            ref={contentRef} 
-            className="relative pl-8 w-full max-w-2xl"
-          >
-            <div className="timeline-line"></div>
-            {timelineItems.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ 
-                  opacity: isZoomed ? 1 : 0, 
-                  x: isZoomed ? 0 : -50 
-                }}
-                transition={{ 
-                  duration: 0.5, 
-                  delay: index * 0.2 + 1.5 
-                }}
-                className="mb-12 relative"
-              >
-                <div className="timeline-dot"></div>
-                <span className="text-primary font-medium">{item.year}</span>
-                <h3 className="text-xl font-bold mt-2">{item.title}</h3>
-                <p className="mt-2">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
+    <section id="experience" className="min-h-screen relative">
+      <div className="w-full h-full absolute top-0 left-0 bg-dark z-0"></div>
+      <TimelineComponent data={timelineData} />
     </section>
   );
 };
