@@ -1,10 +1,12 @@
 
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
+import SquaresBackground from './SquaresBackground';
 
 const HeroSection = () => {
   return (
     <section className="section relative overflow-hidden">
+      <SquaresBackground />
       <div className="container relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
