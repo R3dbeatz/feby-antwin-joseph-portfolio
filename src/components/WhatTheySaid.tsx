@@ -37,6 +37,7 @@ const WhatTheySaid = () => {
   const [activeTestimonialId, setActiveTestimonialId] = useState<number | null>(null);
   
   const handleImageClick = (id: number) => {
+    // Toggle between the clicked testimonial and showing none
     setActiveTestimonialId(id === activeTestimonialId ? null : id);
   };
   
@@ -73,31 +74,6 @@ const WhatTheySaid = () => {
                 <p className="text-sm text-foreground/60">{activeTestimonial.designation}</p>
               </div>
             </div>
-          </div>
-        )}
-        
-        {/* All testimonials grid (only visible when no testimonial is selected) */}
-        {!activeTestimonial && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {testimonials.map((testimonial) => (
-              <div 
-                key={testimonial.id}
-                className="bg-dark-lighter border border-primary/20 p-6 rounded-lg shadow-lg hover:shadow-primary/10 transition-all duration-300"
-              >
-                <p className="text-foreground/80 mb-4 italic">{testimonial.content}</p>
-                <div className="flex items-center">
-                  <img 
-                    src={testimonial.image} 
-                    alt={testimonial.name}
-                    className="w-10 h-10 rounded-full mr-3 object-cover border border-primary/30"
-                  />
-                  <div>
-                    <h4 className="font-medium text-primary">{testimonial.name}</h4>
-                    <p className="text-sm text-foreground/60">{testimonial.designation}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         )}
       </div>
