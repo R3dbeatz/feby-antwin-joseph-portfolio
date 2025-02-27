@@ -1,7 +1,12 @@
 
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 const Projects = () => {
+  const projectsRef = useRef<HTMLDivElement>(null);
+  
   const projects = [
     {
       title: 'Digital Marketing Campaign',
@@ -20,8 +25,33 @@ const Projects = () => {
     }
   ];
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Explicitly type the elements as HTMLElement[]
+      const projectCards = gsap.utils.toArray<HTMLElement>('.project-card');
+      
+      projectCards.forEach((card, index) => {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom-=100",
+            end: "top center",
+            scrub: 1,
+          },
+          y: 100,
+          opacity: 0,
+          duration: 1,
+          ease: "power2.out",
+          delay: index * 0.2,
+        });
+      });
+    }, projectsRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="section" id="projects">
+    <section className="section" id="projects" ref={projectsRef}>
       <div className="container">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -33,12 +63,9 @@ const Projects = () => {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className="bg-dark-lighter p-6 rounded-lg"
+              className="project-card bg-dark-lighter p-6 rounded-lg"
             >
               <h3 className="text-xl font-bold mb-4">{project.title}</h3>
               <p className="text-gray-400 mb-4">{project.description}</p>
@@ -52,7 +79,7 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
