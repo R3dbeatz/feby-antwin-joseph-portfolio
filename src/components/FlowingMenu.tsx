@@ -61,7 +61,7 @@ const FlowingMenu = () => {
         <div className="space-y-6">
           {processedItems.map((item, idx) => (
             <div key={idx} className="border-b border-[#1a1a1a]">
-              <p className="text-[7rem] font-bold leading-none tracking-tighter py-4">
+              <p className="text-[5rem] font-bold leading-none tracking-tighter py-4">
                 {item.map((char, charIdx) => (
                   <motion.span 
                     key={`char-${idx}-${charIdx}`} 
