@@ -1,7 +1,5 @@
-
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
-
 const AboutMe = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const {
@@ -28,11 +26,9 @@ const AboutMe = () => {
       return useTransform(scrollYProgress, [start, end], isHighlighted ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']);
     });
   };
-
   const beforeColors = createCharacterColors(beforeText);
   const highlightedColors = createCharacterColors(highlightedText, beforeText.length, true);
   const afterColors = createCharacterColors(afterText, beforeText.length + highlightedText.length);
-
   return <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
       <div className="container px-4 mx-auto">
         <motion.div initial={{
@@ -51,7 +47,7 @@ const AboutMe = () => {
         }} className="text-2xl font-medium text-[#eb5939] mb-8">
             ABOUT ME
           </motion.h2>
-          <div className="max-w-[80vw] mx-auto px-8">
+          <div className="max-w-[90vw] mx-auto">
             <p className="leading-[1.1] tracking-tight break-words font-semibold text-7xl my-0 text-left mx-[4px] px-0 py-[15px]">
               {beforeText.map((char, index) => <motion.span key={`before-${index}`} style={{
               color: beforeColors[index]
@@ -74,5 +70,4 @@ const AboutMe = () => {
       </div>
     </section>;
 };
-
 export default AboutMe;
