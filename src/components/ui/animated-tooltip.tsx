@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils";
 export const AnimatedTooltip = ({
   items,
   className,
+  onImageClick,
 }: {
   items: {
     id: number;
@@ -21,6 +22,7 @@ export const AnimatedTooltip = ({
     image: string;
   }[];
   className?: string;
+  onImageClick?: (id: number) => void;
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const springConfig = { stiffness: 100, damping: 5 };
@@ -37,15 +39,22 @@ export const AnimatedTooltip = ({
     const halfWidth = event.target.offsetWidth / 2;
     x.set(event.nativeEvent.offsetX - halfWidth);
   };
+  
+  const handleClick = (id: number) => {
+    if (onImageClick) {
+      onImageClick(id);
+    }
+  };
 
   return (
     <div className={cn("flex items-center gap-2", className)}>
       {items.map((item) => (
         <div
-          className="-mr-4 relative group"
+          className="-mr-4 relative group cursor-pointer"
           key={item.name}
           onMouseEnter={() => setHoveredIndex(item.id)}
           onMouseLeave={() => setHoveredIndex(null)}
+          onClick={() => handleClick(item.id)}
         >
           <AnimatePresence mode="popLayout">
             {hoveredIndex === item.id && (
