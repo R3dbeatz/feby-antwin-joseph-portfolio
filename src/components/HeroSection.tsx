@@ -17,7 +17,7 @@ const HeroSection = () => {
         duration: 0.8
       }} className="text-center">
           <span className="text-primary font-medium mb-6 block text-2xl">Welcome to my world</span>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 lg:text-9xl">
+          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 lg:text-8xl">
             <TypeAnimation sequence={['Marketing Visionary', 2000, 'Digital Storyteller', 2000, 'Brand Strategist', 2000]} wrapper="span" speed={50} repeat={Infinity} className="gradient-text" />
           </h1>
           <p className="text-lg text-[#aa9e8b] max-w-2xl mx-auto mb-8 md:text-2xl font-normal">
