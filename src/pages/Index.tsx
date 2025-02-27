@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
@@ -7,6 +8,7 @@ import AboutMe from '../components/AboutMe';
 import Projects from '../components/Projects';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
+import LoadingScreen from '../components/LoadingScreen';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -17,8 +19,13 @@ declare global {
 }
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     setIsLoaded(true);
@@ -133,36 +140,39 @@ const Index = () => {
   }, []);
 
   return (
-    <motion.div
-      ref={mainRef}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: isLoaded ? 1 : 0 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen bg-gradient-to-b from-dark-lighter to-dark relative"
-    >
-      {/* Main Content */}
-      <div className="relative z-10">
-        <Navigation />
-        <section id="hero" className="pt-0">
-          <HeroSection />
-        </section>
-        <section id="about">
-          <AboutMe />
-        </section>
-        <section id="experience">
-          <Timeline />
-        </section>
-        <section id="projects">
-          <Projects />
-        </section>
-        <section id="testimonials">
-          <Testimonials />
-        </section>
-        <section id="contact">
-          <Contact />
-        </section>
-      </div>
-    </motion.div>
+    <>
+      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      <motion.div
+        ref={mainRef}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isLoaded ? 1 : 0 }}
+        transition={{ duration: 0.5 }}
+        className="min-h-screen bg-gradient-to-b from-dark-lighter to-dark relative"
+      >
+        {/* Main Content */}
+        <div className="relative z-10">
+          <Navigation />
+          <section id="hero" className="pt-0">
+            <HeroSection />
+          </section>
+          <section id="about">
+            <AboutMe />
+          </section>
+          <section id="experience">
+            <Timeline />
+          </section>
+          <section id="projects">
+            <Projects />
+          </section>
+          <section id="testimonials">
+            <Testimonials />
+          </section>
+          <section id="contact">
+            <Contact />
+          </section>
+        </div>
+      </motion.div>
+    </>
   );
 };
 
