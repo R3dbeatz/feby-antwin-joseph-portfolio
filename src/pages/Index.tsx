@@ -27,9 +27,9 @@ const Index = () => {
     // Register ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initialize Lenis
+    // Initialize Lenis with slower duration
     const lenis = new window.Lenis({
-      duration: 1.2,
+      duration: 2.2, // Increased from 1.2 to 2.2 for slower scrolling
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
