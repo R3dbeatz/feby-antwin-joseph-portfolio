@@ -1,5 +1,8 @@
+
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import FlowingMenu from './FlowingMenu';
+
 const AboutMe = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const {
@@ -29,45 +32,54 @@ const AboutMe = () => {
   const beforeColors = createCharacterColors(beforeText);
   const highlightedColors = createCharacterColors(highlightedText, beforeText.length, true);
   const afterColors = createCharacterColors(afterText, beforeText.length + highlightedText.length);
-  return <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
-      <div className="container px-4 mx-auto">
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} transition={{
-        duration: 0.8
-      }} viewport={{
-        once: true
-      }} className="max-w-4xl mx-auto">
-          <motion.h2 style={{
-          opacity
-        }} className="text-2xl font-medium text-[#eb5939] mb-8">
-            ABOUT ME
-          </motion.h2>
-          <div className="max-w-[90vw] mx-auto">
-            <p className="leading-[1.1] tracking-tight break-words font-semibold text-7xl my-0 text-left mx-[4px] px-0 py-[15px]">
-              {beforeText.map((char, index) => <motion.span key={`before-${index}`} style={{
-              color: beforeColors[index]
-            }}>
+  
+  return (
+    <>
+      <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
+        <div className="container px-4 mx-auto">
+          <motion.div initial={{
+            opacity: 0,
+            y: 20
+          }} whileInView={{
+            opacity: 1,
+            y: 0
+          }} transition={{
+            duration: 0.8
+          }} viewport={{
+            once: true
+          }} className="max-w-4xl mx-auto">
+            <motion.h2 style={{
+              opacity
+            }} className="text-2xl font-medium text-[#eb5939] mb-8">
+              ABOUT ME
+            </motion.h2>
+            <div className="max-w-[90vw] mx-auto">
+              <p className="leading-[1.1] tracking-tight break-words font-semibold text-7xl my-0 text-left mx-[4px] px-0 py-[15px]">
+                {beforeText.map((char, index) => <motion.span key={`before-${index}`} style={{
+                  color: beforeColors[index]
+                }}>
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>)}
-              {highlightedText.map((char, index) => <motion.span key={`highlight-${index}`} style={{
-              color: highlightedColors[index]
-            }}>
+                {highlightedText.map((char, index) => <motion.span key={`highlight-${index}`} style={{
+                  color: highlightedColors[index]
+                }}>
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>)}
-              {afterText.map((char, index) => <motion.span key={`after-${index}`} style={{
-              color: afterColors[index]
-            }}>
+                {afterText.map((char, index) => <motion.span key={`after-${index}`} style={{
+                  color: afterColors[index]
+                }}>
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>)}
-            </p>
-          </div>
-        </motion.div>
-      </div>
-    </section>;
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+      
+      {/* Flowing Menu Section */}
+      <FlowingMenu />
+    </>
+  );
 };
+
 export default AboutMe;
