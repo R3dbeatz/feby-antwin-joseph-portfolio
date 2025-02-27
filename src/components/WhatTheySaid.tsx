@@ -43,36 +43,74 @@ const testimonials: TestimonialData[] = [
 const WhatTheySaid = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const testimonialRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
-    const testimonialSections = document.querySelectorAll('.testimonial-section');
+    // Create a main ScrollTrigger for the entire section
+    const sectionTrigger = ScrollTrigger.create({
+      trigger: sectionRef.current,
+      start: "top top",
+      end: "bottom bottom",
+      onEnter: () => {
+        // When entering section, pin the images
+        if (window.innerWidth >= 1024) { // Only on desktop
+          gsap.to(".testimonial-images-container", {
+            position: "fixed",
+            top: "50%",
+            right: "calc((100vw - 1280px) / 2 + 30px)",
+            transform: "translateY(-50%)",
+            duration: 0.3
+          });
+        }
+      },
+      onLeaveBack: () => {
+        // Reset when scrolling back up
+        gsap.to(".testimonial-images-container", {
+          position: "relative",
+          top: "auto",
+          right: "auto",
+          transform: "translateY(0)",
+          duration: 0.3
+        });
+      },
+      onLeave: () => {
+        // Reset when scrolling past the section
+        gsap.to(".testimonial-images-container", {
+          position: "relative",
+          top: "auto",
+          right: "auto",
+          transform: "translateY(0)",
+          duration: 0.3
+        });
+      }
+    });
     
-    testimonialSections.forEach((section, index) => {
+    // Create individual triggers for each testimonial
+    testimonialRefs.current.forEach((section, index) => {
+      if (!section) return;
+      
       ScrollTrigger.create({
         trigger: section,
-        start: 'top center',
-        end: 'bottom center',
+        start: "top center",
+        end: "bottom center",
         onEnter: () => setActiveIndex(index),
         onEnterBack: () => setActiveIndex(index),
-        toggleClass: { targets: section, className: 'active' }
       });
-    });
 
-    // Create a timeline for each testimonial that will play when its section is active
-    testimonialSections.forEach((section, index) => {
+      // Create animation timeline for each testimonial
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: 'top center',
-          end: 'bottom center',
-          toggleActions: 'play none none reverse'
+          start: "top center",
+          end: "bottom center",
+          toggleActions: "play none none reverse"
         }
       });
 
-      // Animate the text and image
+      // Animate the content
       tl.fromTo(
         `.testimonial-${index} .quote-text`,
         { opacity: 0, x: -30 },
@@ -82,10 +120,16 @@ const WhatTheySaid = () => {
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.5 },
         "-=0.3"
+      ).fromTo(
+        `.testimonial-${index} .testimonial-line`,
+        { scaleX: 0 },
+        { scaleX: 1, duration: 0.7, transformOrigin: "left center" },
+        "-=0.5"
       );
     });
 
     return () => {
+      // Clean up all ScrollTrigger instances
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
@@ -93,7 +137,7 @@ const WhatTheySaid = () => {
   return (
     <div 
       ref={sectionRef} 
-      className="min-h-screen bg-[#222222] py-20 overflow-hidden"
+      className="min-h-screen bg-[#222222] py-20 overflow-hidden relative"
     >
       <div className="container mx-auto px-4" ref={containerRef}>
         <div className="flex flex-col mb-16">
@@ -103,13 +147,14 @@ const WhatTheySaid = () => {
           <div className="w-full h-px bg-neutral-800 mt-4"></div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 relative min-h-[500px]">
-          {/* Testimonials Column */}
-          <div className="space-y-32">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative min-h-[60vh]">
+          {/* Testimonials Column - takes 2/3 of the grid on large screens */}
+          <div className="col-span-1 lg:col-span-2 space-y-40">
             {testimonials.map((testimonial, index) => (
               <div 
                 key={testimonial.id} 
                 className={`testimonial-section testimonial-${index} ${index === activeIndex ? 'opacity-100' : 'opacity-30'} transition-opacity duration-500`}
+                ref={el => testimonialRefs.current[index] = el}
               >
                 <div className="mb-6">
                   <div className="text-[#F97316] text-6xl font-serif">"</div>
@@ -117,18 +162,19 @@ const WhatTheySaid = () => {
                     {testimonial.quote}
                   </h3>
                 </div>
-                <div className="author-info">
+                <div className="author-info mt-6">
                   <p className="text-xl text-white font-medium">{testimonial.name}</p>
                   <p className="text-[#8E9196]">{testimonial.title}</p>
-                  <p className="text-[#8E9196]">{testimonial.company}</p>
+                  <p className="text-[#8E9196] mb-4">{testimonial.company}</p>
+                  <div className="testimonial-line w-16 h-0.5 bg-[#F97316] transform origin-left"></div>
                 </div>
               </div>
             ))}
           </div>
           
-          {/* Images Column */}
-          <div className="hidden lg:flex flex-col items-end justify-center relative">
-            <div className="sticky top-1/3 space-y-10">
+          {/* Images Column - takes 1/3 of the grid on large screens */}
+          <div className="hidden lg:block col-span-1">
+            <div className="testimonial-images-container flex flex-col items-end justify-center space-y-10 relative">
               {testimonials.map((testimonial, index) => (
                 <div 
                   key={testimonial.id} 
