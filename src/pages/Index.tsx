@@ -6,7 +6,7 @@ import HeroSection from '../components/HeroSection';
 import Timeline from '../components/Timeline';
 import AboutMe from '../components/AboutMe';
 import Projects from '../components/Projects';
-import Testimonials from '../components/Testimonials';
+import WhatTheySaid from '../components/WhatTheySaid';
 import Contact from '../components/Contact';
 import LoadingScreen from '../components/LoadingScreen';
 import gsap from 'gsap';
@@ -105,7 +105,7 @@ const Index = () => {
         duration: 1
       });
 
-      // Testimonials Section Animation
+      // What They Said Section Animation
       gsap.from("#testimonials", {
         scrollTrigger: {
           trigger: "#testimonials",
@@ -165,7 +165,7 @@ const Index = () => {
             <Projects />
           </section>
           <section id="testimonials">
-            <Testimonials />
+            <WhatTheySaid />
           </section>
           <section id="contact">
             <Contact />
