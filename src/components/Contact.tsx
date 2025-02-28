@@ -13,7 +13,6 @@ interface SocialLink {
 interface ContactInfo {
   type: string;
   value: string;
-  hoverText: string;
   url: string;
 }
 
@@ -32,13 +31,11 @@ const Contact = () => {
     { 
       type: 'Email', 
       value: 'febyantwinjoseph@gmail.com', 
-      hoverText: '100% chance I read it', 
       url: 'mailto:febyantwinjoseph@gmail.com' 
     },
     { 
       type: 'Phone', 
       value: '+1 (203) 864-2473', 
-      hoverText: '80% chance i won\'t pickup', 
       url: 'tel:+12038642473' 
     },
   ];
@@ -85,13 +82,9 @@ const Contact = () => {
               {contactInfo.map((info) => (
                 <div key={info.type} className="space-y-3">
                   <h3 className="text-[#a48c76] text-2xl">{info.type}</h3>
-                  <div className="relative">
-                    <FlowingMenuItem 
-                      text={info.value} 
-                      hoverText={info.hoverText} 
-                      url={info.url} 
-                    />
-                  </div>
+                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-xl block">
+                    {info.value}
+                  </a>
                 </div>
               ))}
             </div>
@@ -110,8 +103,7 @@ interface FlowingMenuItemProps {
 
 const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
   const itemRef = useRef<HTMLDivElement>(null);
-  const marqueeRef = useRef<HTMLDivElement>(null);
-  const marqueeInnerRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLAnchorElement>(null);
 
   const animationDefaults = { duration: 0.6, ease: "expo" };
@@ -129,7 +121,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
   };
 
   const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current || !textRef.current)
+    if (!itemRef.current || !overlayRef.current || !textRef.current)
       return;
     
     const rect = itemRef.current.getBoundingClientRect();
@@ -141,14 +133,13 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
     );
 
     const tl = gsap.timeline({ defaults: animationDefaults });
-    tl.set(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
-      .set(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" })
-      .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" }, 0)
-      .to(textRef.current, { opacity: 0, duration: 0.3 }, 0); // Hide the text immediately
+    tl.set(overlayRef.current, { y: edge === "top" ? "-101%" : "101%" })
+      .to(overlayRef.current, { y: "0%" }, 0)
+      .to(textRef.current, { opacity: 0, duration: 0.3 }, 0);
   };
 
   const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current || !textRef.current)
+    if (!itemRef.current || !overlayRef.current || !textRef.current)
       return;
     
     const rect = itemRef.current.getBoundingClientRect();
@@ -160,14 +151,9 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
     );
 
     const tl = gsap.timeline({ defaults: animationDefaults });
-    tl.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" }, 0)
-      .to(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" }, 0)
-      .to(textRef.current, { opacity: 1, duration: 0.3, delay: 0.2 }); // Show the text with a slight delay
+    tl.to(overlayRef.current, { y: edge === "top" ? "-101%" : "101%" }, 0)
+      .to(textRef.current, { opacity: 1, duration: 0.3, delay: 0.2 });
   };
-
-  const repeatedMarqueeContent = Array.from({ length: 8 }).map((_, idx) => (
-    <span key={idx} className="text-black font-bold text-xl mx-4">{hoverText}</span>
-  ));
 
   return (
     <div
@@ -187,17 +173,10 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
         </a>
       </div>
       <div
-        ref={marqueeRef}
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%]"
+        ref={overlayRef}
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-center"
       >
-        <div 
-          ref={marqueeInnerRef}
-          className="h-full w-full flex items-center"
-        >
-          <div className="flex items-center h-full w-[200%] animate-marquee">
-            {repeatedMarqueeContent}
-          </div>
-        </div>
+        <span className="text-black font-bold text-4xl">{hoverText}</span>
       </div>
     </div>
   );
