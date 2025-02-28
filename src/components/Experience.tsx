@@ -21,23 +21,28 @@ const Experience = () => {
     "all digital channels."
   ];
 
-  // Split text for animation
-  const firstPart = textParts[0].split('');
-  const remainingText = textParts.slice(1);
-  
-  // Create color transforms for all text parts
-  const createCharacterColors = (chars: string[], startOffset: number = 0, isHighlighted: boolean = false) => {
-    return chars.map((_, index) => {
-      const start = (index + startOffset) / (firstPart.length * 3) * 0.75;
-      const end = start + 0.1 / firstPart.length;
-      return useTransform(scrollYProgress, [start, end], isHighlighted ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']);
+  // Create line-by-line color transforms
+  const lineColors = textParts.map((line, lineIndex) => {
+    const chars = line.split('');
+    const isFirstLine = lineIndex === 0;
+    
+    // Calculate different scroll ranges for each line
+    const lineStart = lineIndex * 0.15; // Each line starts animating at different scroll points
+    const lineEnd = lineStart + 0.15;
+    
+    return chars.map((_, charIndex) => {
+      // Each character within the line animates slightly after the previous one
+      const charStart = lineStart + (charIndex / chars.length) * 0.1;
+      const charEnd = charStart + 0.02;
+      
+      // First line gets the highlight color, other lines get the regular color
+      return useTransform(
+        scrollYProgress, 
+        [charStart, charEnd], 
+        isFirstLine ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']
+      );
     });
-  };
-  
-  const firstPartColors = createCharacterColors(firstPart, 0, true);
-  const remainingTextColors = remainingText.map(line => 
-    createCharacterColors(line.split(''), firstPart.length)
-  );
+  });
   
   return (
     <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
@@ -68,31 +73,15 @@ const Experience = () => {
             EXPERIENCE
           </motion.h2>
           <div className="experience-text-container">
-            <div className="experience-line">
-              {/* First line with highlight color */}
-              {firstPart.map((char, index) => (
-                <motion.span 
-                  key={`highlight-${index}`} 
-                  style={{
-                    color: firstPartColors[index]
-                  }}
-                  className="text-highlight"
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
-            </div>
-            
-            {/* Remaining lines */}
-            {remainingText.map((line, lineIndex) => (
+            {textParts.map((line, lineIndex) => (
               <div key={`line-${lineIndex}`} className="experience-line">
                 {line.split('').map((char, charIndex) => (
                   <motion.span 
                     key={`line-${lineIndex}-char-${charIndex}`}
                     style={{
-                      color: remainingTextColors[lineIndex][charIndex]
+                      color: lineColors[lineIndex][charIndex]
                     }}
-                    className="text-regular"
+                    className={lineIndex === 0 ? "text-highlight" : "text-regular"}
                   >
                     {char === ' ' ? '\u00A0' : char}
                   </motion.span>
