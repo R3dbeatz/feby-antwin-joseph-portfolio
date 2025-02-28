@@ -12,14 +12,10 @@ const Experience = () => {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
-  // Split text into parts to handle different colors with specific line breaks
+  // Split text into parts to handle different colors
   const textParts = [
     "Four years", 
-    " of combined " + 
-    "co\nrporate and freelance " + 
-    "exp\nerience delivering creative and technical marketing " + 
-    "solution\ns across all digital " + 
-    "c\nhannels."
+    " of\ncombined\ncorporate\nand\nfreelance\nexperience\ndelivering\ncreative\nand\ntechnical\nmarketing\nsolutions\nacross\nall\ndigital\nchannels."
   ];
 
   // Create character arrays for each part
