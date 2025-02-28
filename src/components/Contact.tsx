@@ -41,12 +41,13 @@ const Contact = () => {
   ];
 
   return (
-    <footer className="bg-dark py-20 relative" id="contact">
+    <footer className="bg-dark py-20 relative z-10" id="contact">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          className="relative"
         >
           <h2 className="text-[#eb5939] text-2xl font-medium mb-8">
             CONNECT
