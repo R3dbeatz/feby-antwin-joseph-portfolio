@@ -30,20 +30,20 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-[#a48c76] tracking-widest uppercase mb-16 font-light text-2xl">
+          <h2 className="text-[#a48c76] tracking-widest uppercase mb-16 font-light text-3xl">
             C O N N E C T
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {/* Left column - First set of social links */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               {leftSocialLinks.map((link) => (
                 <div key={link.name} className="relative overflow-hidden">
                   <div className="flex items-center">
-                    <span className="text-[#F97316] mr-3 text-2xl">▸</span>
+                    <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
                     <a 
                       href={link.url}
-                      className="text-[#a48c76] hover:text-white text-3xl font-medium transition-colors duration-300 py-2"
+                      className="text-[#a48c76] hover:text-white text-4xl font-medium transition-colors duration-300 py-2"
                       onMouseEnter={() => setHoveredLink(link.name)}
                       onMouseLeave={() => setHoveredLink(null)}
                     >
@@ -57,9 +57,9 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute left-0 top-0 w-full h-full bg-[#F97316] flex items-center pl-10"
+                        className="absolute left-0 top-0 w-full h-full bg-[#eb5939] flex items-center pl-10 z-10"
                       >
-                        <span className="text-black text-xl font-medium">{link.hoverText}</span>
+                        <span className="text-black text-2xl font-medium">{link.hoverText}</span>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -68,14 +68,14 @@ const Contact = () => {
             </div>
             
             {/* Middle column - Second set of social links */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               {rightSocialLinks.map((link) => (
                 <div key={link.name} className="relative overflow-hidden">
                   <div className="flex items-center">
-                    <span className="text-[#F97316] mr-3 text-2xl">▸</span>
+                    <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
                     <a 
                       href={link.url}
-                      className="text-[#a48c76] hover:text-white text-3xl font-medium transition-colors duration-300 py-2"
+                      className="text-[#a48c76] hover:text-white text-4xl font-medium transition-colors duration-300 py-2"
                       onMouseEnter={() => setHoveredLink(link.name)}
                       onMouseLeave={() => setHoveredLink(null)}
                     >
@@ -89,9 +89,9 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute left-0 top-0 w-full h-full bg-[#F97316] flex items-center pl-10"
+                        className="absolute left-0 top-0 w-full h-full bg-[#eb5939] flex items-center pl-10 z-10"
                       >
-                        <span className="text-black text-xl font-medium">{link.hoverText}</span>
+                        <span className="text-black text-2xl font-medium">{link.hoverText}</span>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -100,17 +100,17 @@ const Contact = () => {
             </div>
             
             {/* Right column - Contact information */}
-            <div className="space-y-10">
-              <div className="space-y-2">
-                <h3 className="text-[#a48c76] text-xl">Email</h3>
-                <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
+            <div className="space-y-12">
+              <div className="space-y-3">
+                <h3 className="text-[#a48c76] text-2xl">Email</h3>
+                <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors text-xl block">
                   febyantwinjoseph@gmail.com
                 </a>
               </div>
               
-              <div className="space-y-2">
-                <h3 className="text-[#a48c76] text-xl">Phone</h3>
-                <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
+              <div className="space-y-3">
+                <h3 className="text-[#a48c76] text-2xl">Phone</h3>
+                <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors text-xl block">
                   +1 (203) 864-2473
                 </a>
               </div>
