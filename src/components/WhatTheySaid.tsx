@@ -1,7 +1,6 @@
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AnimatedTooltip } from './ui/animated-tooltip';
-import { motion, useScroll, useTransform } from 'framer-motion';
 
 const testimonials = [
   {
@@ -36,16 +35,6 @@ const testimonials = [
 
 const WhatTheySaid = () => {
   const [activeTestimonialId, setActiveTestimonialId] = useState<number | null>(null);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start center", "center center"]
-  });
-  
-  // Transform the size of the images based on scroll position
-  const imageSize = useTransform(scrollYProgress, [0, 0.5], [100, 56]); // From 100px to 56px
-  const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
   
   const handleImageClick = (id: number) => {
     // Toggle between the clicked testimonial and showing none
@@ -55,38 +44,17 @@ const WhatTheySaid = () => {
   const activeTestimonial = testimonials.find(t => t.id === activeTestimonialId);
 
   return (
-    <div ref={sectionRef} className="container mx-auto py-20">
-      <div className="max-w-4xl mx-auto">
-        <motion.h2 
-          style={{ opacity }}
-          className="text-2xl font-medium text-[#eb5939] mb-8 text-left"
-        >
-          WHAT THEY SAID
-        </motion.h2>
-      </div>
+    <div className="container mx-auto py-20">
+      <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text font-serif">What They Said</h2>
       
       <div className="flex flex-col items-center">
-        {/* Testimonial people display with dynamic size based on scroll */}
+        {/* Testimonial people display */}
         <div className="mb-16 flex justify-center">
-          <div className="flex justify-center">
-            {testimonials.map((item) => (
-              <div
-                className="-mr-4 relative group cursor-pointer z-10"
-                key={item.id}
-                onClick={() => handleImageClick(item.id)}
-              >
-                <motion.img
-                  style={{ 
-                    width: imageSize, 
-                    height: imageSize 
-                  }}
-                  src={item.image}
-                  alt={item.name}
-                  className="object-cover !m-0 !p-0 object-top rounded-full border-2 group-hover:scale-105 group-hover:z-30 border-dark relative transition duration-500"
-                />
-              </div>
-            ))}
-          </div>
+          <AnimatedTooltip 
+            items={testimonials} 
+            className="flex justify-center" 
+            onImageClick={handleImageClick}
+          />
         </div>
         
         {/* Active testimonial display */}
