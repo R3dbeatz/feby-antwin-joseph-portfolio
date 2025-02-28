@@ -15,7 +15,7 @@ const Experience = () => {
   // Split text into parts to handle different colors
   const textParts = [
     "Four years", 
-    " of combined corporate and\nfreelance experience delivering\ncreative and technical marketing\nsolutions across all\ndigital channels."
+    " of combined corporate and freelance experience delivering creative and technical marketing solutions across all digital channels."
   ];
 
   // Create character arrays for each part
@@ -62,8 +62,8 @@ const Experience = () => {
           >
             EXPERIENCE
           </motion.h2>
-          <div className="max-w-[90vw] mx-auto px-8 md:px-12">
-            <p className="leading-[1.1] tracking-tight break-words font-semibold text-6xl my-0 text-left mx-[4px] px-0 py-[15px] whitespace-pre-line">
+          <div className="mx-auto">
+            <p className="experience-section font-semibold my-0 text-left mx-[4px] px-0 py-[15px]">
               {highlightedText.map((char, index) => (
                 <motion.span 
                   key={`highlight-${index}`} 

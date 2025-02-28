@@ -42,3 +42,11 @@ body {
 .timeline-dot {
   @apply absolute left-0 w-4 h-4 -translate-x-1.5 rounded-full bg-primary;
 }
+
+.experience-section {
+  max-width: 600px; /* Adjust to control line breaks */
+  font-size: 2rem; /* Adjust based on design */
+  line-height: 1.4; /* Increases readability */
+  white-space: normal; /* Prevents forced line breaks */
+  word-break: normal; /* Ensures words don't split */
+}
