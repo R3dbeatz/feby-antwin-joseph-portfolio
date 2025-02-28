@@ -2,7 +2,6 @@
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
-import DecryptedText from './DecryptedText';
 
 interface SocialLink {
   name: string;
@@ -42,15 +41,17 @@ const Contact = () => {
 
   return (
     <footer className="bg-dark py-20 relative" id="contact" style={{ isolation: 'isolate' }}>
-      <div className="container mx-auto px-4">
+      {/* Subtle background gradient for depth without losing contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-lighter to-dark opacity-80 pointer-events-none"></div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="relative"
-          style={{ position: 'relative' }}
         >
-          <h2 className="text-[#eb5939] text-2xl font-medium mb-8">
+          <h2 className="text-[#F97316] text-3xl font-bold mb-10">
             CONNECT
           </h2>
           
@@ -80,11 +81,11 @@ const Contact = () => {
             </div>
             
             {/* Right column - Contact information */}
-            <div className="space-y-12">
+            <div className="space-y-12 bg-black/30 rounded-lg p-6 backdrop-blur-sm">
               {contactInfo.map((info) => (
                 <div key={info.type} className="space-y-3">
-                  <h3 className="text-[#a48c76] text-2xl font-bold">{info.type}</h3>
-                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-xl font-bold block">
+                  <h3 className="text-[#F97316] text-2xl font-bold">{info.type}</h3>
+                  <a href={info.url} className="text-[#F1F1F1] hover:text-white transition-colors text-xl font-bold block">
                     {info.value}
                   </a>
                 </div>
@@ -160,13 +161,13 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
   return (
     <div
       ref={itemRef}
-      className="relative overflow-hidden h-16 text-left"
+      className="relative overflow-hidden h-16 text-left bg-black/20 rounded-lg px-4"
     >
       <div className="flex items-center justify-start">
-        <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
+        <span className="text-[#F97316] mr-4 text-3xl">▸</span>
         <a
           ref={textRef}
-          className="text-[#a48c76] text-4xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
+          className="text-[#F1F1F1] text-4xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
           href={url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -176,7 +177,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
       </div>
       <div
         ref={overlayRef}
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-start pl-12"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#F97316] translate-y-[101%] flex items-center justify-start pl-12"
       >
         <span className="text-black font-serif font-bold text-4xl uppercase tracking-wider">{hoverText}</span>
       </div>
