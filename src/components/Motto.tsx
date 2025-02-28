@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Typewriter } from './ui/typewriter';
-import { BackgroundPaths } from './ui/background-paths';
+import Threads from './ui/Threads';
 
 const Motto = () => {
   // Same motto text as before for the animation
@@ -13,13 +13,15 @@ const Motto = () => {
 
   return (
     <div className="container mx-auto py-20 relative">
-      {/* Background Paths */}
-      <BackgroundPaths 
-        className="absolute inset-0 z-0" 
-        showHeading={false} 
-        showButton={false}
-        title="My Motto"
-      />
+      {/* Threads Background */}
+      <div className="absolute inset-0 z-0 bg-[#0d0d0d]">
+        <Threads 
+          color={[0.92, 0.35, 0.22]} // Primary orange color in RGB format (converted from #eb5939)
+          amplitude={1}
+          distance={0.5}
+          enableMouseInteraction={true}
+        />
+      </div>
       
       {/* Content */}
       <motion.div
