@@ -160,7 +160,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
       ref={itemRef}
       className="relative overflow-hidden h-16 text-center"
     >
-      <div className="flex items-center">
+      <div className="flex items-center justify-center">
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
         <a
           ref={textRef}
