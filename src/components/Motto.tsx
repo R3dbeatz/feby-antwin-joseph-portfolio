@@ -2,6 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Typewriter } from './ui/typewriter';
+import { BackgroundPaths } from './ui/background-paths';
 
 const Motto = () => {
   // Same motto text as before for the animation
@@ -11,12 +12,20 @@ const Motto = () => {
   ];
 
   return (
-    <div className="container mx-auto py-20 bg-dark">
+    <div className="container mx-auto py-20 bg-dark relative">
+      {/* Background Paths */}
+      <BackgroundPaths 
+        className="absolute inset-0 z-0" 
+        showHeading={false} 
+        showButton={false}
+      />
+      
+      {/* Content */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center relative"
+        className="flex flex-col items-center relative z-10"
       >
         <h2 className="text-lg font-medium text-primary uppercase tracking-widest mb-10 text-center">
           MY MOTTO
