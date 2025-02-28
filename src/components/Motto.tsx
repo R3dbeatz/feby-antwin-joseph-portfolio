@@ -12,12 +12,13 @@ const Motto = () => {
   ];
 
   return (
-    <div className="container mx-auto py-20 bg-dark relative">
+    <div className="container mx-auto py-20 relative">
       {/* Background Paths */}
       <BackgroundPaths 
         className="absolute inset-0 z-0" 
         showHeading={false} 
         showButton={false}
+        title="My Motto"
       />
       
       {/* Content */}
@@ -27,7 +28,7 @@ const Motto = () => {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-center relative z-10"
       >
-        <h2 className="text-lg font-medium text-primary uppercase tracking-widest mb-10 text-center">
+        <h2 className="text-xl font-medium text-primary uppercase tracking-widest mb-10 text-center">
           MY MOTTO
         </h2>
         
