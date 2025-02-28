@@ -49,10 +49,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          {/* Highly visible heading with bright background */}
-          <h2 className="text-white text-6xl font-bold mb-16 inline-block">
-            <span className="bg-[#F97316] px-8 py-4 rounded-lg shadow-lg shadow-[#F97316]/30">CONNECT</span>
-          </h2>
+          <h2 className="text-white text-6xl font-bold mb-16">CONNECT</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mt-8">
             {/* Left column - First set of social links */}
