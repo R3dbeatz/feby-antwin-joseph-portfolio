@@ -27,7 +27,7 @@ const Motto = () => {
             texts={mottoText}
             morphTime={2}
             cooldownTime={3}
-            className="font-bold text-[#a48c76]"
+            className="font-bold text-[#b7ab98]"
           />
         </div>
       </motion.div>
