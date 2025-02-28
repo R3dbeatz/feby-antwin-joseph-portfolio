@@ -8,7 +8,7 @@ const Experience = () => {
     scrollYProgress
   } = useScroll({
     target: sectionRef,
-    offset: ["start center", "75vh center"]
+    offset: ["start center", "center center"]
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
@@ -21,29 +21,6 @@ const Experience = () => {
     "all digital channels."
   ];
 
-  // Create line-by-line color transforms
-  const lineColors = textParts.map((line, lineIndex) => {
-    const chars = line.split('');
-    const isFirstLine = lineIndex === 0;
-    
-    // Calculate different scroll ranges for each line
-    const lineStart = lineIndex * 0.15; // Each line starts animating at different scroll points
-    const lineEnd = lineStart + 0.15;
-    
-    return chars.map((_, charIndex) => {
-      // Each character within the line animates slightly after the previous one
-      const charStart = lineStart + (charIndex / chars.length) * 0.1;
-      const charEnd = charStart + 0.02;
-      
-      // First line gets the highlight color, other lines get the regular color
-      return useTransform(
-        scrollYProgress, 
-        [charStart, charEnd], 
-        isFirstLine ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']
-      );
-    });
-  });
-  
   return (
     <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
       <div className="container px-4 mx-auto">
@@ -74,19 +51,30 @@ const Experience = () => {
           </motion.h2>
           <div className="experience-text-container">
             {textParts.map((line, lineIndex) => (
-              <div key={`line-${lineIndex}`} className="experience-line">
-                {line.split('').map((char, charIndex) => (
-                  <motion.span 
-                    key={`line-${lineIndex}-char-${charIndex}`}
-                    style={{
-                      color: lineColors[lineIndex][charIndex]
-                    }}
-                    className={lineIndex === 0 ? "text-highlight" : "text-regular"}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
-              </div>
+              <motion.div 
+                key={`line-${lineIndex}`} 
+                className="experience-line"
+                initial={{ y: 20, opacity: 0 }}
+                whileInView={{ 
+                  y: 0, 
+                  opacity: 1,
+                  transition: {
+                    duration: 0.5,
+                    delay: lineIndex * 0.2
+                  }
+                }}
+                viewport={{ once: true }}
+              >
+                <motion.span 
+                  className={lineIndex === 0 ? "text-highlight" : "text-regular"}
+                  initial={lineIndex === 0 ? { color: "#333333" } : {}}
+                  whileInView={lineIndex === 0 ? { color: "#eb5939" } : {}}
+                  transition={lineIndex === 0 ? { duration: 0.8, delay: 0.3 } : {}}
+                  viewport={{ once: true }}
+                >
+                  {line}
+                </motion.span>
+              </motion.div>
             ))}
           </div>
         </motion.div>
