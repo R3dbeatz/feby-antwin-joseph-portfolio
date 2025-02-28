@@ -10,7 +10,6 @@ import Projects from '../components/Projects';
 import WhatTheySaid from '../components/WhatTheySaid';
 import Contact from '../components/Contact';
 import LoadingScreen from '../components/LoadingScreen';
-import { SocialIcons } from '../components/SocialIcons';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -188,7 +187,6 @@ const Index = () => {
           <section id="contact">
             <Contact />
           </section>
-          <SocialIcons />
         </div>
       </motion.div>
     </>
