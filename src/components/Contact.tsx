@@ -91,6 +91,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
   const marqueeInnerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLAnchorElement>(null);
 
   const animationDefaults = { duration: 0.6, ease: "expo" };
 
@@ -107,8 +108,9 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
   };
 
   const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
+    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current || !textRef.current)
       return;
+    
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(
       ev.clientX - rect.left,
@@ -120,12 +122,14 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
     const tl = gsap.timeline({ defaults: animationDefaults });
     tl.set(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
       .set(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" })
-      .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" });
+      .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" })
+      .to(textRef.current, { opacity: 0 }, "<"); // Hide the text at the same time
   };
 
   const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current)
+    if (!itemRef.current || !marqueeRef.current || !marqueeInnerRef.current || !textRef.current)
       return;
+    
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(
       ev.clientX - rect.left,
@@ -136,7 +140,8 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
 
     const tl = gsap.timeline({ defaults: animationDefaults });
     tl.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
-      .to(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" });
+      .to(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" })
+      .to(textRef.current, { opacity: 1 }, "<"); // Show the text again
   };
 
   const repeatedMarqueeContent = Array.from({ length: 8 }).map((_, idx) => (
@@ -151,7 +156,8 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
       <div className="flex items-center">
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
         <a
-          className="text-[#a48c76] text-4xl font-bold relative z-10 cursor-pointer"
+          ref={textRef}
+          className="text-[#a48c76] text-4xl font-bold relative z-10 cursor-pointer transition-opacity duration-300"
           href={url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
