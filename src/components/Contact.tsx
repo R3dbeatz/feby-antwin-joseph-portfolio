@@ -16,16 +16,16 @@ interface HoverHighlightProps {
 
 const HoverHighlight: React.FC<HoverHighlightProps> = ({ text, hiddenText, url }) => {
   return (
-    <div className="relative text-3xl font-bold">
+    <div className="relative text-2xl font-bold">
       <a href={url} className="block">
         <motion.div
           initial={{ width: "0%" }}
           whileHover={{ width: "100%" }}
           transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-[#b7ab98] h-full origin-left z-0"
+          className="absolute inset-0 bg-[#F97316] h-full origin-left"
         />
-        <span className="relative z-10 mix-blend-difference text-white">{hiddenText}</span>
-        <span className="relative z-10 text-[#a48c76]"> {text}</span>
+        <span className="relative mix-blend-difference text-white">{hiddenText}</span>
+        <span className="relative text-[#a48c76]"> {text}</span>
       </a>
     </div>
   );
@@ -50,13 +50,13 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-[#a48c76] tracking-widest uppercase mb-16 font-light text-3xl">
+          <h2 className="text-[#a48c76] tracking-widest uppercase mb-16 font-light text-2xl">
             C O N N E C T
           </h2>
           
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
             {/* Left Section */}
-            <div className="flex flex-col space-y-8 mb-10 md:mb-0">
+            <div className="flex flex-col space-y-6 mb-10 md:mb-0">
               {leftSocialLinks.map((link, index) => (
                 <HoverHighlight 
                   key={index} 
@@ -68,7 +68,7 @@ const Contact = () => {
             </div>
 
             {/* Center Section */}
-            <div className="flex flex-col space-y-8 mb-10 md:mb-0">
+            <div className="flex flex-col space-y-6 mb-10 md:mb-0">
               {rightSocialLinks.map((link, index) => (
                 <HoverHighlight 
                   key={index} 
@@ -81,12 +81,12 @@ const Contact = () => {
 
             {/* Right Section: Email and Phone */}
             <div className="text-right">
-              <p className="text-[#a48c76] text-2xl font-light">Email</p>
-              <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors text-xl block">
+              <p className="text-[#a48c76] text-xl font-light">Email</p>
+              <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
                 febyantwinjoseph@gmail.com
               </a>
-              <p className="text-[#a48c76] text-2xl font-light mt-8">Phone</p>
-              <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors text-xl block">
+              <p className="text-[#a48c76] text-xl font-light mt-6">Phone</p>
+              <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
                 +1 (203) 864-2473
               </a>
             </div>
