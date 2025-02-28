@@ -13,13 +13,13 @@ const Contact = () => {
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   const leftSocialLinks: SocialLink[] = [
-    { name: 'Dribbble', hoverText: 'Awesome works', url: 'https://dribbble.com/' },
-    { name: 'Youtube', hoverText: 'Creative videos', url: 'https://youtube.com/' },
+    { name: 'LinkedIn', hoverText: 'Professional profile', url: 'https://linkedin.com/' },
+    { name: 'Instagram', hoverText: 'Visual stories', url: 'https://instagram.com/' },
   ];
 
   const rightSocialLinks: SocialLink[] = [
-    { name: 'LinkedIn', hoverText: 'My resume', url: 'https://linkedin.com/' },
-    { name: 'Behance', hoverText: 'More projects', url: 'https://behance.net/' },
+    { name: 'Twitter', hoverText: 'Latest updates', url: 'https://twitter.com/' },
+    { name: 'YouTube', hoverText: 'Video content', url: 'https://youtube.com/' },
   ];
 
   return (
@@ -97,15 +97,15 @@ const Contact = () => {
             <div className="space-y-8">
               <div className="space-y-1">
                 <h3 className="text-[#a48c76]">Email</h3>
-                <a href="mailto:contact@example.com" className="text-[#8E9196] hover:text-white transition-colors">
-                  contact@example.com
+                <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors">
+                  febyantwinjoseph@gmail.com
                 </a>
               </div>
               
               <div className="space-y-1">
                 <h3 className="text-[#a48c76]">Phone</h3>
-                <a href="tel:+1234567890" className="text-[#8E9196] hover:text-white transition-colors">
-                  +1 (234) 567-890
+                <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors">
+                  +1 (203) 864-2473
                 </a>
               </div>
             </div>
