@@ -41,7 +41,7 @@ const Contact = () => {
   ];
 
   return (
-    <footer className="py-20 relative z-10 bg-[#0d0d0d]" id="contact">
+    <footer className="py-20 relative z-10 bg-dark" id="contact">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,8 +49,8 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
           className="relative"
         >
-          <h2 className="text-white text-5xl font-bold mb-12 border-b-4 border-[#eb5939] pb-4 inline-block">
-            <span className="bg-[#eb5939] px-6 py-2 rounded-t-lg">CONNECT</span>
+          <h2 className="text-[#eb5939] text-4xl font-bold mb-12">
+            CONNECT
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -79,7 +79,7 @@ const Contact = () => {
             </div>
             
             {/* Right column - Contact information */}
-            <div className="space-y-12 bg-[#eb5939]/10 p-6 rounded-lg border border-[#eb5939]">
+            <div className="space-y-12">
               {contactInfo.map((info) => (
                 <div key={info.type} className="space-y-3">
                   <h3 className="text-[#eb5939] text-2xl font-bold">{info.type}</h3>
@@ -159,9 +159,9 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
   return (
     <div
       ref={itemRef}
-      className="relative overflow-hidden h-16 text-left bg-[#1a1a1a] rounded-lg px-4 shadow-lg"
+      className="relative overflow-hidden h-16 text-left"
     >
-      <div className="flex items-center justify-start h-full">
+      <div className="flex items-center justify-start">
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
         <a
           ref={textRef}
