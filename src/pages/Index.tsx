@@ -8,6 +8,7 @@ import AboutMe from '../components/AboutMe';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import WhatTheySaid from '../components/WhatTheySaid';
+import Motto from '../components/Motto';
 import Contact from '../components/Contact';
 import LoadingScreen from '../components/LoadingScreen';
 import gsap from 'gsap';
@@ -132,6 +133,19 @@ const Index = () => {
         duration: 1
       });
 
+      // Motto Section Animation
+      gsap.from("#motto", {
+        scrollTrigger: {
+          trigger: "#motto",
+          start: "top center+=100",
+          end: "center center",
+          scrub: 1,
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1
+      });
+
       // Contact Section Animation
       gsap.from("#contact", {
         scrollTrigger: {
@@ -183,6 +197,9 @@ const Index = () => {
           </section>
           <section id="testimonials">
             <WhatTheySaid />
+          </section>
+          <section id="motto">
+            <Motto />
           </section>
           <section id="contact">
             <Contact />
