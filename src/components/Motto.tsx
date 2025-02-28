@@ -14,7 +14,7 @@ const Motto = () => {
   return (
     <div className="container mx-auto py-20 relative">
       {/* Threads Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
+      <div className="absolute inset-0 z-0 bg-[#0d0d0d]">
         <Threads 
           color={[0.92, 0.35, 0.22]} // Primary orange color in RGB format (converted from #eb5939)
           amplitude={1}
