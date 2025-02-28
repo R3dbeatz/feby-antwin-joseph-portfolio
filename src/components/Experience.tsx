@@ -13,7 +13,7 @@ const Experience = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
   // Split text into parts to handle different colors
-  const textParts = ["Four years", " mastering both corporate and freelance digital marketing. Blending creative vision with technical expertise to deliver compelling campaigns across all channels. Driving growth through data-informed strategies and in-depth market analysis."];
+  const textParts = ["Four years", " of combined corporate and freelance experience delivering creative and technical marketing solutions across all digital channels."];
 
   // Create character arrays for each part
   const highlightedText = textParts[0].split('');
