@@ -12,8 +12,15 @@ const Experience = () => {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
-  // Split text into parts to handle different colors
-  const textParts = ["Four years", " of combined corporate and freelance experience delivering creative and technical marketing solutions across all digital channels."];
+  // Split text into parts to handle different colors with specific line breaks
+  const textParts = [
+    "Four years", 
+    " of combined " + 
+    "co\nrporate and freelance " + 
+    "exp\nerience delivering creative and technical marketing " + 
+    "solution\ns across all digital " + 
+    "c\nhannels."
+  ];
 
   // Create character arrays for each part
   const highlightedText = textParts[0].split('');
@@ -60,7 +67,7 @@ const Experience = () => {
             EXPERIENCE
           </motion.h2>
           <div className="max-w-[90vw] mx-auto">
-            <p className="leading-[1.1] tracking-tight break-words font-semibold text-7xl my-0 text-left mx-[4px] px-0 py-[15px]">
+            <p className="leading-[1.1] tracking-tight break-words font-semibold text-7xl my-0 text-left mx-[4px] px-0 py-[15px] whitespace-pre-line">
               {highlightedText.map((char, index) => (
                 <motion.span 
                   key={`highlight-${index}`} 
