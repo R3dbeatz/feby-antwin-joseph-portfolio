@@ -81,8 +81,8 @@ const Contact = () => {
             <div className="space-y-12">
               {contactInfo.map((info) => (
                 <div key={info.type} className="space-y-3">
-                  <h3 className="text-[#a48c76] text-2xl">{info.type}</h3>
-                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-xl block">
+                  <h3 className="text-[#a48c76] text-2xl font-bold">{info.type}</h3>
+                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-xl font-bold block">
                     {info.value}
                   </a>
                 </div>
@@ -164,7 +164,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
         <a
           ref={textRef}
-          className="text-[#a48c76] text-4xl font-serif uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
+          className="text-[#a48c76] text-4xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
           href={url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -176,7 +176,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
         ref={overlayRef}
         className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-start pl-12"
       >
-        <span className="text-black font-serif text-4xl uppercase tracking-wider">{hoverText}</span>
+        <span className="text-black font-serif font-bold text-4xl uppercase tracking-wider">{hoverText}</span>
       </div>
     </div>
   );
