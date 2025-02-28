@@ -18,7 +18,7 @@ const Motto = () => {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-center"
       >
-        <h2 className="text-2xl font-medium text-[#eb5939] uppercase mb-20 self-start">
+        <h2 className="text-sm font-medium text-[#b7ab98] uppercase tracking-widest mb-10 text-center">
           MY MOTTO
         </h2>
         
@@ -32,6 +32,15 @@ const Motto = () => {
             cursorChar="_"
           />
         </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="text-[#b7ab98] text-lg mt-6"
+        >
+          Mike Volpe
+        </motion.p>
       </motion.div>
     </div>
   );
