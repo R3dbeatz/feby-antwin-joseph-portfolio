@@ -51,7 +51,7 @@ const Experience = () => {
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Particles
           particleColors={['#eb5939', '#aa9e8b', '#ffffff']}
-          particleCount={200}
+          particleCount={800}
           particleSpread={10}
           speed={0.1}
           particleBaseSize={80}
