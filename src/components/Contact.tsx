@@ -158,13 +158,13 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
   return (
     <div
       ref={itemRef}
-      className="relative overflow-hidden h-16 text-center"
+      className="relative overflow-hidden h-16 text-right"
     >
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-end">
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
         <a
           ref={textRef}
-          className="text-[#a48c76] text-4xl font-bold relative z-10 cursor-pointer transition-opacity duration-300"
+          className="text-[#a48c76] text-4xl font-serif uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
           href={url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -174,9 +174,9 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
       </div>
       <div
         ref={overlayRef}
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-center"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-end pr-4"
       >
-        <span className="text-black font-bold text-4xl">{hoverText}</span>
+        <span className="text-black font-serif text-4xl uppercase tracking-wider">{hoverText}</span>
       </div>
     </div>
   );
