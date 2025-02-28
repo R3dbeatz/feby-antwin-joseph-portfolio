@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Typewriter } from './ui/typewriter';
-import { Meteors } from './ui/meteors';
+import Threads from './ui/Threads';
 
 const Motto = () => {
   // Same motto text as before for the animation
@@ -12,12 +12,14 @@ const Motto = () => {
   ];
 
   return (
-    <div className="container mx-auto py-20 relative overflow-hidden">
-      {/* Dark Background with Meteors Effect */}
-      <div className="absolute inset-0 z-0 bg-[#0d0d0d]">
-        <Meteors 
-          number={50}
-          className="!h-1 !w-1 !bg-primary before:!from-primary/40"
+    <div className="container mx-auto py-20 relative">
+      {/* Threads Background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <Threads 
+          color={[0.92, 0.35, 0.22]} // Primary orange color in RGB format (converted from #eb5939)
+          amplitude={1}
+          distance={0.5}
+          enableMouseInteraction={true}
         />
       </div>
       

@@ -77,21 +77,12 @@ export default {
           'from': { transform: 'translateX(0%)' },
           'to': { transform: 'translateX(-50%)' }
         },
-        meteor: {
-          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
-          "70%": { opacity: "1" },
-          "100%": {
-            transform: "rotate(215deg) translateX(-500px)",
-            opacity: "0",
-          },
-        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         float: "float 3s ease-in-out infinite",
         marquee: 'marquee 15s linear infinite',
-        "meteor-effect": "meteor 5s linear infinite",
       },
     },
   },
