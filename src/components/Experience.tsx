@@ -46,7 +46,7 @@ const Experience = () => {
   });
   
   return (
-    <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
+    <section ref={sectionRef} className="min-h-[80vh] flex items-center justify-center bg-dark py-10 relative">
       {/* Particle background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Particles
