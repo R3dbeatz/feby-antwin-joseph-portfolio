@@ -50,48 +50,47 @@ export const SocialIcons = () => {
         href="https://linkedin.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
+        className="p-3 rounded-full bg-[#eb5939] text-white hover:bg-white hover:text-[#eb5939] transition-all duration-300 will-change-transform shadow-lg"
         onMouseMove={(e) => handleIconMouseMove(e, 'linkedin')}
         onMouseEnter={() => setHoveredIcon('linkedin')}
         onMouseLeave={() => handleIconMouseLeave('linkedin')}
       >
-        <Linkedin size={20} />
+        <Linkedin size={22} />
       </a>
       <a
         ref={el => socialIconsRef.current['twitter'] = el}
         href="https://twitter.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
+        className="p-3 rounded-full bg-[#eb5939] text-white hover:bg-white hover:text-[#eb5939] transition-all duration-300 will-change-transform shadow-lg"
         onMouseMove={(e) => handleIconMouseMove(e, 'twitter')}
         onMouseEnter={() => setHoveredIcon('twitter')}
         onMouseLeave={() => handleIconMouseLeave('twitter')}
       >
-        <Twitter size={20} />
+        <Twitter size={22} />
       </a>
       <a
         ref={el => socialIconsRef.current['instagram'] = el}
         href="https://instagram.com"
         target="_blank"
         rel="noopener noreferrer"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
+        className="p-3 rounded-full bg-[#eb5939] text-white hover:bg-white hover:text-[#eb5939] transition-all duration-300 will-change-transform shadow-lg"
         onMouseMove={(e) => handleIconMouseMove(e, 'instagram')}
         onMouseEnter={() => setHoveredIcon('instagram')}
         onMouseLeave={() => handleIconMouseLeave('instagram')}
       >
-        <Instagram size={20} />
+        <Instagram size={22} />
       </a>
       <a
         ref={el => socialIconsRef.current['mail'] = el}
         href="mailto:contact@example.com"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
+        className="p-3 rounded-full bg-[#eb5939] text-white hover:bg-white hover:text-[#eb5939] transition-all duration-300 will-change-transform shadow-lg"
         onMouseMove={(e) => handleIconMouseMove(e, 'mail')}
         onMouseEnter={() => setHoveredIcon('mail')}
         onMouseLeave={() => handleIconMouseLeave('mail')}
       >
-        <Mail size={20} />
+        <Mail size={22} />
       </a>
     </motion.div>
   );
 };
-
