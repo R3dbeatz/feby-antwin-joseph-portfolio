@@ -73,11 +73,16 @@ export default {
             transform: "translateY(-10px)",
           },
         },
+        marquee: {
+          'from': { transform: 'translateX(0%)' },
+          'to': { transform: 'translateX(-50%)' }
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
         "fade-in": "fade-in 0.3s ease-out",
         float: "float 3s ease-in-out infinite",
+        marquee: 'marquee 15s linear infinite',
       },
     },
   },
