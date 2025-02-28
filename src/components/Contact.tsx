@@ -31,7 +31,7 @@ const Contact = () => {
           transition={{ duration: 0.5 }}
         >
           <h2 className="text-[#eb5939] text-2xl font-medium mb-8">
-            ABOUT ME
+            CONNECT
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
