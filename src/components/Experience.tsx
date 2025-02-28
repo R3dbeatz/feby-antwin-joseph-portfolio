@@ -12,27 +12,31 @@ const Experience = () => {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
-  // Split text into parts to handle different colors
+  // Define the text with line breaks to control layout
   const textParts = [
-    "Four years", 
-    " of combined corporate and freelance experience delivering creative and technical marketing solutions across all digital channels."
+    "Four years",
+    "of combined corporate and freelance",
+    "experience delivering creative and",
+    "technical marketing solutions across", 
+    "all digital channels."
   ];
 
-  // Create character arrays for each part
+  // The first part will be highlighted
   const highlightedText = textParts[0].split('');
-  const afterText = textParts[1].split('');
+  
+  // The rest will be in beige/tan color
+  const remainingText = textParts.slice(1);
 
-  // Create color transforms for all text parts
-  const createCharacterColors = (chars: string[], startOffset: number = 0, isHighlighted: boolean = false) => {
+  // Create color transforms for highlighted text
+  const createHighlightedColors = (chars: string[]) => {
     return chars.map((_, index) => {
-      const start = (index + startOffset) / (highlightedText.length + afterText.length) * 0.75;
-      const end = start + 0.1 / (highlightedText.length + afterText.length);
-      return useTransform(scrollYProgress, [start, end], isHighlighted ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']);
+      const start = index / chars.length * 0.5;
+      const end = start + 0.1 / chars.length;
+      return useTransform(scrollYProgress, [start, end], ['#333333', '#eb5939']);
     });
   };
   
-  const highlightedColors = createCharacterColors(highlightedText, 0, true);
-  const afterColors = createCharacterColors(afterText, highlightedText.length);
+  const highlightedColors = createHighlightedColors(highlightedText);
   
   return (
     <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
@@ -62,29 +66,38 @@ const Experience = () => {
           >
             EXPERIENCE
           </motion.h2>
-          <div className="mx-auto">
-            <p className="experience-section font-semibold my-0 text-left mx-[4px] px-0 py-[15px]">
+          <div className="experience-text-container">
+            <div className="experience-line">
+              {/* First line with highlight color */}
               {highlightedText.map((char, index) => (
                 <motion.span 
                   key={`highlight-${index}`} 
                   style={{
                     color: highlightedColors[index]
                   }}
+                  className="text-highlight"
                 >
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>
               ))}
-              {afterText.map((char, index) => (
-                <motion.span 
-                  key={`after-${index}`} 
-                  style={{
-                    color: afterColors[index]
-                  }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
-            </p>
+            </div>
+            
+            {/* Remaining lines */}
+            {remainingText.map((line, lineIndex) => (
+              <div key={`line-${lineIndex}`} className="experience-line">
+                {line.split('').map((char, charIndex) => (
+                  <motion.span 
+                    key={`line-${lineIndex}-char-${charIndex}`}
+                    style={{
+                      color: '#aa9e8b'
+                    }}
+                    className="text-regular"
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>
