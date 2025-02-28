@@ -50,7 +50,7 @@ const WhatTheySaid = () => {
 
   return (
     <div className="container mx-auto py-20">
-      <div className="flex justify-end mb-12">
+      <div className="flex justify-start mb-12">
         <h2 className="text-4xl md:text-5xl font-bold gradient-text font-serif">What They Said</h2>
       </div>
       
