@@ -23,15 +23,15 @@ const Contact = () => {
   ];
 
   return (
-    <section className="section py-20 bg-dark" id="contact">
+    <section className="section py-20 bg-dark relative" id="contact">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-[#a48c76] tracking-widest uppercase mb-16 font-light text-3xl">
-            C O N N E C T
+          <h2 className="text-[#eb5939] text-2xl font-medium mb-8">
+            ABOUT ME
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
@@ -39,13 +39,15 @@ const Contact = () => {
             <div className="space-y-10">
               {leftSocialLinks.map((link) => (
                 <div key={link.name} className="relative overflow-hidden">
-                  <div className="flex items-center">
+                  <div 
+                    className="flex items-center cursor-pointer"
+                    onMouseEnter={() => setHoveredLink(link.name)}
+                    onMouseLeave={() => setHoveredLink(null)}
+                  >
                     <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
                     <a 
                       href={link.url}
-                      className="text-[#a48c76] hover:text-white text-4xl font-medium transition-colors duration-300 py-2"
-                      onMouseEnter={() => setHoveredLink(link.name)}
-                      onMouseLeave={() => setHoveredLink(null)}
+                      className="text-[#a48c76] hover:text-white text-4xl font-bold transition-colors duration-300 py-2"
                     >
                       {link.name}
                     </a>
@@ -59,7 +61,7 @@ const Contact = () => {
                         transition={{ duration: 0.2 }}
                         className="absolute left-0 top-0 w-full h-full bg-[#eb5939] flex items-center pl-10 z-10"
                       >
-                        <span className="text-black text-2xl font-medium">{link.hoverText}</span>
+                        <span className="text-black text-2xl font-bold font-sans">{link.hoverText}</span>
                       </motion.div>
                     )}
                   </AnimatePresence>
@@ -71,13 +73,15 @@ const Contact = () => {
             <div className="space-y-10">
               {rightSocialLinks.map((link) => (
                 <div key={link.name} className="relative overflow-hidden">
-                  <div className="flex items-center">
+                  <div 
+                    className="flex items-center cursor-pointer"
+                    onMouseEnter={() => setHoveredLink(link.name)}
+                    onMouseLeave={() => setHoveredLink(null)}
+                  >
                     <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
                     <a 
                       href={link.url}
-                      className="text-[#a48c76] hover:text-white text-4xl font-medium transition-colors duration-300 py-2"
-                      onMouseEnter={() => setHoveredLink(link.name)}
-                      onMouseLeave={() => setHoveredLink(null)}
+                      className="text-[#a48c76] hover:text-white text-4xl font-bold transition-colors duration-300 py-2"
                     >
                       {link.name}
                     </a>
@@ -91,7 +95,7 @@ const Contact = () => {
                         transition={{ duration: 0.2 }}
                         className="absolute left-0 top-0 w-full h-full bg-[#eb5939] flex items-center pl-10 z-10"
                       >
-                        <span className="text-black text-2xl font-medium">{link.hoverText}</span>
+                        <span className="text-black text-2xl font-bold font-sans">{link.hoverText}</span>
                       </motion.div>
                     )}
                   </AnimatePresence>
