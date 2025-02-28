@@ -21,22 +21,23 @@ const Experience = () => {
     "all digital channels."
   ];
 
-  // The first part will be highlighted
-  const highlightedText = textParts[0].split('');
-  
-  // The rest will be in beige/tan color
+  // Split text for animation
+  const firstPart = textParts[0].split('');
   const remainingText = textParts.slice(1);
-
-  // Create color transforms for highlighted text
-  const createHighlightedColors = (chars: string[]) => {
+  
+  // Create color transforms for all text parts
+  const createCharacterColors = (chars: string[], startOffset: number = 0, isHighlighted: boolean = false) => {
     return chars.map((_, index) => {
-      const start = index / chars.length * 0.5;
-      const end = start + 0.1 / chars.length;
-      return useTransform(scrollYProgress, [start, end], ['#333333', '#eb5939']);
+      const start = (index + startOffset) / (firstPart.length * 3) * 0.75;
+      const end = start + 0.1 / firstPart.length;
+      return useTransform(scrollYProgress, [start, end], isHighlighted ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']);
     });
   };
   
-  const highlightedColors = createHighlightedColors(highlightedText);
+  const firstPartColors = createCharacterColors(firstPart, 0, true);
+  const remainingTextColors = remainingText.map(line => 
+    createCharacterColors(line.split(''), firstPart.length)
+  );
   
   return (
     <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
@@ -69,11 +70,11 @@ const Experience = () => {
           <div className="experience-text-container">
             <div className="experience-line">
               {/* First line with highlight color */}
-              {highlightedText.map((char, index) => (
+              {firstPart.map((char, index) => (
                 <motion.span 
                   key={`highlight-${index}`} 
                   style={{
-                    color: highlightedColors[index]
+                    color: firstPartColors[index]
                   }}
                   className="text-highlight"
                 >
@@ -89,7 +90,7 @@ const Experience = () => {
                   <motion.span 
                     key={`line-${lineIndex}-char-${charIndex}`}
                     style={{
-                      color: '#aa9e8b'
+                      color: remainingTextColors[lineIndex][charIndex]
                     }}
                     className="text-regular"
                   >
