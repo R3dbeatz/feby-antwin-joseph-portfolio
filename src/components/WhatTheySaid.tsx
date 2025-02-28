@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AnimatedTooltip } from './ui/animated-tooltip';
 
 const testimonials = [
@@ -36,6 +36,11 @@ const testimonials = [
 const WhatTheySaid = () => {
   const [activeTestimonialId, setActiveTestimonialId] = useState<number | null>(null);
   
+  // Set the first testimonial as active when component mounts
+  useEffect(() => {
+    setActiveTestimonialId(1);
+  }, []);
+  
   const handleImageClick = (id: number) => {
     // Toggle between the clicked testimonial and showing none
     setActiveTestimonialId(id === activeTestimonialId ? null : id);
@@ -45,7 +50,9 @@ const WhatTheySaid = () => {
 
   return (
     <div className="container mx-auto py-20">
-      <h2 className="text-4xl md:text-5xl font-bold mb-12 text-center gradient-text font-serif">What They Said</h2>
+      <div className="flex justify-end mb-12">
+        <h2 className="text-4xl md:text-5xl font-bold gradient-text font-serif">What They Said</h2>
+      </div>
       
       <div className="flex flex-col items-center">
         {/* Testimonial people display */}
