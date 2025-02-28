@@ -41,15 +41,16 @@ const Contact = () => {
   ];
 
   return (
-    <footer className="bg-dark py-20 relative" id="contact">
+    <footer className="bg-dark py-20 relative" id="contact" style={{ isolation: 'isolate' }}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="relative"
+          style={{ position: 'relative' }}
         >
-          <h2 className="text-[#ff6b47] text-3xl font-bold mb-12 tracking-wider">
+          <h2 className="text-[#eb5939] text-2xl font-medium mb-8">
             CONNECT
           </h2>
           
@@ -82,8 +83,8 @@ const Contact = () => {
             <div className="space-y-12">
               {contactInfo.map((info) => (
                 <div key={info.type} className="space-y-3">
-                  <h3 className="text-[#ff8c67] text-2xl font-bold">{info.type}</h3>
-                  <a href={info.url} className="text-white hover:text-[#ff6b47] transition-colors text-xl block">
+                  <h3 className="text-[#a48c76] text-2xl font-bold">{info.type}</h3>
+                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-xl font-bold block">
                     {info.value}
                   </a>
                 </div>
@@ -162,10 +163,10 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
       className="relative overflow-hidden h-16 text-left"
     >
       <div className="flex items-center justify-start">
-        <span className="text-[#ff6b47] mr-4 text-3xl">▸</span>
+        <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
         <a
           ref={textRef}
-          className="text-white text-4xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
+          className="text-[#a48c76] text-4xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
           href={url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
@@ -175,7 +176,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
       </div>
       <div
         ref={overlayRef}
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#ff6b47] translate-y-[101%] flex items-center justify-start pl-12"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-start pl-12"
       >
         <span className="text-black font-serif font-bold text-4xl uppercase tracking-wider">{hoverText}</span>
       </div>
