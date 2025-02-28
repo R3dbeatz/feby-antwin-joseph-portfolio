@@ -41,7 +41,7 @@ const Contact = () => {
   ];
 
   return (
-    <section className="section py-20 bg-dark relative" id="contact">
+    <footer className="bg-dark py-20 relative" id="contact">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -91,7 +91,7 @@ const Contact = () => {
           </div>
         </motion.div>
       </div>
-    </section>
+    </footer>
   );
 };
 
