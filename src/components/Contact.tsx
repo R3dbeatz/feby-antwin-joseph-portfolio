@@ -1,38 +1,113 @@
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from './ui/button';
+import DecryptedText from './DecryptedText';
+
+interface SocialLink {
+  name: string;
+  hoverText: string;
+  url: string;
+}
 
 const Contact = () => {
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+
+  const leftSocialLinks: SocialLink[] = [
+    { name: 'Dribbble', hoverText: 'Awesome works', url: 'https://dribbble.com/' },
+    { name: 'Youtube', hoverText: 'Creative videos', url: 'https://youtube.com/' },
+  ];
+
+  const rightSocialLinks: SocialLink[] = [
+    { name: 'LinkedIn', hoverText: 'My resume', url: 'https://linkedin.com/' },
+    { name: 'Behance', hoverText: 'More projects', url: 'https://behance.net/' },
+  ];
+
   return (
-    <section className="section" id="contact">
-      <div className="container">
+    <section className="section py-20 bg-dark" id="contact">
+      <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-2xl mx-auto text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">Let's Connect</h2>
-          <p className="text-gray-400 mb-8">
-            Ready to transform your digital presence? Let's discuss how we can work together to achieve your marketing goals.
-          </p>
-          <div className="space-y-4">
-            <Button
-              className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-full"
-              onClick={() => window.location.href = 'mailto:contact@example.com'}
-            >
-              Send Email
-            </Button>
-            <div className="flex justify-center gap-4 mt-6">
-              <a href="#" className="text-gray-400 hover:text-primary">
-                LinkedIn
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary">
-                Twitter
-              </a>
-              <a href="#" className="text-gray-400 hover:text-primary">
-                Instagram
-              </a>
+          <h2 className="text-[#a48c76] tracking-widest uppercase mb-16 font-light">
+            C O N N E C T
+          </h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+            {/* Left column - First set of social links */}
+            <div className="space-y-6">
+              {leftSocialLinks.map((link) => (
+                <div key={link.name} className="relative">
+                  <div className="flex items-center">
+                    <span className="text-[#F97316] mr-2">▸</span>
+                    <a 
+                      href={link.url}
+                      className="text-[#a48c76] hover:text-white text-2xl font-medium transition-colors duration-300 py-1"
+                      onMouseEnter={() => setHoveredLink(link.name)}
+                      onMouseLeave={() => setHoveredLink(null)}
+                    >
+                      {link.name}
+                    </a>
+                  </div>
+                  {hoveredLink === link.name && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 5 }}
+                      className="absolute left-0 top-0 w-full h-full bg-[#F97316] flex items-center pl-6"
+                    >
+                      <span className="text-black">{link.hoverText}</span>
+                    </motion.div>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* Middle column - Second set of social links */}
+            <div className="space-y-6">
+              {rightSocialLinks.map((link) => (
+                <div key={link.name} className="relative">
+                  <div className="flex items-center">
+                    <span className="text-[#F97316] mr-2">▸</span>
+                    <a 
+                      href={link.url}
+                      className="text-[#a48c76] hover:text-white text-2xl font-medium transition-colors duration-300 py-1"
+                      onMouseEnter={() => setHoveredLink(link.name)}
+                      onMouseLeave={() => setHoveredLink(null)}
+                    >
+                      {link.name}
+                    </a>
+                  </div>
+                  {hoveredLink === link.name && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 5 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 5 }}
+                      className="absolute left-0 top-0 w-full h-full bg-[#F97316] flex items-center pl-6"
+                    >
+                      <span className="text-black">{link.hoverText}</span>
+                    </motion.div>
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* Right column - Contact information */}
+            <div className="space-y-8">
+              <div className="space-y-1">
+                <h3 className="text-[#a48c76]">Email</h3>
+                <a href="mailto:contact@example.com" className="text-[#8E9196] hover:text-white transition-colors">
+                  contact@example.com
+                </a>
+              </div>
+              
+              <div className="space-y-1">
+                <h3 className="text-[#a48c76]">Phone</h3>
+                <a href="tel:+1234567890" className="text-[#8E9196] hover:text-white transition-colors">
+                  +1 (234) 567-890
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>
