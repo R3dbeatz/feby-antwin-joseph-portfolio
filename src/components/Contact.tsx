@@ -10,15 +10,37 @@ interface SocialLink {
   url: string;
 }
 
+interface ContactInfo {
+  type: string;
+  value: string;
+  hoverText: string;
+  url: string;
+}
+
 const Contact = () => {
   const leftSocialLinks: SocialLink[] = [
-    { name: 'LinkedIn', hoverText: 'Professional profile', url: 'https://linkedin.com/' },
-    { name: 'Instagram', hoverText: 'Visual stories', url: 'https://instagram.com/' },
+    { name: 'LinkedIn', hoverText: 'Serious Me', url: 'https://linkedin.com/' },
+    { name: 'Instagram', hoverText: 'Just For Reels', url: 'https://instagram.com/' },
   ];
 
   const rightSocialLinks: SocialLink[] = [
-    { name: 'Twitter', hoverText: 'Latest updates', url: 'https://twitter.com/' },
-    { name: 'YouTube', hoverText: 'Video content', url: 'https://youtube.com/' },
+    { name: 'Twitter', hoverText: 'Elon Musk Fun', url: 'https://twitter.com/' },
+    { name: 'YouTube', hoverText: 'Lofi Music', url: 'https://youtube.com/' },
+  ];
+
+  const contactInfo: ContactInfo[] = [
+    { 
+      type: 'Email', 
+      value: 'febyantwinjoseph@gmail.com', 
+      hoverText: '100% chance I read it', 
+      url: 'mailto:febyantwinjoseph@gmail.com' 
+    },
+    { 
+      type: 'Phone', 
+      value: '+1 (203) 864-2473', 
+      hoverText: '80% chance i won\'t pickup', 
+      url: 'tel:+12038642473' 
+    },
   ];
 
   return (
@@ -60,19 +82,18 @@ const Contact = () => {
             
             {/* Right column - Contact information */}
             <div className="space-y-12">
-              <div className="space-y-3">
-                <h3 className="text-[#a48c76] text-2xl">Email</h3>
-                <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors text-xl block">
-                  febyantwinjoseph@gmail.com
-                </a>
-              </div>
-              
-              <div className="space-y-3">
-                <h3 className="text-[#a48c76] text-2xl">Phone</h3>
-                <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors text-xl block">
-                  +1 (203) 864-2473
-                </a>
-              </div>
+              {contactInfo.map((info) => (
+                <div key={info.type} className="space-y-3">
+                  <h3 className="text-[#a48c76] text-2xl">{info.type}</h3>
+                  <div className="relative">
+                    <FlowingMenuItem 
+                      text={info.value} 
+                      hoverText={info.hoverText} 
+                      url={info.url} 
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>
