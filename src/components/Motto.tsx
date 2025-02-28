@@ -18,7 +18,7 @@ const Motto = () => {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-center relative"
       >
-        <h2 className="text-base font-medium text-[#b7ab98] uppercase tracking-widest mb-10 text-center">
+        <h2 className="text-lg font-medium text-primary uppercase tracking-widest mb-10 text-center">
           MY MOTTO
         </h2>
         
