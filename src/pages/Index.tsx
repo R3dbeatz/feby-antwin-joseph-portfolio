@@ -5,6 +5,7 @@ import Navigation from '../components/Navigation';
 import HeroSection from '../components/HeroSection';
 import Timeline from '../components/Timeline';
 import AboutMe from '../components/AboutMe';
+import Experience from '../components/Experience';
 import Projects from '../components/Projects';
 import WhatTheySaid from '../components/WhatTheySaid';
 import Contact from '../components/Contact';
@@ -70,6 +71,19 @@ const Index = () => {
       gsap.from("#about", {
         scrollTrigger: {
           trigger: "#about",
+          start: "top center+=100",
+          end: "center center",
+          scrub: 1,
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1
+      });
+
+      // Experience Section Animation
+      gsap.from("#expertise", {
+        scrollTrigger: {
+          trigger: "#expertise",
           start: "top center+=100",
           end: "center center",
           scrub: 1,
@@ -157,6 +171,9 @@ const Index = () => {
           </section>
           <section id="about">
             <AboutMe />
+          </section>
+          <section id="expertise">
+            <Experience />
           </section>
           <section id="experience">
             <Timeline />
