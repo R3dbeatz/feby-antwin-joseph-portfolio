@@ -57,7 +57,7 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute left-0 top-0 w-full h-full bg-[#b7ab98] flex items-center pl-10"
+                        className="absolute left-0 top-0 w-full h-full bg-[#eb5939] flex items-center pl-10"
                       >
                         <span className="text-black text-2xl font-medium">{link.hoverText}</span>
                       </motion.div>
@@ -89,7 +89,7 @@ const Contact = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute left-0 top-0 w-full h-full bg-[#b7ab98] flex items-center pl-10"
+                        className="absolute left-0 top-0 w-full h-full bg-[#eb5939] flex items-center pl-10"
                       >
                         <span className="text-black text-2xl font-medium">{link.hoverText}</span>
                       </motion.div>
