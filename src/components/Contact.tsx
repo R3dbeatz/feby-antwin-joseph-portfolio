@@ -122,8 +122,8 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
     const tl = gsap.timeline({ defaults: animationDefaults });
     tl.set(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
       .set(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" })
-      .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" })
-      .to(textRef.current, { opacity: 0 }, "<"); // Hide the text at the same time
+      .to([marqueeRef.current, marqueeInnerRef.current], { y: "0%" }, 0)
+      .to(textRef.current, { opacity: 0, duration: 0.3 }, 0); // Hide the text immediately
   };
 
   const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
@@ -139,9 +139,9 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
     );
 
     const tl = gsap.timeline({ defaults: animationDefaults });
-    tl.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" })
-      .to(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" })
-      .to(textRef.current, { opacity: 1 }, "<"); // Show the text again
+    tl.to(marqueeRef.current, { y: edge === "top" ? "-101%" : "101%" }, 0)
+      .to(marqueeInnerRef.current, { y: edge === "top" ? "101%" : "-101%" }, 0)
+      .to(textRef.current, { opacity: 1, duration: 0.3, delay: 0.2 }); // Show the text with a slight delay
   };
 
   const repeatedMarqueeContent = Array.from({ length: 8 }).map((_, idx) => (
