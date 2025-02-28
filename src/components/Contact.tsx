@@ -1,7 +1,6 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import DecryptedText from './DecryptedText';
 
 interface SocialLink {
   name: string;
@@ -9,9 +8,30 @@ interface SocialLink {
   url: string;
 }
 
-const Contact = () => {
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+interface HoverHighlightProps {
+  text: string;
+  hiddenText: string;
+  url: string;
+}
 
+const HoverHighlight: React.FC<HoverHighlightProps> = ({ text, hiddenText, url }) => {
+  return (
+    <div className="relative text-2xl font-bold">
+      <a href={url} className="block">
+        <motion.div
+          initial={{ width: "0%" }}
+          whileHover={{ width: "100%" }}
+          transition={{ duration: 0.3 }}
+          className="absolute inset-0 bg-[#F97316] h-full origin-left"
+        />
+        <span className="relative mix-blend-difference text-white">{hiddenText}</span>
+        <span className="relative text-[#a48c76]"> {text}</span>
+      </a>
+    </div>
+  );
+};
+
+const Contact = () => {
   const leftSocialLinks: SocialLink[] = [
     { name: 'LinkedIn', hoverText: 'Professional profile', url: 'https://linkedin.com/' },
     { name: 'Instagram', hoverText: 'Visual stories', url: 'https://instagram.com/' },
@@ -34,86 +54,41 @@ const Contact = () => {
             C O N N E C T
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Left column - First set of social links */}
-            <div className="space-y-8">
-              {leftSocialLinks.map((link) => (
-                <div key={link.name} className="relative overflow-hidden">
-                  <div className="flex items-center">
-                    <span className="text-[#F97316] mr-3 text-2xl">▸</span>
-                    <a 
-                      href={link.url}
-                      className="text-[#a48c76] hover:text-white text-3xl font-medium transition-colors duration-300 py-2"
-                      onMouseEnter={() => setHoveredLink(link.name)}
-                      onMouseLeave={() => setHoveredLink(null)}
-                    >
-                      {link.name}
-                    </a>
-                  </div>
-                  <AnimatePresence>
-                    {hoveredLink === link.name && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-0 top-0 w-full h-full bg-[#F97316] flex items-center pl-10"
-                      >
-                        <span className="text-black text-xl font-medium">{link.hoverText}</span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full">
+            {/* Left Section */}
+            <div className="flex flex-col space-y-6 mb-10 md:mb-0">
+              {leftSocialLinks.map((link, index) => (
+                <HoverHighlight 
+                  key={index} 
+                  text={link.name} 
+                  hiddenText={link.hoverText} 
+                  url={link.url} 
+                />
               ))}
             </div>
-            
-            {/* Middle column - Second set of social links */}
-            <div className="space-y-8">
-              {rightSocialLinks.map((link) => (
-                <div key={link.name} className="relative overflow-hidden">
-                  <div className="flex items-center">
-                    <span className="text-[#F97316] mr-3 text-2xl">▸</span>
-                    <a 
-                      href={link.url}
-                      className="text-[#a48c76] hover:text-white text-3xl font-medium transition-colors duration-300 py-2"
-                      onMouseEnter={() => setHoveredLink(link.name)}
-                      onMouseLeave={() => setHoveredLink(null)}
-                    >
-                      {link.name}
-                    </a>
-                  </div>
-                  <AnimatePresence>
-                    {hoveredLink === link.name && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className="absolute left-0 top-0 w-full h-full bg-[#F97316] flex items-center pl-10"
-                      >
-                        <span className="text-black text-xl font-medium">{link.hoverText}</span>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+
+            {/* Center Section */}
+            <div className="flex flex-col space-y-6 mb-10 md:mb-0">
+              {rightSocialLinks.map((link, index) => (
+                <HoverHighlight 
+                  key={index} 
+                  text={link.name} 
+                  hiddenText={link.hoverText} 
+                  url={link.url} 
+                />
               ))}
             </div>
-            
-            {/* Right column - Contact information */}
-            <div className="space-y-10">
-              <div className="space-y-2">
-                <h3 className="text-[#a48c76] text-xl">Email</h3>
-                <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
-                  febyantwinjoseph@gmail.com
-                </a>
-              </div>
-              
-              <div className="space-y-2">
-                <h3 className="text-[#a48c76] text-xl">Phone</h3>
-                <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
-                  +1 (203) 864-2473
-                </a>
-              </div>
+
+            {/* Right Section: Email and Phone */}
+            <div className="text-right">
+              <p className="text-[#a48c76] text-xl font-light">Email</p>
+              <a href="mailto:febyantwinjoseph@gmail.com" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
+                febyantwinjoseph@gmail.com
+              </a>
+              <p className="text-[#a48c76] text-xl font-light mt-6">Phone</p>
+              <a href="tel:+12038642473" className="text-[#8E9196] hover:text-white transition-colors text-lg block">
+                +1 (203) 864-2473
+              </a>
             </div>
           </div>
         </motion.div>
