@@ -62,7 +62,7 @@ const Experience = () => {
           >
             EXPERIENCE
           </motion.h2>
-          <div className="max-w-[90vw] mx-auto">
+          <div className="max-w-[90vw] mx-auto px-8 md:px-12">
             <p className="leading-[1.1] tracking-tight break-words font-semibold text-6xl my-0 text-left mx-[4px] px-0 py-[15px] whitespace-pre-line">
               {highlightedText.map((char, index) => (
                 <motion.span 
