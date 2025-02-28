@@ -41,13 +41,14 @@ const Contact = () => {
   ];
 
   return (
-    <footer className="bg-dark py-20 relative" id="contact" style={{ isolation: 'isolate', backgroundColor: '#0d0d0d' }}>
+    <footer className="bg-dark py-20 relative" id="contact" style={{ isolation: 'isolate' }}>
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           className="relative"
+          style={{ position: 'relative' }}
         >
           <h2 className="text-[#eb5939] text-2xl font-medium mb-8">
             CONNECT
@@ -83,7 +84,7 @@ const Contact = () => {
               {contactInfo.map((info) => (
                 <div key={info.type} className="space-y-3">
                   <h3 className="text-[#a48c76] text-2xl font-bold">{info.type}</h3>
-                  <a href={info.url} className="text-[#d4d6d9] hover:text-white transition-colors text-xl font-bold block">
+                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-xl font-bold block">
                     {info.value}
                   </a>
                 </div>
@@ -165,7 +166,7 @@ const FlowingMenuItem = ({ text, hoverText, url }: FlowingMenuItemProps) => {
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
         <a
           ref={textRef}
-          className="text-[#d4d6d9] text-4xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
+          className="text-[#a48c76] text-4xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
           href={url}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
