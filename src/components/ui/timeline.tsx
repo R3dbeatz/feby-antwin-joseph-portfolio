@@ -35,11 +35,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div
-      className="w-full bg-dark font-sans pt-0 md:px-10"
+      className="w-full bg-dark font-sans pt-10 md:px-10 relative"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto pt-0 pb-10 px-4 md:px-8 lg:px-10">
-        <h2 className="text-2xl font-medium text-[#eb5939] mb-8">
+      <div className="max-w-7xl mx-auto pt-8 pb-10 px-4 md:px-8 lg:px-10">
+        <h2 className="text-2xl font-medium text-[#eb5939] mb-8 relative z-20">
           MY JOURNEY
         </h2>
         <p className="text-neutral-400 text-sm md:text-base max-w-sm">
