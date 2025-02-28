@@ -1,6 +1,7 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import Particles from './Particles';
 
 const Experience = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -46,7 +47,21 @@ const Experience = () => {
   
   return (
     <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
-      <div className="container px-4 mx-auto">
+      {/* Particle background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <Particles
+          particleColors={['#eb5939', '#aa9e8b', '#ffffff']}
+          particleCount={200}
+          particleSpread={10}
+          speed={0.1}
+          particleBaseSize={80}
+          moveParticlesOnHover={true}
+          alphaParticles={false}
+          disableRotation={false}
+        />
+      </div>
+      
+      <div className="container px-4 mx-auto relative z-10">
         <motion.div 
           initial={{
             opacity: 0,
