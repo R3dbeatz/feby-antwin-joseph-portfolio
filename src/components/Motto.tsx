@@ -1,10 +1,10 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GooeyText } from './ui/gooey-text-morphing';
+import { Typewriter } from './ui/typewriter';
 
 const Motto = () => {
-  // Split the motto into parts for the animation
+  // Same motto text as before for the animation
   const mottoText = [
     "Don't be afraid to get creative",
     "and experiment with your marketing."
@@ -23,11 +23,13 @@ const Motto = () => {
         </h2>
         
         <div className="w-full h-[200px] flex items-center justify-center mb-8">
-          <GooeyText
-            texts={mottoText}
-            morphTime={2}
-            cooldownTime={3}
-            className="font-bold text-[#b7ab98]"
+          <Typewriter
+            text={mottoText}
+            speed={50}
+            waitTime={3000}
+            deleteSpeed={30}
+            className="font-bold text-[#b7ab98] text-6xl"
+            cursorChar="_"
           />
         </div>
       </motion.div>
