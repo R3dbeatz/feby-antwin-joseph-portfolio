@@ -159,7 +159,7 @@ const FlowingMenuItem = ({
         </a>
       </div>
       <div ref={overlayRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-start pl-12">
-        <span className="text-black font-serif font-bold text-3xl uppercase tracking-wider">{hoverText}</span>
+        <span className="text-black font-serif font-bold text-2xl uppercase tracking-wider">{hoverText}</span>
       </div>
     </div>;
 };
