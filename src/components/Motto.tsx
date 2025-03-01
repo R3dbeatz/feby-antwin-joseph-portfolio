@@ -1,59 +1,88 @@
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Typewriter } from './ui/typewriter';
-import Threads from './ui/Threads';
+import gsap from 'gsap';
 
 const Motto = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  // Transform values for parallax effect
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+
   // Same motto text as before for the animation
   const mottoText = [
     "Don't be afraid to get creative",
     "and experiment with your marketing."
   ];
 
-  return (
-    <div className="container mx-auto py-20 relative">
-      {/* Threads Background */}
-      <div className="absolute inset-0 z-0 bg-[#0d0d0d]">
-        <Threads 
-          color={[0.92, 0.35, 0.22]} // Primary orange color in RGB format (converted from #eb5939)
-          amplitude={1}
-          distance={0.5}
-          enableMouseInteraction={true}
-        />
-      </div>
-      
-      {/* Content */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col items-center relative z-10"
-      >
-        <h2 className="text-xl font-medium text-primary uppercase tracking-widest mb-10 text-center">
-          MY MOTTO
-        </h2>
-        
-        <div className="w-full h-[250px] flex items-center justify-center mb-8">
-          <Typewriter
-            text={mottoText}
-            speed={50}
-            waitTime={1000} // Reduced from 3000 to 1000 for faster line switching
-            deleteSpeed={30}
-            className="font-bold text-[#b7ab98] text-7xl" // Increased from text-6xl to text-7xl
-            cursorChar="_"
-          />
-        </div>
+  useEffect(() => {
+    // Additional animation for elements when they come into view
+    if (ref.current) {
+      gsap.fromTo(
+        '.motto-author', 
+        { opacity: 0, y: 20 }, 
+        { 
+          opacity: 1, 
+          y: 0, 
+          scrollTrigger: {
+            trigger: '.motto-author',
+            start: 'top bottom-=100',
+            end: 'bottom center',
+            scrub: true
+          }
+        }
+      );
+    }
+  }, []);
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="text-[#b7ab98] text-xl mt-6" // Increased from text-lg to text-xl
-        >
-          Mike Volpe
-        </motion.p>
+  return (
+    <div ref={ref} className="relative h-screen w-full overflow-hidden">
+      {/* Parallax Background Image */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
+        style={{ 
+          backgroundImage: 'url("/lovable-uploads/f447afe7-96ea-4c3c-824b-e75e950278ce.png")',
+          y: backgroundY
+        }}
+      >
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
       </motion.div>
+      
+      {/* Content with parallax effect */}
+      <div className="container mx-auto relative z-10 h-full flex flex-col items-center justify-center">
+        <motion.div
+          style={{ y: textY }}
+          className="flex flex-col items-center justify-center h-full"
+        >
+          <h2 className="text-xl font-medium text-primary uppercase tracking-widest mb-10 text-center">
+            MY MOTTO
+          </h2>
+          
+          <div className="w-full h-[250px] flex items-center justify-center mb-8">
+            <Typewriter
+              text={mottoText}
+              speed={50}
+              waitTime={1000}
+              deleteSpeed={30}
+              className="font-bold text-[#b7ab98] text-7xl text-center max-w-4xl"
+              cursorChar="_"
+            />
+          </div>
+
+          <motion.p
+            className="text-[#b7ab98] text-xl mt-6 motto-author"
+          >
+            Mike Volpe
+          </motion.p>
+        </motion.div>
+      </div>
     </div>
   );
 };
