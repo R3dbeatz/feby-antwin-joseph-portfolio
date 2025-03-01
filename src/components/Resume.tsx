@@ -4,7 +4,7 @@ import ResumeForm from './ResumeForm';
 
 const Resume = () => {
   return (
-    <div className="container mx-auto px-4 py-24 min-h-screen flex flex-col justify-center items-center">
+    <div className="container mx-auto px-4 py-16 min-h-screen flex flex-col justify-center items-center">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

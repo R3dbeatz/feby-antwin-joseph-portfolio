@@ -47,7 +47,7 @@ const Contact = () => {
     url: 'tel:+12038642473'
   }];
 
-  return <footer className="bg-dark py-20 relative" id="contact" style={{
+  return <footer className="bg-dark py-10 relative" id="contact" style={{
     isolation: 'isolate'
   }}>
       <div className="container mx-auto px-4">
@@ -122,6 +122,10 @@ const FlowingMenuItem = ({
     if (!itemRef.current || !overlayRef.current || !textRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
+    
+    // Clear any existing tweens on these elements
+    gsap.killTweensOf([overlayRef.current, textRef.current]);
+    
     const tl = gsap.timeline({
       defaults: animationDefaults
     });
@@ -139,6 +143,10 @@ const FlowingMenuItem = ({
     if (!itemRef.current || !overlayRef.current || !textRef.current) return;
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
+    
+    // Clear any existing tweens on these elements
+    gsap.killTweensOf([overlayRef.current, textRef.current]);
+    
     const tl = gsap.timeline({
       defaults: animationDefaults
     });
