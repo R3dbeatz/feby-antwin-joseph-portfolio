@@ -5,16 +5,16 @@ import { AnimatedTooltip } from './ui/animated-tooltip';
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Sujanan TP",
     designation: "Marketing Director",
-    image: "/lovable-uploads/a8f376bd-0ca8-4b5b-b2a8-1243e44df411.png",
+    image: "/lovable-uploads/0d5627e3-1e1f-4887-b0a3-0136db8f92a9.png",
     content: "Working with this developer was an incredible experience. Their attention to detail and ability to translate our vision into reality exceeded our expectations."
   },
   {
     id: 2,
-    name: "Michael Chen",
+    name: "Abhinav Piratla",
     designation: "Tech Startup Founder",
-    image: "/lovable-uploads/e61b52bb-6221-41bf-addf-b14309feb0d1.png",
+    image: "/lovable-uploads/27980751-1da1-458e-9046-166b42ffc2a3.png",
     content: "I was blown away by the level of creativity and technical expertise. They delivered a product that not only met but exceeded our requirements, all within our tight deadline."
   },
   {
