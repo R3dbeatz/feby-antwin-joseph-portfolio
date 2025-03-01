@@ -84,7 +84,7 @@ const Contact = () => {
               {contactInfo.map((info) => (
                 <div key={info.type} className="space-y-3">
                   <h3 className="text-[#a48c76] text-2xl font-bold">{info.type}</h3>
-                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-xl font-bold block">
+                  <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-sm font-medium block">
                     {info.value}
                   </a>
                 </div>
