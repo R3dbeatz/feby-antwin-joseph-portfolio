@@ -4,13 +4,37 @@ import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { toast } from './ui/use-toast';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+
+// Country codes data
+const countryCodes = [
+  { code: '+1', country: 'US/Canada' },
+  { code: '+44', country: 'UK' },
+  { code: '+49', country: 'Germany' },
+  { code: '+33', country: 'France' },
+  { code: '+39', country: 'Italy' },
+  { code: '+34', country: 'Spain' },
+  { code: '+81', country: 'Japan' },
+  { code: '+86', country: 'China' },
+  { code: '+91', country: 'India' },
+  { code: '+61', country: 'Australia' },
+  { code: '+55', country: 'Brazil' },
+  { code: '+52', country: 'Mexico' },
+  { code: '+7', country: 'Russia' },
+  { code: '+82', country: 'South Korea' },
+  { code: '+27', country: 'South Africa' },
+  { code: '+971', country: 'UAE' },
+  { code: '+966', country: 'Saudi Arabia' },
+  { code: '+65', country: 'Singapore' },
+];
 
 const ResumeForm = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    phone: ''
+    phone: '',
+    countryCode: '+1'
   });
   
   const [errors, setErrors] = useState({
@@ -30,6 +54,10 @@ const ResumeForm = () => {
     if (errors[name as keyof typeof errors]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
+  };
+
+  const handleCountryCodeChange = (value: string) => {
+    setFormData(prev => ({ ...prev, countryCode: value }));
   };
 
   const validateForm = () => {
@@ -67,9 +95,8 @@ const ResumeForm = () => {
     
     // Validate phone (optional but must be valid if provided)
     if (formData.phone.trim()) {
-      // International phone regex (handles various formats across countries)
-      // Allows for country codes with + prefix, spaces, dashes, and parentheses
-      const phoneRegex = /^(\+?\d{1,4}[-.\s]?)?(\(?\d{1,}\)?[-.\s]?)?(\d{1,}[-.\s]?)?\d{1,}$/;
+      // Phone number regex (without country code, since we're handling that separately)
+      const phoneRegex = /^[0-9\s\-\(\)]+$/;
       if (!phoneRegex.test(formData.phone)) {
         newErrors.phone = 'Please enter a valid phone number';
         isValid = false;
@@ -95,8 +122,14 @@ const ResumeForm = () => {
       return;
     }
     
+    // Prepare data with full phone number including country code
+    const fullFormData = {
+      ...formData,
+      phone: formData.phone ? `${formData.countryCode} ${formData.phone}` : ''
+    };
+    
     // Store information in localStorage or you could send to a backend
-    localStorage.setItem('resumeUserInfo', JSON.stringify(formData));
+    localStorage.setItem('resumeUserInfo', JSON.stringify(fullFormData));
     
     // Simulate a slight delay before download starts
     setTimeout(() => {
@@ -181,17 +214,35 @@ const ResumeForm = () => {
         
         <div>
           <label htmlFor="phone" className="block text-gray-300 mb-1">Phone Number</label>
-          <Input
-            id="phone"
-            name="phone"
-            type="tel"
-            value={formData.phone}
-            onChange={handleChange}
-            className={`bg-dark-lighter text-white border-gray-700 ${errors.phone ? 'border-red-500' : ''}`}
-            placeholder="+1 (xxx) xxx-xxxx"
-          />
+          <div className="flex gap-2">
+            <div className="w-1/3">
+              <Select value={formData.countryCode} onValueChange={handleCountryCodeChange}>
+                <SelectTrigger className="bg-dark-lighter text-white border-gray-700">
+                  <SelectValue placeholder="Code" />
+                </SelectTrigger>
+                <SelectContent className="bg-dark-lighter text-white border-gray-700 max-h-[200px]">
+                  {countryCodes.map((country) => (
+                    <SelectItem key={country.code} value={country.code}>
+                      {country.code} ({country.country})
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="w-2/3">
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                value={formData.phone}
+                onChange={handleChange}
+                className={`bg-dark-lighter text-white border-gray-700 ${errors.phone ? 'border-red-500' : ''}`}
+                placeholder="Phone number"
+              />
+            </div>
+          </div>
           {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
-          <p className="text-gray-400 text-xs mt-1">International format supported</p>
+          <p className="text-gray-400 text-xs mt-1">Select your country code</p>
         </div>
         
         <Button 
