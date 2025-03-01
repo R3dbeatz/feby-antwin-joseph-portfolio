@@ -1,3 +1,4 @@
+
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -58,14 +59,14 @@ const Contact = () => {
         y: 0
       }} transition={{
         duration: 0.5
-      }} className="relative" style={{
+      }} className="relative text-center" style={{
         position: 'relative'
       }}>
           <h2 className="text-xl font-medium text-[#eb5939] uppercase mb-8">
             CONNECT
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
             {/* Left column - First set of social links */}
             <div className="space-y-10">
               {leftSocialLinks.map(link => <FlowingMenuItem key={link.name} text={link.name} hoverText={link.hoverText} url={link.url} />)}
@@ -77,9 +78,9 @@ const Contact = () => {
             </div>
             
             {/* Right column - Contact information */}
-            <div className="space-y-12">
+            <div className="space-y-12 text-left">
               {contactInfo.map(info => <div key={info.type} className="space-y-3">
-                  <h3 className="text-[#a48c76] font-bold text-xl">{info.type}</h3>
+                  <h3 className="text-[#a48c76] font-medium text-sm">{info.type}</h3>
                   <a href={info.url} className="text-[#8E9196] hover:text-white transition-colors text-sm font-medium block">
                     {info.value}
                   </a>
