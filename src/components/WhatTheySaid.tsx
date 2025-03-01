@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { AnimatedTooltip } from './ui/animated-tooltip';
+import { motion } from 'framer-motion';
 
 const testimonials = [
   {
@@ -50,40 +51,53 @@ const WhatTheySaid = () => {
 
   return (
     <div className="container mx-auto py-20">
-      <div className="flex justify-start mb-12">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-start mb-12"
+      >
         <h2 className="text-2xl font-medium text-[#eb5939] uppercase mb-8">
           WHAT THEY SAID
         </h2>
-      </div>
+      </motion.div>
       
       <div className="flex flex-col items-center">
-        {/* Testimonial people display - increased spacing here */}
-        <div className="mb-20 flex justify-center">
+        {/* Testimonial people display */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mb-20 flex justify-center"
+        >
           <AnimatedTooltip 
             items={testimonials} 
             className="flex justify-center" 
             onImageClick={handleImageClick}
           />
-        </div>
+        </motion.div>
         
         {/* Active testimonial display */}
         {activeTestimonial && (
-          <div 
-            className="max-w-2xl mx-auto mb-16 bg-dark-lighter border border-primary/20 p-6 rounded-lg shadow-lg hover:shadow-primary/10 transition-all duration-300 animate-fade-in"
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            className="max-w-2xl mx-auto mb-16 bg-dark-lighter border border-primary/20 p-8 rounded-lg shadow-lg hover:shadow-primary/10 transition-all duration-300"
           >
-            <p className="text-foreground/80 mb-4 italic text-center text-xl">{activeTestimonial.content}</p>
+            <p className="text-foreground/80 mb-6 italic text-center text-xl leading-relaxed">{activeTestimonial.content}</p>
             <div className="flex items-center justify-center">
               <img 
                 src={activeTestimonial.image} 
                 alt={activeTestimonial.name}
-                className="w-12 h-12 rounded-full mr-3 object-cover border border-primary/30"
+                className="w-14 h-14 rounded-full mr-4 object-cover border-2 border-primary/30"
               />
               <div>
-                <h4 className="font-medium text-primary">{activeTestimonial.name}</h4>
+                <h4 className="font-medium text-primary text-lg">{activeTestimonial.name}</h4>
                 <p className="text-sm text-foreground/60">{activeTestimonial.designation}</p>
               </div>
             </div>
-          </div>
+          </motion.div>
         )}
       </div>
     </div>
