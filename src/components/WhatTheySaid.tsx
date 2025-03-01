@@ -57,8 +57,8 @@ const WhatTheySaid = () => {
       </div>
       
       <div className="flex flex-col items-center">
-        {/* Testimonial people display */}
-        <div className="mb-16 flex justify-center">
+        {/* Testimonial people display - increased spacing here */}
+        <div className="mb-20 flex justify-center">
           <AnimatedTooltip 
             items={testimonials} 
             className="flex justify-center" 
@@ -76,7 +76,7 @@ const WhatTheySaid = () => {
               <img 
                 src={activeTestimonial.image} 
                 alt={activeTestimonial.name}
-                className="w-10 h-10 rounded-full mr-3 object-cover border border-primary/30"
+                className="w-12 h-12 rounded-full mr-3 object-cover border border-primary/30"
               />
               <div>
                 <h4 className="font-medium text-primary">{activeTestimonial.name}</h4>
