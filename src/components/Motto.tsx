@@ -56,11 +56,11 @@ const Motto = () => {
         <div className="absolute inset-0 bg-black/60"></div> {/* Increased opacity slightly */}
       </motion.div>
       
-      {/* Content with enhanced parallax effect */}
-      <div className="container mx-auto relative z-10 h-full flex flex-col items-center justify-center">
+      {/* Content with enhanced parallax effect - Now properly centered */}
+      <div className="container mx-auto relative z-10 h-full flex items-center justify-center">
         <motion.div
           style={{ y: textY }}
-          className="flex flex-col items-center justify-center h-full"
+          className="flex flex-col items-center justify-center"
         >
           <h2 className="text-xl font-medium text-primary uppercase tracking-widest mb-10 text-center">
             MY MOTTO
