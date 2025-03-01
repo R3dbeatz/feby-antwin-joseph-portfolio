@@ -118,11 +118,11 @@ const EducationListItem = ({
   return (
     <div 
       ref={itemRef} 
-      className="border-b border-[#1a1a1a] py-12 relative overflow-hidden cursor-pointer"
+      className="border-b border-[#1a1a1a] py-12 relative overflow-hidden cursor-pointer w-full"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div ref={textRef} className="flex items-start justify-between">
+      <div ref={textRef} className="flex items-start justify-between w-full">
         <h3 className="text-[#b7ab98] text-5xl font-bold leading-none">{year}</h3>
         <div className="flex-1 pl-8">
           <p className="text-[#b7ab98] text-2xl font-medium leading-tight">
