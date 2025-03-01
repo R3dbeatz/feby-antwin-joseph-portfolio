@@ -71,7 +71,7 @@ const WhatTheySaid = () => {
           <div 
             className="max-w-2xl mx-auto mb-16 bg-dark-lighter border border-primary/20 p-6 rounded-lg shadow-lg hover:shadow-primary/10 transition-all duration-300 animate-fade-in"
           >
-            <p className="text-foreground/80 mb-4 italic text-center">{activeTestimonial.content}</p>
+            <p className="text-foreground/80 mb-4 italic text-center text-xl">{activeTestimonial.content}</p>
             <div className="flex items-center justify-center">
               <img 
                 src={activeTestimonial.image} 

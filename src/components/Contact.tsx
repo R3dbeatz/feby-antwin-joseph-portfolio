@@ -50,7 +50,7 @@ const Contact = () => {
           className="relative"
           style={{ position: 'relative' }}
         >
-          <h2 className="text-[#eb5939] text-2xl font-medium mb-8">
+          <h2 className="text-xl font-medium text-[#eb5939] uppercase mb-8">
             CONNECT
           </h2>
           
