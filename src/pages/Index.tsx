@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import Navigation from '../components/Navigation';
@@ -12,6 +11,8 @@ import Motto from '../components/Motto';
 import Contact from '../components/Contact';
 import Resume from '../components/Resume';
 import LoadingScreen from '../components/LoadingScreen';
+import FlowingMenu from '../components/FlowingMenu';
+import Education from '../components/Education';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -84,6 +85,18 @@ const Index = () => {
       gsap.from("#expertise", {
         scrollTrigger: {
           trigger: "#expertise",
+          start: "top center+=100",
+          end: "center center",
+          scrub: 1,
+        },
+        y: 50,
+        duration: 1
+      });
+
+      // Education Section Animation
+      gsap.from("#education", {
+        scrollTrigger: {
+          trigger: "#education",
           start: "top center+=100",
           end: "center center",
           scrub: 1,
@@ -193,6 +206,12 @@ const Index = () => {
           </section>
           <section id="expertise">
             <Experience />
+          </section>
+          <section id="flowing-menu">
+            <FlowingMenu />
+          </section>
+          <section id="education">
+            <Education />
           </section>
           <section id="experience">
             <Timeline />
