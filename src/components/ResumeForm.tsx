@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
@@ -6,26 +5,27 @@ import { Input } from './ui/input';
 import { toast } from './ui/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 
-// Country codes data
+// Country codes data - sorted alphabetically by country name
 const countryCodes = [
-  { code: '+1', country: 'US/Canada' },
-  { code: '+44', country: 'UK' },
-  { code: '+49', country: 'Germany' },
-  { code: '+33', country: 'France' },
-  { code: '+39', country: 'Italy' },
-  { code: '+34', country: 'Spain' },
-  { code: '+81', country: 'Japan' },
-  { code: '+86', country: 'China' },
-  { code: '+91', country: 'India' },
   { code: '+61', country: 'Australia' },
   { code: '+55', country: 'Brazil' },
+  { code: '+1', country: 'Canada' },
+  { code: '+86', country: 'China' },
+  { code: '+33', country: 'France' },
+  { code: '+49', country: 'Germany' },
+  { code: '+91', country: 'India' },
+  { code: '+39', country: 'Italy' },
+  { code: '+81', country: 'Japan' },
   { code: '+52', country: 'Mexico' },
   { code: '+7', country: 'Russia' },
-  { code: '+82', country: 'South Korea' },
-  { code: '+27', country: 'South Africa' },
-  { code: '+971', country: 'UAE' },
   { code: '+966', country: 'Saudi Arabia' },
   { code: '+65', country: 'Singapore' },
+  { code: '+82', country: 'South Korea' },
+  { code: '+27', country: 'South Africa' },
+  { code: '+34', country: 'Spain' },
+  { code: '+971', country: 'UAE' },
+  { code: '+44', country: 'UK' },
+  { code: '+1', country: 'USA' },
 ];
 
 const ResumeForm = () => {
@@ -222,7 +222,7 @@ const ResumeForm = () => {
                 </SelectTrigger>
                 <SelectContent className="bg-dark-lighter text-white border-gray-700 max-h-[200px]">
                   {countryCodes.map((country) => (
-                    <SelectItem key={country.code} value={country.code}>
+                    <SelectItem key={`${country.code}-${country.country}`} value={country.code}>
                       {country.code} ({country.country})
                     </SelectItem>
                   ))}
