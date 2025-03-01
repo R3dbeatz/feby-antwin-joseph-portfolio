@@ -32,7 +32,7 @@ const Education = () => {
   ];
 
   return (
-    <div ref={sectionRef} className="py-16 bg-dark border-b border-[#1a1a1a]">
+    <div ref={sectionRef} className="py-16 bg-dark border-b border-[#1a1a1a] w-full">
       <div className="container px-4 mx-auto">
         <motion.h2 
           style={{ opacity }}
@@ -41,7 +41,7 @@ const Education = () => {
           EDUCATION
         </motion.h2>
         
-        <div className="grid grid-cols-1">
+        <div className="grid grid-cols-1 w-full">
           {educationItems.map((item, idx) => (
             <EducationListItem 
               key={idx}
@@ -133,7 +133,7 @@ const EducationListItem = ({
       
       <div 
         ref={overlayRef} 
-        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[-101%] flex items-center"
+        className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[-101%]"
       >
         <div className="px-8 py-6 flex items-start justify-between w-full">
           <h3 className="text-black text-5xl font-bold leading-none">{year}</h3>
