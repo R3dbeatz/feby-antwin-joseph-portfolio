@@ -28,14 +28,14 @@ const Index = () => {
       <section id="about">
         <AboutMe />
       </section>
+      <section id="education">
+        <Education />
+      </section>
       <section id="expertise">
         <Experience />
       </section>
       <section id="flowing-menu">
         <FlowingMenu />
-      </section>
-      <section id="education">
-        <Education />
       </section>
       <section id="experience">
         <Timeline />
