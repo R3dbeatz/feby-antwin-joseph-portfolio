@@ -33,6 +33,16 @@ export const NavLinks = () => {
         WORK
       </a>
       <a 
+        href="#motto" 
+        className={`transition-colors ${
+          activeSection === 'motto' 
+            ? 'text-[#eb5939] font-medium' 
+            : 'text-gray-400 hover:text-white'
+        }`}
+      >
+        MOTTO
+      </a>
+      <a 
         href="#resume" 
         className={`transition-colors ${
           activeSection === 'resume' 
