@@ -120,75 +120,45 @@ const FlowingMenuItem = ({
 
   const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
     if (!itemRef.current || !overlayRef.current || !textRef.current) return;
-    
-    // Clear any existing animations
-    gsap.killTweensOf(overlayRef.current);
-    gsap.killTweensOf(textRef.current);
-    
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
-    
-    gsap.set(overlayRef.current, {
+    const tl = gsap.timeline({
+      defaults: animationDefaults
+    });
+    tl.set(overlayRef.current, {
       y: edge === "top" ? "-101%" : "101%"
-    });
-    
-    gsap.to(overlayRef.current, {
-      y: "0%",
-      duration: animationDefaults.duration,
-      ease: animationDefaults.ease
-    });
-    
-    gsap.to(textRef.current, {
+    }).to(overlayRef.current, {
+      y: "0%"
+    }, 0).to(textRef.current, {
       opacity: 0,
       duration: 0.3
-    });
+    }, 0);
   };
 
   const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
     if (!itemRef.current || !overlayRef.current || !textRef.current) return;
-    
-    // Clear any existing animations
-    gsap.killTweensOf(overlayRef.current);
-    gsap.killTweensOf(textRef.current);
-    
     const rect = itemRef.current.getBoundingClientRect();
     const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
-    
-    gsap.to(overlayRef.current, {
-      y: edge === "top" ? "-101%" : "101%",
-      duration: animationDefaults.duration,
-      ease: animationDefaults.ease
+    const tl = gsap.timeline({
+      defaults: animationDefaults
     });
-    
-    gsap.to(textRef.current, {
+    tl.to(overlayRef.current, {
+      y: edge === "top" ? "-101%" : "101%"
+    }, 0).to(textRef.current, {
       opacity: 1,
       duration: 0.3,
-      delay: 0.1
+      delay: 0.2
     });
   };
 
   return <div ref={itemRef} className="relative overflow-hidden h-16 text-left">
       <div className="flex items-center justify-start">
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
-        <a 
-          ref={textRef} 
-          href={url} 
-          onMouseEnter={handleMouseEnter} 
-          onMouseLeave={handleMouseLeave} 
-          className="text-[#a48c76] text-3xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300"
-        >
+        <a ref={textRef} href={url} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="text-[#a48c76] text-3xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300">
           {text}
         </a>
       </div>
-      <div 
-        ref={overlayRef} 
-        className="absolute top-0 left-0 w-full h-12 overflow-hidden pointer-events-none bg-[#eb5939] flex items-center justify-start pl-12"
-        style={{ 
-          transform: 'translateY(101%)', 
-          height: '2.25rem', 
-          marginTop: '0.8rem' 
-        }}
-      >
+      <div ref={overlayRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-start pl-12">
         <span className="text-black font-serif font-bold text-2xl uppercase tracking-wider">{hoverText}</span>
       </div>
     </div>;
