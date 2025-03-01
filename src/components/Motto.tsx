@@ -11,9 +11,9 @@ const Motto = () => {
     offset: ["start end", "end start"]
   });
 
-  // Transform values for parallax effect
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 100]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  // Enhanced transform values for more noticeable parallax effect
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 200]); // Increased from 100 to 200
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -100]); // Increased from -50 to -100
 
   // Same motto text as before for the animation
   const mottoText = [
@@ -43,19 +43,20 @@ const Motto = () => {
 
   return (
     <div ref={ref} className="relative h-screen w-full overflow-hidden">
-      {/* Parallax Background Image */}
+      {/* Parallax Background Image with Blur */}
       <motion.div 
-        className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
+        className="absolute inset-0 w-full h-full bg-cover bg-center z-0 backdrop-blur-sm"
         style={{ 
           backgroundImage: 'url("/lovable-uploads/f447afe7-96ea-4c3c-824b-e75e950278ce.png")',
-          y: backgroundY
+          y: backgroundY,
+          filter: 'blur(3px)' // Added blur effect via inline style
         }}
       >
         {/* Dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/60"></div> {/* Increased opacity slightly */}
       </motion.div>
       
-      {/* Content with parallax effect */}
+      {/* Content with enhanced parallax effect */}
       <div className="container mx-auto relative z-10 h-full flex flex-col items-center justify-center">
         <motion.div
           style={{ y: textY }}
