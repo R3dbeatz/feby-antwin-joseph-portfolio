@@ -14,7 +14,7 @@ const testimonials = [
     id: 2,
     name: "Abhinav Piratla",
     designation: "Tech Startup Founder",
-    image: "/lovable-uploads/d5f496a5-6108-4e8f-b5f5-4c8d0277120d.png",
+    image: "/lovable-uploads/9e2f6a68-fede-4d60-92f5-a6fd65f5d441.png",
     content: "I was blown away by the level of creativity and technical expertise. They delivered a product that not only met but exceeded our requirements, all within our tight deadline."
   },
   {
