@@ -1,14 +1,12 @@
 
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
-import DecryptedText from './DecryptedText';
 
 interface EducationItem {
   year: string;
   degree: string;
   institution: string;
-  description: string;
 }
 
 const Education = () => {
@@ -19,21 +17,17 @@ const Education = () => {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
-  const [activeItem, setActiveItem] = useState<number | null>(null);
-
   // Education data
   const educationItems: EducationItem[] = [
     {
       year: "2022",
       degree: "Master of Science in Digital Marketing",
-      institution: "Stanford University",
-      description: "Specialized in cutting-edge digital marketing strategies and analytics. Completed thesis on measuring ROI of multi-channel marketing campaigns in emerging markets. Graduated with honors and recognition for innovative application of machine learning in consumer behavior analysis."
+      institution: "Stanford University"
     },
     {
       year: "2018",
       degree: "Bachelor of Arts in Mass Communication",
-      institution: "University of California, Berkeley",
-      description: "Focused on media studies and communication theory with a minor in digital design. Actively participated in the student media organization, producing award-winning digital content campaigns. Completed internships with leading media companies including NBC Universal and ViacomCBS."
+      institution: "University of California, Berkeley"
     }
   ];
 
@@ -47,40 +41,15 @@ const Education = () => {
           EDUCATION
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-          <div className="md:col-span-5">
-            {educationItems.map((item, idx) => (
-              <EducationListItem 
-                key={idx}
-                year={item.year} 
-                degree={item.degree}
-                onMouseEnter={() => setActiveItem(idx)}
-                onMouseLeave={() => setActiveItem(null)}
-                isActive={activeItem === idx}
-              />
-            ))}
-          </div>
-          
-          <div className="md:col-span-7 p-6 flex items-center">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: activeItem !== null ? 1 : 0,
-                y: activeItem !== null ? 0 : 20
-              }}
-              transition={{ duration: 0.3 }}
-              className="text-[#b7ab98] leading-relaxed"
-            >
-              {activeItem !== null && (
-                <div>
-                  <h3 className="text-white text-xl mb-2">{educationItems[activeItem].institution}</h3>
-                  <div className="text-lg">
-                    <DecryptedText text={educationItems[activeItem].description} />
-                  </div>
-                </div>
-              )}
-            </motion.div>
-          </div>
+        <div className="grid grid-cols-1">
+          {educationItems.map((item, idx) => (
+            <EducationListItem 
+              key={idx}
+              year={item.year} 
+              degree={item.degree}
+              institution={item.institution}
+            />
+          ))}
         </div>
       </div>
     </div>
@@ -90,17 +59,13 @@ const Education = () => {
 interface EducationListItemProps {
   year: string;
   degree: string;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
-  isActive: boolean;
+  institution: string;
 }
 
 const EducationListItem = ({
   year,
   degree,
-  onMouseEnter,
-  onMouseLeave,
-  isActive
+  institution
 }: EducationListItemProps) => {
   const itemRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -153,15 +118,9 @@ const EducationListItem = ({
   return (
     <div 
       ref={itemRef} 
-      className="border-b border-[#1a1a1a] py-6 relative overflow-hidden cursor-pointer"
-      onMouseEnter={(e) => {
-        onMouseEnter();
-        handleMouseEnter(e);
-      }}
-      onMouseLeave={(e) => {
-        onMouseLeave();
-        handleMouseLeave(e);
-      }}
+      className="border-b border-[#1a1a1a] py-12 relative overflow-hidden cursor-pointer"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
     >
       <div ref={textRef} className="flex items-start justify-between">
         <h3 className="text-[#b7ab98] text-5xl font-bold leading-none">{year}</h3>
@@ -181,6 +140,9 @@ const EducationListItem = ({
           <div className="flex-1 pl-8">
             <p className="text-black text-2xl font-medium leading-tight">
               {degree}
+            </p>
+            <p className="text-black text-lg mt-1">
+              {institution}
             </p>
           </div>
         </div>
