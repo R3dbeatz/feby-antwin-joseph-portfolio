@@ -1,4 +1,3 @@
-
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -20,14 +19,14 @@ const Education = () => {
   // Education data
   const educationItems: EducationItem[] = [
     {
-      year: "2022",
+      year: "2024",
       degree: "Master of Science in Digital Marketing",
-      institution: "Stanford University"
+      institution: "Sacred Heart University, Fairfield, Connecticut"
     },
     {
-      year: "2018",
+      year: "2021",
       degree: "Bachelor of Arts in Mass Communication",
-      institution: "University of California, Berkeley"
+      institution: "Loyola Degree and P.G College, Hyderabad, India"
     }
   ];
 
