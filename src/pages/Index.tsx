@@ -10,7 +10,6 @@ import WhatTheySaid from '../components/WhatTheySaid';
 import Motto from '../components/Motto';
 import Contact from '../components/Contact';
 import Resume from '../components/Resume';
-import FlowingMenu from '../components/FlowingMenu';
 import Education from '../components/Education';
 
 const Index = () => {
@@ -33,9 +32,6 @@ const Index = () => {
       </section>
       <section id="expertise">
         <Experience />
-      </section>
-      <section id="flowing-menu">
-        <FlowingMenu />
       </section>
       <section id="experience">
         <Timeline />
