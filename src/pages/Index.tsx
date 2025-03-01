@@ -56,7 +56,7 @@ const Index = () => {
     requestAnimationFrame(raf);
 
     const ctx = gsap.context(() => {
-      // Hero Section Animation
+      // Hero Section Animation - removed opacity transition
       gsap.from("#hero", {
         scrollTrigger: {
           trigger: "#hero",
@@ -65,11 +65,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // About Section Animation
+      // About Section Animation - removed opacity transition
       gsap.from("#about", {
         scrollTrigger: {
           trigger: "#about",
@@ -78,11 +77,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // Experience Section Animation
+      // Experience Section Animation - removed opacity transition
       gsap.from("#expertise", {
         scrollTrigger: {
           trigger: "#expertise",
@@ -91,11 +89,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // Timeline Section Animation
+      // Timeline Section Animation - removed opacity transition
       gsap.from("#experience", {
         scrollTrigger: {
           trigger: "#experience",
@@ -104,11 +101,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // Projects Section Animation
+      // Projects Section Animation - removed opacity transition
       gsap.from("#projects", {
         scrollTrigger: {
           trigger: "#projects",
@@ -117,11 +113,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // Resume Section Animation
+      // Resume Section Animation - removed opacity transition
       gsap.from("#resume", {
         scrollTrigger: {
           trigger: "#resume",
@@ -130,11 +125,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // What They Said Section Animation
+      // What They Said Section Animation - removed opacity transition
       gsap.from("#testimonials", {
         scrollTrigger: {
           trigger: "#testimonials",
@@ -143,11 +137,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // Motto Section Animation
+      // Motto Section Animation - removed opacity transition
       gsap.from("#motto", {
         scrollTrigger: {
           trigger: "#motto",
@@ -156,11 +149,10 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
 
-      // Contact Section Animation
+      // Contact Section Animation - removed opacity transition
       gsap.from("#contact", {
         scrollTrigger: {
           trigger: "#contact",
@@ -169,7 +161,6 @@ const Index = () => {
           scrub: 1,
         },
         y: 50,
-        opacity: 0,
         duration: 1
       });
     }, mainRef);
