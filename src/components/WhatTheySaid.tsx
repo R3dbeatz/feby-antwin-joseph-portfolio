@@ -7,14 +7,14 @@ const testimonials = [
     id: 1,
     name: "Sujanan TP",
     designation: "Marketing Director",
-    image: "/lovable-uploads/0d5627e3-1e1f-4887-b0a3-0136db8f92a9.png",
+    image: "/lovable-uploads/ed0372c9-10b1-44bd-931f-c74e53811653.png",
     content: "Working with this developer was an incredible experience. Their attention to detail and ability to translate our vision into reality exceeded our expectations."
   },
   {
     id: 2,
     name: "Abhinav Piratla",
     designation: "Tech Startup Founder",
-    image: "/lovable-uploads/27980751-1da1-458e-9046-166b42ffc2a3.png",
+    image: "/lovable-uploads/d5f496a5-6108-4e8f-b5f5-4c8d0277120d.png",
     content: "I was blown away by the level of creativity and technical expertise. They delivered a product that not only met but exceeded our requirements, all within our tight deadline."
   },
   {
