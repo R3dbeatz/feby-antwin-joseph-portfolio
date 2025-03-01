@@ -10,6 +10,7 @@ import Projects from '../components/Projects';
 import WhatTheySaid from '../components/WhatTheySaid';
 import Motto from '../components/Motto';
 import Contact from '../components/Contact';
+import Resume from '../components/Resume';
 import LoadingScreen from '../components/LoadingScreen';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -120,6 +121,19 @@ const Index = () => {
         duration: 1
       });
 
+      // Resume Section Animation
+      gsap.from("#resume", {
+        scrollTrigger: {
+          trigger: "#resume",
+          start: "top center+=100",
+          end: "center center",
+          scrub: 1,
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1
+      });
+
       // What They Said Section Animation
       gsap.from("#testimonials", {
         scrollTrigger: {
@@ -194,6 +208,9 @@ const Index = () => {
           </section>
           <section id="projects">
             <Projects />
+          </section>
+          <section id="resume">
+            <Resume />
           </section>
           <section id="testimonials">
             <WhatTheySaid />
