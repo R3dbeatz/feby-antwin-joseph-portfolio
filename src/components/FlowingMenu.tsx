@@ -1,4 +1,3 @@
-
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import DecryptedText from './DecryptedText';
@@ -16,9 +15,9 @@ const FlowingMenu = () => {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
   
-  // Background parallax effect
-  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 200]);
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  // Background parallax effect - reduced movement amount to keep content in frame
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   // Menu items with their content
   const menuItems: MenuContent[] = [
@@ -90,7 +89,7 @@ const FlowingMenu = () => {
   });
 
   return (
-    <div ref={sectionRef} className="py-16 bg-dark relative overflow-hidden">
+    <div ref={sectionRef} className="py-16 bg-dark relative overflow-hidden min-h-screen">
       {/* Video Background with Parallax Effect */}
       <motion.div 
         className="absolute inset-0 w-full h-full z-0"
@@ -100,7 +99,7 @@ const FlowingMenu = () => {
         <div className="relative w-full h-full overflow-hidden">
           <iframe 
             src="https://www.youtube.com/embed/gWQlB9_zyaI?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=gWQlB9_zyaI"
-            className="absolute w-[300%] h-[300%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="absolute w-[400%] h-[400%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             title="Background Video"
             frameBorder="0"
