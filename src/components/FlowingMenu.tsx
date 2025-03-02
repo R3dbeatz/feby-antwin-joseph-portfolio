@@ -1,6 +1,6 @@
 
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import DecryptedText from './DecryptedText';
 
 interface MenuContent {
@@ -15,6 +15,10 @@ const FlowingMenu = () => {
     offset: ["start center", "75vh center"]
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
+  
+  // Background parallax effect
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   // Menu items with their content
   const menuItems: MenuContent[] = [
@@ -41,6 +45,17 @@ const FlowingMenu = () => {
   ];
 
   const [activeItem, setActiveItem] = useState<number | null>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
+  // Function to handle video loading
+  useEffect(() => {
+    // Video might take time to load, we'll simulate this with a timeout
+    const timer = setTimeout(() => {
+      setVideoLoaded(true);
+    }, 1000);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   // Function to create color transforms for each character
   const createCharacterColors = (text: string, index: number) => {
@@ -75,8 +90,32 @@ const FlowingMenu = () => {
   });
 
   return (
-    <div ref={sectionRef} className="py-16 bg-dark">
-      <div className="container px-4 mx-auto">
+    <div ref={sectionRef} className="py-16 bg-dark relative overflow-hidden">
+      {/* Video Background with Parallax Effect */}
+      <motion.div 
+        className="absolute inset-0 w-full h-full z-0"
+        style={{ y: backgroundY }}
+      >
+        {/* YouTube iframe */}
+        <div className="relative w-full h-full overflow-hidden">
+          <iframe 
+            src="https://www.youtube.com/embed/gWQlB9_zyaI?autoplay=1&mute=1&loop=1&controls=0&showinfo=0&rel=0&playlist=gWQlB9_zyaI"
+            className="absolute w-[300%] h-[300%] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            title="Background Video"
+            frameBorder="0"
+            style={{ 
+              filter: 'blur(3px)',
+              opacity: videoLoaded ? 1 : 0,
+              transition: 'opacity 1s ease'
+            }}
+          />
+          {/* Dark overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/70"></div>
+        </div>
+      </motion.div>
+      
+      <div className="container px-4 mx-auto relative z-10">
         <motion.h2 
           style={{ opacity }}
           className="text-2xl font-medium text-[#eb5939] mb-12 tracking-wider"
@@ -84,7 +123,10 @@ const FlowingMenu = () => {
           WHAT I DO
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <motion.div
+          style={{ y: textY }}
+          className="grid grid-cols-1 md:grid-cols-12 gap-8"
+        >
           <div className="md:col-span-5 space-y-4">
             {processedItems.map((item, idx) => (
               <div 
@@ -127,7 +169,7 @@ const FlowingMenu = () => {
               )}
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

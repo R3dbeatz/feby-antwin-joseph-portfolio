@@ -11,6 +11,7 @@ import Motto from '../components/Motto';
 import Contact from '../components/Contact';
 import Resume from '../components/Resume';
 import Education from '../components/Education';
+import FlowingMenu from '../components/FlowingMenu';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -32,6 +33,9 @@ const Index = () => {
       </section>
       <section id="expertise">
         <Experience />
+      </section>
+      <section id="what-i-do">
+        <FlowingMenu />
       </section>
       <section id="experience">
         <Timeline />
