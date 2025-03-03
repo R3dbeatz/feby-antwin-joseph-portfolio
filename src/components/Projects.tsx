@@ -9,23 +9,33 @@ const Projects = () => {
   
   const projects = [
     {
-      title: 'Digital Marketing Campaign',
-      description: 'Led a successful digital marketing campaign increasing engagement by 150%.',
-      tech: ['Social Media', 'Analytics', 'Content Strategy']
-    },
-    {
-      title: 'Brand Redesign',
-      description: 'Complete brand overhaul resulting in 200% increase in brand recognition.',
-      tech: ['Branding', 'Design', 'Strategy']
-    },
-    {
-      title: 'Marketing Automation',
-      description: 'Implemented marketing automation increasing leads by 80%.',
-      tech: ['Automation', 'Email Marketing', 'CRM']
+      title: 'Digital Marketing Strategy Development: Blend Well with Bigelow',
+      description: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.',
+      content: `As part of my Digital Marketing Capstone Project, I collaborated with Bigelow Tea to develop an innovative marketing strategy, "Blend Well with Bigelow," designed to enhance customer engagement and brand differentiation in the competitive wellness market.
+      
+      Key Strategy Developments:
+      • AI-Powered Tea Recommendations: Designed an AI system to provide personalized tea suggestions, enhancing the customer experience with technology.
+      • Interactive QR-Enabled Packaging: Developed packaging with QR codes that offer exclusive content and access to the Teatime AI, increasing product interactivity.
+      • Influencer Collaborations: Identified and proposed partnerships with wellness influencers to authentically promote Bigelow's products, leveraging their audience's trust.
+      
+      Project Execution Plan:
+      • Phased Campaign Launch: Outlined a multi-phase campaign including teasers, official launch, sustained engagement, and feedback iteration.
+      • Social Media Strategies: Focused on platforms like TikTok for challenges and Instagram for user-generated content, targeting a younger, tech-savvy audience.
+      • Virtual Events: Planned virtual tea blending workshops and live sessions with tea experts to engage the community and showcase product knowledge.
+      
+      Budget Optimization:
+      • Developed a detailed budget plan of $50k, allocating resources effectively across influencer partnerships, paid social media ads, content creation, tech and event integration, incentives, and feedback surveys.
+      
+      Outcomes:
+      • Although the campaign was not implemented, the strategy provided Bigelow with a robust framework for future marketing efforts.
+      • The initiative offered actionable insights and a clear direction for addressing market challenges and establishing a strong foundation for long-term growth.`,
+      tech: ['Digital Marketing', 'AI Integration', 'Social Media Strategy', 'Budget Planning']
     }
   ];
 
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
     const ctx = gsap.context(() => {
       // Explicitly type the elements as HTMLElement[]
       const projectCards = gsap.utils.toArray<HTMLElement>('.project-card');
@@ -61,14 +71,21 @@ const Projects = () => {
         >
           Featured Projects
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8">
           {projects.map((project, index) => (
             <div
               key={index}
-              className="project-card bg-dark-lighter p-6 rounded-lg"
+              className="project-card bg-dark-lighter p-8 rounded-lg shadow-xl"
             >
-              <h3 className="text-xl font-bold mb-4">{project.title}</h3>
-              <p className="text-gray-400 mb-4">{project.description}</p>
+              <h3 className="text-2xl font-bold mb-4 text-primary">{project.title}</h3>
+              <p className="text-white text-lg mb-6">{project.description}</p>
+              
+              <div className="mb-6">
+                <pre className="whitespace-pre-wrap text-gray-300 font-sans text-sm leading-relaxed">
+                  {project.content}
+                </pre>
+              </div>
+              
               <div className="flex flex-wrap gap-2">
                 {project.tech.map((tech, techIndex) => (
                   <span
