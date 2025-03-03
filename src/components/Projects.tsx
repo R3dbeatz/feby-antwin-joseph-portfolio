@@ -3,10 +3,67 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { StickyScroll } from './ui/sticky-scroll-reveal';
+import DecryptedText from './DecryptedText';
 
 const Projects = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
   
+  const projectContent = [
+    {
+      title: 'Digital Marketing Strategy Development',
+      description: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.',
+      content: (
+        <div className="h-full w-full bg-gradient-to-br from-primary to-accent flex items-center justify-center p-4 text-white font-serif text-center text-lg">
+          Blend Well with Bigelow
+        </div>
+      ),
+    },
+    {
+      title: 'Key Strategy Developments',
+      description: 'Implemented innovative approaches like AI-powered recommendations, interactive packaging, and influential partnerships.',
+      content: (
+        <div className="h-full w-full bg-gradient-to-br from-primary to-secondary flex flex-col items-center justify-center p-4 text-white text-sm">
+          <ul className="list-disc pl-5 space-y-2">
+            <li>AI-Powered Tea Recommendations</li>
+            <li>Interactive QR-Enabled Packaging</li>
+            <li>Influencer Collaborations</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: 'Project Execution Plan',
+      description: 'Outlined a multi-phase campaign strategy spanning from initial teasers to sustained engagement and feedback iteration.',
+      content: (
+        <div className="h-full w-full bg-gradient-to-br from-secondary to-accent flex flex-col items-center justify-center p-4 text-white text-sm">
+          <ul className="list-disc pl-5 space-y-2">
+            <li>Phased Campaign Launch</li>
+            <li>Social Media Strategies</li>
+            <li>Virtual Tea Blending Events</li>
+          </ul>
+        </div>
+      ),
+    },
+    {
+      title: 'Budget & Outcomes',
+      description: 'Developed a detailed $50k budget plan and provided Bigelow with a robust framework for future marketing efforts.',
+      content: (
+        <div className="h-full w-full bg-gradient-to-br from-primary to-accent flex items-center justify-center p-4 text-white text-center">
+          <DecryptedText 
+            text="Actionable Insights for Market Growth" 
+            speed={30}
+            maxIterations={5}
+            sequential={true}
+            className="text-white font-serif font-bold"
+            encryptedClassName="text-accent/70"
+            animateOn="view"
+          />
+        </div>
+      ),
+    },
+  ];
+
   const projects = [
     {
       title: 'Digital Marketing Strategy Development: Blend Well with Bigelow',
@@ -71,7 +128,17 @@ const Projects = () => {
         >
           Featured Projects
         </motion.h2>
-        <div className="grid grid-cols-1 gap-8">
+        
+        {/* New Sticky Scroll Component */}
+        <div className="mb-16">
+          <StickyScroll 
+            content={projectContent} 
+            contentClassName="shadow-xl"
+          />
+        </div>
+        
+        {/* Legacy/Mobile Project View */}
+        <div className="grid grid-cols-1 gap-8 lg:hidden">
           {projects.map((project, index) => (
             <div
               key={index}
