@@ -11,22 +11,28 @@ const Projects = () => {
   
   const projectFeatures = [
     { 
+      step: 'Brand Identity', 
+      title: 'Bigelow Benefits',
+      content: 'Leveraging the established Bigelow brand while emphasizing the wellness benefits of their tea products.', 
+      image: '/lovable-uploads/da86735c-529e-4616-a6ef-2a8c4cfa4b23.png' // New Bigelow Benefits logo
+    },
+    { 
       step: 'Strategy Overview', 
       title: 'Digital Marketing Strategy Development',
       content: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.', 
-      image: '/lovable-uploads/9b4361d8-eac1-4f66-964e-c3357c3c2a6b.png' // 3rd image now first
+      image: '/lovable-uploads/9b4361d8-eac1-4f66-964e-c3357c3c2a6b.png' 
     },
     { 
       step: 'Key Developments',
       title: 'Innovative Approaches',
       content: 'Designed an AI system for personalized tea recommendations, developed interactive QR-enabled packaging, and established strategic wellness influencer partnerships.',
-      image: '/lovable-uploads/a780da72-b992-48a9-87e2-6616d96492e8.png' // 1st image now second
+      image: '/lovable-uploads/a780da72-b992-48a9-87e2-6616d96492e8.png'
     },
     { 
       step: 'Project Execution',
       title: 'Multi-Phase Campaign Strategy',
       content: 'Outlined a comprehensive campaign spanning from initial teasers to sustained engagement, with focused social media strategies for TikTok and Instagram.',
-      image: '/lovable-uploads/169aca3a-04af-42c9-a15c-6ff337719f2c.png' // 2nd image now third
+      image: '/lovable-uploads/169aca3a-04af-42c9-a15c-6ff337719f2c.png'
     },
     { 
       step: 'Budget & Outcomes',
