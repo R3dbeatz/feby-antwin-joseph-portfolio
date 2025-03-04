@@ -7,6 +7,11 @@ import { useState } from 'react';
 const HeroSection = () => {
   const [hoverState, setHoverState] = useState(false);
 
+  const handleButtonClick = () => {
+    // Smooth scroll to the about section
+    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return <section className="section relative overflow-hidden">
       <div className="absolute inset-0">
         <Squares direction="diagonal" speed={0.5} squareSize={40} borderColor="#ffffff20" hoverFillColor="#eb593920" className="-z-10" />
@@ -29,10 +34,8 @@ const HeroSection = () => {
             Creating impactful digital experiences through strategic marketing and creative storytelling.
           </p>
           <div className="flex justify-center">
-            <motion.a 
-              href="https://www.linkedin.com/in/feby-antwin-joseph-934253201" 
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.button 
+              onClick={handleButtonClick}
               onMouseEnter={() => setHoverState(true)}
               onMouseLeave={() => setHoverState(false)}
               whileHover={{
@@ -44,7 +47,7 @@ const HeroSection = () => {
               className={`px-8 py-3 rounded-full font-medium transition-colors border border-primary ${hoverState ? 'bg-primary text-white' : 'bg-transparent text-primary'}`}
             >
               {hoverState ? "First Explore My Work" : "Connect With Me"}
-            </motion.a>
+            </motion.button>
           </div>
         </motion.div>
       </div>
