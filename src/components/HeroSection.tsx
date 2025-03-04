@@ -1,6 +1,8 @@
+
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Squares } from './ui/squares-background';
+
 const HeroSection = () => {
   return <section className="section relative overflow-hidden">
       <div className="absolute inset-0">
@@ -23,16 +25,38 @@ const HeroSection = () => {
           <p className="text-lg text-[#aa9e8b] max-w-2xl mx-auto mb-8 md:text-2xl font-normal">
             Creating impactful digital experiences through strategic marketing and creative storytelling.
           </p>
-          <motion.button whileHover={{
-          scale: 1.05
-        }} whileTap={{
-          scale: 0.95
-        }} className="bg-primary text-white px-8 py-3 rounded-full font-medium">
-            Explore My Work
-          </motion.button>
+          <div className="flex gap-4 justify-center">
+            <motion.a 
+              href="https://www.linkedin.com/in/feby-antwin-joseph-934253201" 
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{
+                scale: 1.05
+              }} 
+              whileTap={{
+                scale: 0.95
+              }} 
+              className="bg-primary text-white px-8 py-3 rounded-full font-medium"
+            >
+              Connect With Me
+            </motion.a>
+            <motion.a 
+              href="#projects" 
+              whileHover={{
+                scale: 1.05
+              }} 
+              whileTap={{
+                scale: 0.95
+              }} 
+              className="border border-primary text-primary px-8 py-3 rounded-full font-medium hover:bg-primary/10 transition-colors"
+            >
+              Explore My Work
+            </motion.a>
+          </div>
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-dark-lighter to-dark opacity-50"></div>
     </section>;
 };
+
 export default HeroSection;

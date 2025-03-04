@@ -1,4 +1,3 @@
-
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -19,22 +18,22 @@ interface ContactInfo {
 const Contact = () => {
   const leftSocialLinks: SocialLink[] = [{
     name: 'LinkedIn',
-    hoverText: 'Serious Me',
-    url: 'https://linkedin.com/'
+    hoverText: 'Connect with Me',
+    url: 'https://www.linkedin.com/in/feby-antwin-joseph-934253201'
   }, {
     name: 'Instagram',
-    hoverText: 'Just For Reels',
-    url: 'https://instagram.com/'
+    hoverText: 'R3dbeatz Music',
+    url: 'https://www.instagram.com/r3dbeatz_music/'
   }];
 
   const rightSocialLinks: SocialLink[] = [{
     name: 'Twitter',
-    hoverText: 'Elon Musk Fun',
-    url: 'https://twitter.com/'
+    hoverText: 'Follow Me',
+    url: 'https://x.com/feby_joseph01'
   }, {
     name: 'YouTube',
-    hoverText: 'Lofi Music',
-    url: 'https://youtube.com/'
+    hoverText: 'Mood Fusion Therapy',
+    url: 'https://www.youtube.com/@moodfusiontherapy/videos'
   }];
 
   const contactInfo: ContactInfo[] = [{

@@ -1,6 +1,6 @@
 
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Mail, Linkedin, Twitter, Instagram, Youtube } from 'lucide-react';
 import { useRef, useState } from 'react';
 
 export const SocialIcons = () => {
@@ -47,7 +47,7 @@ export const SocialIcons = () => {
     >
       <a
         ref={el => socialIconsRef.current['linkedin'] = el}
-        href="https://linkedin.com"
+        href="https://www.linkedin.com/in/feby-antwin-joseph-934253201"
         target="_blank"
         rel="noopener noreferrer"
         className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
@@ -59,7 +59,7 @@ export const SocialIcons = () => {
       </a>
       <a
         ref={el => socialIconsRef.current['twitter'] = el}
-        href="https://twitter.com"
+        href="https://x.com/feby_joseph01"
         target="_blank"
         rel="noopener noreferrer"
         className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
@@ -71,7 +71,7 @@ export const SocialIcons = () => {
       </a>
       <a
         ref={el => socialIconsRef.current['instagram'] = el}
-        href="https://instagram.com"
+        href="https://www.instagram.com/r3dbeatz_music/"
         target="_blank"
         rel="noopener noreferrer"
         className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
@@ -82,8 +82,20 @@ export const SocialIcons = () => {
         <Instagram size={20} />
       </a>
       <a
+        ref={el => socialIconsRef.current['youtube'] = el}
+        href="https://www.youtube.com/@moodfusiontherapy/videos"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
+        onMouseMove={(e) => handleIconMouseMove(e, 'youtube')}
+        onMouseEnter={() => setHoveredIcon('youtube')}
+        onMouseLeave={() => handleIconMouseLeave('youtube')}
+      >
+        <Youtube size={20} />
+      </a>
+      <a
         ref={el => socialIconsRef.current['mail'] = el}
-        href="mailto:contact@example.com"
+        href="mailto:febyantwinjoseph@gmail.com"
         className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
         onMouseMove={(e) => handleIconMouseMove(e, 'mail')}
         onMouseEnter={() => setHoveredIcon('mail')}
