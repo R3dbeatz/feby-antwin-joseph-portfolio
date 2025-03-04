@@ -1,9 +1,11 @@
+
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { toast } from './ui/use-toast';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
+import { supabase } from '@/integrations/supabase/client';
 
 // Country codes data - sorted alphabetically by country name
 const countryCodes = [
@@ -107,7 +109,7 @@ const ResumeForm = () => {
     return isValid;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -123,24 +125,59 @@ const ResumeForm = () => {
     }
     
     // Prepare data with full phone number including country code
-    const fullFormData = {
-      ...formData,
-      phone: formData.phone ? `${formData.countryCode} ${formData.phone}` : ''
+    const submissionData = {
+      first_name: formData.firstName,
+      last_name: formData.lastName,
+      email: formData.email,
+      phone: formData.phone,
+      country_code: formData.countryCode
     };
     
-    // Store information in localStorage or you could send to a backend
-    localStorage.setItem('resumeUserInfo', JSON.stringify(fullFormData));
-    
-    // Simulate a slight delay before download starts
-    setTimeout(() => {
-      downloadResume();
-      setIsSubmitting(false);
+    try {
+      // Store data in Supabase
+      const { error } = await supabase
+        .from('resume_submissions')
+        .insert([submissionData]);
       
+      if (error) {
+        console.error('Error submitting resume data:', error);
+        toast({
+          title: "Submission Error",
+          description: "There was a problem saving your information. Please try again.",
+          variant: "destructive"
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Simulate a slight delay before download starts
+      setTimeout(() => {
+        downloadResume();
+        setIsSubmitting(false);
+        
+        toast({
+          title: "Success!",
+          description: "Resume download started. Thank you for your information.",
+        });
+        
+        // Reset form after successful submission
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          phone: '',
+          countryCode: '+1'
+        });
+      }, 1000);
+    } catch (err) {
+      console.error('Exception during resume submission:', err);
       toast({
-        title: "Success!",
-        description: "Resume download started. Thank you for your information.",
+        title: "Submission Error",
+        description: "An unexpected error occurred. Please try again later.",
+        variant: "destructive"
       });
-    }, 1000);
+      setIsSubmitting(false);
+    }
   };
   
   const downloadResume = () => {
