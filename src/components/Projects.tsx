@@ -5,6 +5,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DecryptedText from './DecryptedText';
 import { FeatureSteps } from './ui/feature-section';
+import { Button } from './ui/button';
 
 const Projects = () => {
   const projectsRef = useRef<HTMLDivElement>(null);
@@ -14,7 +15,7 @@ const Projects = () => {
       step: 'Brand Identity', 
       title: 'Bigelow Benefits',
       content: 'Leveraging the established Bigelow brand while emphasizing the wellness benefits of their tea products.', 
-      image: '/lovable-uploads/5404c380-6f7d-447e-b3e4-5a6d639608db.png' // Using the newly uploaded image
+      image: '/lovable-uploads/bc4f54e0-77af-4627-bc66-321d464b96dd.png' // Using the newly uploaded Bigelow logo
     },
     { 
       step: 'Strategy Overview', 
@@ -32,13 +33,13 @@ const Projects = () => {
       step: 'Project Execution',
       title: 'Multi-Phase Campaign Strategy',
       content: 'Outlined a comprehensive campaign spanning from initial teasers to sustained engagement, with focused social media strategies for TikTok and Instagram.',
-      image: 'https://images.unsplash.com/photo-1569227227802-daa0afa22a7e?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3'
+      image: '/lovable-uploads/34f55300-b681-49f7-b849-69d16a3f586b.png' // Using the second uploaded image
     },
     { 
       step: 'Budget & Outcomes',
       title: 'Strategic Resource Allocation',
       content: 'Developed a detailed $50k budget plan and provided Bigelow with a robust framework for future marketing efforts and market growth.',
-      image: 'https://images.unsplash.com/photo-1523920290228-4f321a939b4c?q=80&w=2274&auto=format&fit=crop&ixlib=rb-4.0.3'
+      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop'
     },
   ];
 

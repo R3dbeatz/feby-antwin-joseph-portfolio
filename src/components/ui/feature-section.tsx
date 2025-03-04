@@ -4,6 +4,8 @@
 import React, { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { toast } from "sonner"
+import { Button } from "./button"
 
 interface Feature {
   step: string
@@ -30,6 +32,7 @@ export function FeatureSteps({
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
   const [imagesLoaded, setImagesLoaded] = useState<Record<number, boolean>>({})
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({})
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Preload images
@@ -41,10 +44,12 @@ export function FeatureSteps({
       preloadedImages[index].src = feature.image;
       preloadedImages[index].onload = () => {
         setImagesLoaded(prev => ({ ...prev, [index]: true }));
+        setImageErrors(prev => ({ ...prev, [index]: false }));
       };
       preloadedImages[index].onerror = () => {
         console.log(`Failed to preload image: ${feature.image}, using placeholder`);
         setImagesLoaded(prev => ({ ...prev, [index]: false }));
+        setImageErrors(prev => ({ ...prev, [index]: true }));
       };
     });
     
@@ -87,8 +92,9 @@ export function FeatureSteps({
     setProgress(0);
   };
 
-  const getImageSrc = (index: number) => {
-    return imagesLoaded[index] ? features[index].image : "/placeholder.svg";
+  // Get fallback image when there's an error
+  const getFallbackImage = () => {
+    return "https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop";
   };
 
   return (
@@ -102,7 +108,7 @@ export function FeatureSteps({
           <div className="order-2 md:order-1 space-y-8">
             {features.map((feature, index) => (
               <motion.div
-                key={`feature-${index}`}
+                key={`feature-${index}-${feature.step}`}
                 className={cn(
                   "flex items-center gap-6 md:gap-8 cursor-pointer",
                   index === currentFeature ? "opacity-100" : "opacity-50 hover:opacity-75"
@@ -149,7 +155,7 @@ export function FeatureSteps({
                 (feature, index) =>
                   index === currentFeature && (
                     <motion.div
-                      key={`image-${index}`}
+                      key={`image-${index}-${feature.step}`}
                       className="absolute inset-0 rounded-lg overflow-hidden"
                       initial={{ y: 100, opacity: 0, rotateX: -20 }}
                       animate={{ y: 0, opacity: 1, rotateX: 0 }}
@@ -157,12 +163,13 @@ export function FeatureSteps({
                       transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                       <img
-                        src={feature.image}
+                        src={imageErrors[index] ? getFallbackImage() : feature.image}
                         alt={feature.title || feature.step}
-                        className="w-full h-full object-cover transition-transform transform"
+                        className="w-full h-full object-contain transition-transform transform"
                         onError={(e) => {
                           console.log(`Failed to load image at runtime: ${feature.image}`);
-                          e.currentTarget.src = "/placeholder.svg";
+                          e.currentTarget.src = getFallbackImage();
+                          setImageErrors(prev => ({ ...prev, [index]: true }));
                         }}
                       />
                       <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
