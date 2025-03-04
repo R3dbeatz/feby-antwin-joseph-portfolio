@@ -14,19 +14,19 @@ const Projects = () => {
       step: 'Strategy Overview', 
       title: 'Digital Marketing Strategy Development',
       content: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.', 
-      image: 'https://images.unsplash.com/photo-1567922045116-2a00fae2ed03?q=80&w=2274&auto=format&fit=crop&ixlib=rb-4.0.3' 
+      image: '/lovable-uploads/a780da72-b992-48a9-87e2-6616d96492e8.png' 
     },
     { 
       step: 'Key Developments',
       title: 'Innovative Approaches',
       content: 'Designed an AI system for personalized tea recommendations, developed interactive QR-enabled packaging, and established strategic wellness influencer partnerships.',
-      image: 'https://images.unsplash.com/photo-1600193895792-cca91e0cbd70?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3'
+      image: '/lovable-uploads/169aca3a-04af-42c9-a15c-6ff337719f2c.png'
     },
     { 
       step: 'Project Execution',
       title: 'Multi-Phase Campaign Strategy',
       content: 'Outlined a comprehensive campaign spanning from initial teasers to sustained engagement, with focused social media strategies for TikTok and Instagram.',
-      image: 'https://images.unsplash.com/photo-1582785513054-8d1bae1b0855?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3'
+      image: '/lovable-uploads/9b4361d8-eac1-4f66-964e-c3357c3c2a6b.png'
     },
     { 
       step: 'Budget & Outcomes',
