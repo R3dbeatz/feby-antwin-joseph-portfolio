@@ -1,11 +1,53 @@
-import { motion } from 'framer-motion';
+
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Squares } from './ui/squares-background';
+import { useRef } from 'react';
+
 const HeroSection = () => {
-  return <section className="section relative overflow-hidden">
-      <div className="absolute inset-0">
-        <Squares direction="diagonal" speed={0.5} squareSize={40} borderColor="#ffffff20" hoverFillColor="#eb593920" className="-z-10" />
-      </div>
+  const ref = useRef<HTMLDivElement>(null);
+  
+  // Create motion values for mouse tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  // Apply spring physics to smooth out mouse movement
+  const smoothX = useSpring(mouseX, { damping: 50, stiffness: 300 });
+  const smoothY = useSpring(mouseY, { damping: 50, stiffness: 300 });
+  
+  // Transform smooth coordinates to values we can use for parallax effect
+  const parallaxX = useTransform(smoothX, (value) => value / 10);
+  const parallaxY = useTransform(smoothY, (value) => value / 10);
+
+  // Handle mouse movement
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const { left, top, width, height } = ref.current?.getBoundingClientRect() || { left: 0, top: 0, width: 0, height: 0 };
+    const x = e.clientX - left - width / 2;
+    const y = e.clientY - top - height / 2;
+    
+    mouseX.set(x);
+    mouseY.set(y);
+  };
+
+  return (
+    <section 
+      className="section relative overflow-hidden" 
+      ref={ref}
+      onMouseMove={handleMouseMove}
+    >
+      <motion.div 
+        className="absolute inset-0"
+        style={{ x: parallaxX, y: parallaxY }}
+      >
+        <Squares 
+          direction="diagonal" 
+          speed={0.5} 
+          squareSize={40} 
+          borderColor="#ffffff20" 
+          hoverFillColor="#eb593920" 
+          className="-z-10" 
+        />
+      </motion.div>
       <div className="container relative z-10">
         <motion.div initial={{
         opacity: 0,
@@ -33,6 +75,8 @@ const HeroSection = () => {
         </motion.div>
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-dark-lighter to-dark opacity-50"></div>
-    </section>;
+    </section>
+  );
 };
+
 export default HeroSection;
