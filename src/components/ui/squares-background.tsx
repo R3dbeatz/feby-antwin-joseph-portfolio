@@ -8,7 +8,6 @@ interface SquaresProps {
   squareSize?: number
   hoverFillColor?: string
   className?: string
-  hoverEnabled?: boolean
 }
 
 export function Squares({
@@ -18,7 +17,6 @@ export function Squares({
   squareSize = 40,
   hoverFillColor = "#222",
   className,
-  hoverEnabled = true,
 }: SquaresProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const requestRef = useRef<number>()
@@ -64,7 +62,6 @@ export function Squares({
           const squareY = y - (gridOffset.current.y % squareSize)
 
           if (
-            hoverEnabled && 
             hoveredSquare &&
             Math.floor((x - startX) / squareSize) === hoveredSquare.x &&
             Math.floor((y - startY) / squareSize) === hoveredSquare.y
@@ -126,8 +123,6 @@ export function Squares({
     }
 
     const handleMouseMove = (event: MouseEvent) => {
-      if (!hoverEnabled) return;
-      
       const rect = canvas.getBoundingClientRect()
       const mouseX = event.clientX - rect.left
       const mouseY = event.clientY - rect.top
@@ -146,16 +141,13 @@ export function Squares({
     }
 
     const handleMouseLeave = () => {
-      if (hoverEnabled) {
-        setHoveredSquare(null)
-      }
+      setHoveredSquare(null)
     }
 
-    // Only add mouse event listeners if hover is enabled
-    if (hoverEnabled) {
-      canvas.addEventListener("mousemove", handleMouseMove)
-      canvas.addEventListener("mouseleave", handleMouseLeave)
-    }
+    // Event listeners
+    window.addEventListener("resize", resizeCanvas)
+    canvas.addEventListener("mousemove", handleMouseMove)
+    canvas.addEventListener("mouseleave", handleMouseLeave)
 
     // Initial setup
     resizeCanvas()
@@ -164,15 +156,13 @@ export function Squares({
     // Cleanup
     return () => {
       window.removeEventListener("resize", resizeCanvas)
-      if (hoverEnabled) {
-        canvas.removeEventListener("mousemove", handleMouseMove)
-        canvas.removeEventListener("mouseleave", handleMouseLeave)
-      }
+      canvas.removeEventListener("mousemove", handleMouseMove)
+      canvas.removeEventListener("mouseleave", handleMouseLeave)
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current)
       }
     }
-  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, squareSize, hoverEnabled])
+  }, [direction, speed, borderColor, hoverFillColor, hoveredSquare, squareSize])
 
   return (
     <canvas
