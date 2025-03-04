@@ -29,6 +29,22 @@ export function FeatureSteps({
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
+  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(Array(features.length).fill(false))
+
+  // Preload images
+  useEffect(() => {
+    features.forEach((feature, index) => {
+      const img = new Image()
+      img.src = feature.image
+      img.onload = () => {
+        setImagesLoaded(prev => {
+          const newState = [...prev]
+          newState[index] = true
+          return newState
+        })
+      }
+    })
+  }, [features])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -54,7 +70,7 @@ export function FeatureSteps({
           <div className="order-2 md:order-1 space-y-8">
             {features.map((feature, index) => (
               <motion.div
-                key={index}
+                key={`feature-${index}`}
                 className="flex items-center gap-6 md:gap-8"
                 initial={{ opacity: 0.3 }}
                 animate={{ opacity: index === currentFeature ? 1 : 0.3 }}
@@ -97,7 +113,7 @@ export function FeatureSteps({
                 (feature, index) =>
                   index === currentFeature && (
                     <motion.div
-                      key={index}
+                      key={`image-${index}`}
                       className="absolute inset-0 rounded-lg overflow-hidden"
                       initial={{ y: 100, opacity: 0, rotateX: -20 }}
                       animate={{ y: 0, opacity: 1, rotateX: 0 }}
@@ -108,6 +124,10 @@ export function FeatureSteps({
                         src={feature.image}
                         alt={feature.step}
                         className="w-full h-full object-cover transition-transform transform"
+                        onError={(e) => {
+                          console.error(`Failed to load image: ${feature.image}`)
+                          e.currentTarget.src = "/placeholder.svg" // Fallback image
+                        }}
                       />
                       <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
                     </motion.div>

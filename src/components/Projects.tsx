@@ -14,7 +14,7 @@ const Projects = () => {
       step: 'Brand Identity', 
       title: 'Bigelow Benefits',
       content: 'Leveraging the established Bigelow brand while emphasizing the wellness benefits of their tea products.', 
-      image: '/lovable-uploads/da86735c-529e-4616-a6ef-2a8c4cfa4b23.png' // New Bigelow Benefits logo
+      image: '/lovable-uploads/fadbaf88-1468-430d-955f-5409d217b72e.png' // Updated with the new image
     },
     { 
       step: 'Strategy Overview', 
