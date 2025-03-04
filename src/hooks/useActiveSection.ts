@@ -6,12 +6,13 @@ export const useActiveSection = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'projects', 'contact'];
+      const sections = ['about', 'projects', 'resume', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
+          // Adjusted logic to better detect when a section is in view
+          return rect.top <= 150 && rect.bottom >= 100;
         }
         return false;
       });
@@ -20,6 +21,9 @@ export const useActiveSection = () => {
         setActiveSection(currentSection);
       }
     };
+
+    // Initial check when component mounts
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
