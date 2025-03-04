@@ -1,23 +1,22 @@
-
 import React from 'react';
 import { Timeline as TimelineComponent } from './ui/timeline';
 import { motion } from 'framer-motion';
-
-const timelineData = [
-  {
-    title: '2024',
-    content: (
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <p className="text-white text-sm md:text-base font-normal mb-8">
+const timelineData = [{
+  title: '2024',
+  content: <motion.div initial={{
+    opacity: 0
+  }} whileInView={{
+    opacity: 1
+  }} transition={{
+    duration: 0.5
+  }} viewport={{
+    once: true
+  }}>
+        <p className="text-white text-sm font-normal mb-8 md:text-lg">
           Driving digital marketing excellence and brand growth as a Digital Marketing Intern at Arcadia Chemicals.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-dark-lighter rounded-lg p-6 shadow-lg border border-[#1a1a1a] hover:border-primary/20 transition-all duration-300">
+          <div className="bg-dark-lighter p-6 shadow-lg border border-[#1a1a1a] hover:border-primary/20 transition-all duration-300 rounded-lg">
             <h4 className="text-primary text-lg font-bold mb-3">Campaign Strategy</h4>
             <p className="text-neutral-300 text-sm">
               Conceptualized and executed digital campaigns, increasing website traffic by 20%. Conducted keyword research and implemented SEO strategies, boosting online inquiries by 28%.
@@ -31,18 +30,18 @@ const timelineData = [
           </div>
         </div>
       </motion.div>
-    ),
-  },
-  {
-    title: '2023',
-    content: (
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <p className="text-white text-sm md:text-base font-normal mb-8">
+}, {
+  title: '2023',
+  content: <motion.div initial={{
+    opacity: 0
+  }} whileInView={{
+    opacity: 1
+  }} transition={{
+    duration: 0.5
+  }} viewport={{
+    once: true
+  }}>
+        <p className="text-white text-sm font-normal mb-8 md:text-lg">
           Elevating content marketing and audience engagement as a Content Writer at Fav Media House.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -60,18 +59,18 @@ const timelineData = [
           </div>
         </div>
       </motion.div>
-    ),
-  },
-  {
-    title: '2022',
-    content: (
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <p className="text-white text-sm md:text-base font-normal mb-8">
+}, {
+  title: '2022',
+  content: <motion.div initial={{
+    opacity: 0
+  }} whileInView={{
+    opacity: 1
+  }} transition={{
+    duration: 0.5
+  }} viewport={{
+    once: true
+  }}>
+        <p className="text-white text-sm font-normal mb-8 md:text-lg">
           Led impactful social media marketing initiatives and strategic branding as a Social Media Marketing Specialist at KoopBox.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -89,17 +88,11 @@ const timelineData = [
           </div>
         </div>
       </motion.div>
-    ),
-  },
-];
-
+}];
 const Timeline = () => {
-  return (
-    <section id="experience" className="min-h-screen relative">
+  return <section id="experience" className="min-h-screen relative">
       <div className="w-full h-full absolute top-0 left-0 bg-dark z-0"></div>
       <TimelineComponent data={timelineData} />
-    </section>
-  );
+    </section>;
 };
-
 export default Timeline;
