@@ -7,28 +7,28 @@ const testimonials = [
   {
     id: 1,
     name: "Sujanan TP",
-    designation: "Marketing Director",
+    designation: "CEO and President, Arcadia Chemicals",
     image: "/lovable-uploads/0a80a399-d183-4640-8325-c1b98b3eeeef.png",
     content: "Working with this developer was an incredible experience. Their attention to detail and ability to translate our vision into reality exceeded our expectations."
   },
   {
     id: 2,
     name: "Abhinav Piratla",
-    designation: "Tech Startup Founder",
+    designation: "Founder and CEO, Koopbox",
     image: "/lovable-uploads/db1c299e-2535-4de2-a105-b15f3d07df18.png",
     content: "I was blown away by the level of creativity and technical expertise. They delivered a product that not only met but exceeded our requirements, all within our tight deadline."
   },
   {
     id: 3,
     name: "Clive A. Senior",
-    designation: "Product Manager",
+    designation: "President and CEO, Qualikar",
     image: "/lovable-uploads/348a1be6-2b3d-4445-9ccd-dc75c1e0d569.png",
     content: "Their problem-solving skills are exceptional. When we hit roadblocks, they found innovative solutions that kept our project on track and within budget."
   },
   {
     id: 4,
     name: "Vishal Anivilla",
-    designation: "UX Director",
+    designation: "Founder and CEO, FAV Media House",
     image: "/lovable-uploads/c68744bd-b339-4dab-bce2-593d682091a3.png",
     content: "The attention to user experience was remarkable. They created an intuitive interface that our customers love, resulting in a significant increase in user engagement."
   },
