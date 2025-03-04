@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Squares } from './ui/squares-background';
 import { useState } from 'react';
+import DecryptedText from './DecryptedText';
 
 const HeroSection = () => {
   const [hoverState, setHoverState] = useState(false);
@@ -29,22 +30,40 @@ const HeroSection = () => {
             Creating impactful digital experiences through strategic marketing and creative storytelling.
           </p>
           <div className="flex justify-center">
-            <motion.a 
-              href="https://www.linkedin.com/in/feby-antwin-joseph-934253201" 
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div 
+              className="relative overflow-hidden group"
               onMouseEnter={() => setHoverState(true)}
               onMouseLeave={() => setHoverState(false)}
-              whileHover={{
-                scale: 1.05
-              }} 
-              whileTap={{
-                scale: 0.95
-              }} 
-              className={`px-8 py-3 rounded-full font-medium transition-colors border border-primary ${hoverState ? 'bg-primary text-white' : 'bg-transparent text-primary'}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              {hoverState ? "First Explore My Work" : "Connect With Me"}
-            </motion.a>
+              <a 
+                href="https://www.linkedin.com/in/feby-antwin-joseph-934253201" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-8 py-3 rounded-full font-medium border border-primary text-primary relative z-10 block"
+              >
+                {hoverState ? (
+                  <DecryptedText 
+                    text="First Explore My Work" 
+                    speed={40}
+                    sequential={true}
+                    maxIterations={6}
+                    animateOn="hover"
+                    className="text-white"
+                  />
+                ) : (
+                  "Connect With Me"
+                )}
+              </a>
+              <div 
+                className={`absolute bottom-0 left-0 w-full bg-primary transition-all duration-500 ease-in-out z-0
+                  ${hoverState ? 'h-full' : 'h-0'}`}
+                style={{
+                  transitionTimingFunction: 'cubic-bezier(0.42, 0, 0.58, 1)'
+                }}
+              />
+            </motion.div>
           </div>
         </motion.div>
       </div>
