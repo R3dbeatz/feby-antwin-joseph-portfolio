@@ -106,4 +106,3 @@ export const SocialIcons = () => {
     </motion.div>
   );
 };
-

@@ -1,3 +1,4 @@
+
 import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
@@ -111,16 +112,8 @@ const FlowingMenuItem = ({
     ease: "expo"
   };
 
-  const findClosestEdge = (mouseX: number, mouseY: number, width: number, height: number): "top" | "bottom" => {
-    const topEdgeDist = Math.pow(mouseX - width / 2, 2) + Math.pow(mouseY, 2);
-    const bottomEdgeDist = Math.pow(mouseX - width / 2, 2) + Math.pow(mouseY - height, 2);
-    return topEdgeDist < bottomEdgeDist ? "top" : "bottom";
-  };
-
   const handleMouseEnter = (ev: React.MouseEvent<HTMLAnchorElement>) => {
     if (!itemRef.current || !overlayRef.current || !textRef.current) return;
-    const rect = itemRef.current.getBoundingClientRect();
-    const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
     
     // Clear any existing tweens on these elements
     gsap.killTweensOf([overlayRef.current, textRef.current]);
@@ -128,8 +121,9 @@ const FlowingMenuItem = ({
     const tl = gsap.timeline({
       defaults: animationDefaults
     });
+    
     tl.set(overlayRef.current, {
-      y: edge === "top" ? "-101%" : "101%"
+      y: "-101%"
     }).to(overlayRef.current, {
       y: "0%"
     }, 0).to(textRef.current, {
@@ -140,8 +134,6 @@ const FlowingMenuItem = ({
 
   const handleMouseLeave = (ev: React.MouseEvent<HTMLAnchorElement>) => {
     if (!itemRef.current || !overlayRef.current || !textRef.current) return;
-    const rect = itemRef.current.getBoundingClientRect();
-    const edge = findClosestEdge(ev.clientX - rect.left, ev.clientY - rect.top, rect.width, rect.height);
     
     // Clear any existing tweens on these elements
     gsap.killTweensOf([overlayRef.current, textRef.current]);
@@ -149,8 +141,9 @@ const FlowingMenuItem = ({
     const tl = gsap.timeline({
       defaults: animationDefaults
     });
+    
     tl.to(overlayRef.current, {
-      y: edge === "top" ? "-101%" : "101%"
+      y: "-101%"
     }, 0).to(textRef.current, {
       opacity: 1,
       duration: 0.3,
@@ -165,7 +158,7 @@ const FlowingMenuItem = ({
           {text}
         </a>
       </div>
-      <div ref={overlayRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[101%] flex items-center justify-start pl-12">
+      <div ref={overlayRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[-101%] flex items-center justify-start pl-12">
         <span className="text-white font-serif font-bold text-2xl uppercase tracking-wider">{hoverText}</span>
       </div>
     </div>;
