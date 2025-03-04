@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';
@@ -94,7 +95,7 @@ const Projects = () => {
         </div>
         
         <div className="flex flex-wrap gap-2 mt-10">
-          {['Digital Marketing', 'AI Integration', 'Social Media Strategy', 'Budget Planning'].map((tech, techIndex) => (
+          {['Digital Marketing', 'AI Integration', 'Social Media Strategy', 'Budget Planning', 'Wellness Branding', 'Content Creation', 'Influencer Partnerships'].map((tech, techIndex) => (
             <span
               key={techIndex}
               className="bg-primary/10 text-primary text-sm px-3 py-1 rounded-full"
