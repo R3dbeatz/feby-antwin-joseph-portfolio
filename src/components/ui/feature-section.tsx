@@ -1,7 +1,7 @@
 
 "use client"
 
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -29,35 +29,67 @@ export function FeatureSteps({
 }: FeatureStepsProps) {
   const [currentFeature, setCurrentFeature] = useState(0)
   const [progress, setProgress] = useState(0)
-  const [imagesLoaded, setImagesLoaded] = useState<boolean[]>(Array(features.length).fill(false))
+  const [imagesLoaded, setImagesLoaded] = useState<Record<number, boolean>>({})
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Preload images
   useEffect(() => {
+    const preloadedImages: Record<number, HTMLImageElement> = {};
+    
     features.forEach((feature, index) => {
-      const img = new Image()
-      img.src = feature.image
-      img.onload = () => {
-        setImagesLoaded(prev => {
-          const newState = [...prev]
-          newState[index] = true
-          return newState
-        })
-      }
-    })
-  }, [features])
+      preloadedImages[index] = new Image();
+      preloadedImages[index].src = feature.image;
+      preloadedImages[index].onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [index]: true }));
+      };
+      preloadedImages[index].onerror = () => {
+        console.log(`Failed to preload image: ${feature.image}, using placeholder`);
+        setImagesLoaded(prev => ({ ...prev, [index]: false }));
+      };
+    });
+    
+    return () => {
+      // Clean up preloaded images
+      Object.values(preloadedImages).forEach(img => {
+        img.onload = null;
+        img.onerror = null;
+      });
+    };
+  }, [features]);
 
+  // Autoplay timer effect
   useEffect(() => {
-    const timer = setInterval(() => {
-      if (progress < 100) {
-        setProgress((prev) => prev + 100 / (autoPlayInterval / 100))
-      } else {
-        setCurrentFeature((prev) => (prev + 1) % features.length)
-        setProgress(0)
-      }
-    }, 100)
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+    }
+    
+    timerRef.current = setInterval(() => {
+      setProgress(prev => {
+        if (prev < 100) {
+          return prev + 100 / (autoPlayInterval / 100);
+        } else {
+          setCurrentFeature(prev => (prev + 1) % features.length);
+          return 0;
+        }
+      });
+    }, 100);
 
-    return () => clearInterval(timer)
-  }, [progress, features.length, autoPlayInterval])
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [features.length, autoPlayInterval]);
+
+  // Manual navigation
+  const handleFeatureClick = (index: number) => {
+    setCurrentFeature(index);
+    setProgress(0);
+  };
+
+  const getImageSrc = (index: number) => {
+    return imagesLoaded[index] ? features[index].image : "/placeholder.svg";
+  };
 
   return (
     <div className={cn("p-8 md:p-12", className)}>
@@ -71,10 +103,14 @@ export function FeatureSteps({
             {features.map((feature, index) => (
               <motion.div
                 key={`feature-${index}`}
-                className="flex items-center gap-6 md:gap-8"
+                className={cn(
+                  "flex items-center gap-6 md:gap-8 cursor-pointer",
+                  index === currentFeature ? "opacity-100" : "opacity-50 hover:opacity-75"
+                )}
                 initial={{ opacity: 0.3 }}
                 animate={{ opacity: index === currentFeature ? 1 : 0.3 }}
                 transition={{ duration: 0.5 }}
+                onClick={() => handleFeatureClick(index)}
               >
                 <motion.div
                   className={cn(
@@ -105,7 +141,7 @@ export function FeatureSteps({
 
           <div
             className={cn(
-              "order-1 md:order-2 relative h-[200px] md:h-[300px] lg:h-[400px] overflow-hidden rounded-lg"
+              "order-1 md:order-2 relative h-[200px] md:h-[300px] lg:h-[400px] overflow-hidden rounded-lg bg-gray-900"
             )}
           >
             <AnimatePresence mode="wait">
@@ -122,11 +158,11 @@ export function FeatureSteps({
                     >
                       <img
                         src={feature.image}
-                        alt={feature.step}
+                        alt={feature.title || feature.step}
                         className="w-full h-full object-cover transition-transform transform"
                         onError={(e) => {
-                          console.error(`Failed to load image: ${feature.image}`)
-                          e.currentTarget.src = "/placeholder.svg" // Fallback image
+                          console.log(`Failed to load image at runtime: ${feature.image}`);
+                          e.currentTarget.src = "/placeholder.svg";
                         }}
                       />
                       <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
@@ -134,6 +170,14 @@ export function FeatureSteps({
                   ),
               )}
             </AnimatePresence>
+
+            {/* Progress bar */}
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gray-800">
+              <motion.div 
+                className="h-full bg-primary"
+                style={{ width: `${progress}%` }}
+              />
+            </div>
           </div>
         </div>
       </div>
