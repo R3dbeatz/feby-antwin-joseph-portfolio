@@ -15,31 +15,31 @@ const Projects = () => {
       step: 'Brand Identity', 
       title: 'Bigelow Benefits',
       content: 'Leveraging the established Bigelow brand while emphasizing the wellness benefits of their tea products.', 
-      image: '/lovable-uploads/348a1be6-2b3d-4445-9ccd-dc75c1e0d569.png'
+      image: '/lovable-uploads/a8c7fa92-2b24-4365-a780-83afc1df871f.png'
     },
     { 
       step: 'Strategy Overview', 
       title: 'Digital Marketing Strategy Development',
       content: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.', 
-      image: '/lovable-uploads/27980751-1da1-458e-9046-166b42ffc2a3.png'
+      image: '/lovable-uploads/b195451f-7c6f-4f34-ad46-00129caa77ad.png'
     },
     { 
       step: 'Key Developments',
       title: 'Innovative Approaches',
       content: 'Designed an AI system for personalized tea recommendations, developed interactive QR-enabled packaging, and established strategic wellness influencer partnerships.',
-      image: '/lovable-uploads/9e2f6a68-fede-4d60-92f5-a6fd65f5d441.png'
+      image: '/lovable-uploads/4ff0446b-ef0e-4d72-b69f-d560a484641a.png'
     },
     { 
       step: 'Project Execution',
       title: 'Multi-Phase Campaign Strategy',
       content: 'Outlined a comprehensive campaign spanning from initial teasers to sustained engagement, with focused social media strategies for TikTok and Instagram.',
-      image: '/lovable-uploads/27980751-1da1-458e-9046-166b42ffc2a3.png'
+      image: '/lovable-uploads/b195451f-7c6f-4f34-ad46-00129caa77ad.png'
     },
     { 
       step: 'Budget & Outcomes',
       title: 'Strategic Resource Allocation',
       content: 'Developed a detailed $50k budget plan and provided Bigelow with a robust framework for future marketing efforts and market growth.',
-      image: '/lovable-uploads/348a1be6-2b3d-4445-9ccd-dc75c1e0d569.png'
+      image: '/lovable-uploads/a8c7fa92-2b24-4365-a780-83afc1df871f.png'
     },
   ];
 
