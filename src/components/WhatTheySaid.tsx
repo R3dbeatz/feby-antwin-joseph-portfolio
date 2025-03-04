@@ -50,7 +50,7 @@ const WhatTheySaid = () => {
   const activeTestimonial = testimonials.find(t => t.id === activeTestimonialId);
 
   return (
-    <div className="container mx-auto py-20">
+    <section className="container mx-auto py-20" id="testimonials" aria-label="Client Testimonials">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -79,28 +79,31 @@ const WhatTheySaid = () => {
         
         {/* Active testimonial display */}
         {activeTestimonial && (
-          <motion.div 
+          <motion.blockquote 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
             className="max-w-2xl mx-auto mb-16 bg-dark-lighter border border-primary/20 p-8 rounded-lg shadow-lg hover:shadow-primary/10 transition-all duration-300"
           >
             <p className="text-foreground/80 mb-6 italic text-center text-xl leading-relaxed">{activeTestimonial.content}</p>
-            <div className="flex items-center justify-center">
+            <footer className="flex items-center justify-center">
               <img 
                 src={activeTestimonial.image} 
-                alt={activeTestimonial.name}
+                alt={`Portrait of ${activeTestimonial.name}`}
                 className="w-14 h-14 rounded-full mr-4 object-cover border-2 border-primary/30"
+                width="56"
+                height="56"
+                loading="lazy"
               />
               <div>
-                <h4 className="font-medium text-primary text-lg">{activeTestimonial.name}</h4>
+                <cite className="font-medium text-primary text-lg not-italic">{activeTestimonial.name}</cite>
                 <p className="text-sm text-foreground/60">{activeTestimonial.designation}</p>
               </div>
-            </div>
-          </motion.div>
+            </footer>
+          </motion.blockquote>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -35,7 +35,7 @@ const AboutMe = () => {
   
   return (
     <>
-      <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative">
+      <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative" id="about" aria-label="About Me Section">
         <div className="container px-4 mx-auto">
           <motion.div initial={{
             opacity: 0,

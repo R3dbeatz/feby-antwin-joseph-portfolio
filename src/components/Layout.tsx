@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import LoadingScreen from './LoadingScreen';
 import Navigation from './Navigation';
 import { useSmoothScrolling } from '../hooks/useSmoothScrolling';
+import SEO from './SEO';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -24,6 +25,9 @@ const Layout = ({ children, isLoading, onLoadingComplete }: LayoutProps) => {
 
   return (
     <>
+      {/* SEO Component */}
+      <SEO />
+      
       {isLoading && <LoadingScreen onComplete={onLoadingComplete} />}
       <motion.div
         ref={mainRef}
