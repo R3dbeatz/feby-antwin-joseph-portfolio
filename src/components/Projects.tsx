@@ -15,31 +15,31 @@ const Projects = () => {
       step: 'Brand Identity', 
       title: 'Bigelow Benefits',
       content: 'Leveraging the established Bigelow brand while emphasizing the wellness benefits of their tea products.', 
-      image: '/lovable-uploads/0a2282a5-3912-4ee5-ac7a-43af45474f58.png' // Using the newly uploaded Bigelow Benefits logo
+      image: '/lovable-uploads/740b47c0-7ed3-480b-a2ea-4a5461df91bc.png' // Updated to the first uploaded Bigelow Benefits logo
     },
     { 
       step: 'Strategy Overview', 
       title: 'Digital Marketing Strategy Development',
       content: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.', 
-      image: 'https://images.unsplash.com/photo-1523920290228-4f321a939b4c?q=80&w=2274&auto=format&fit=crop&ixlib=rb-4.0.3' 
+      image: '/lovable-uploads/f3c4a637-60ce-46e8-8b62-4331c7de87a3.png' // Updated to the Teatime AI logo 
     },
     { 
       step: 'Key Developments',
       title: 'Innovative Approaches',
       content: 'Designed an AI system for personalized tea recommendations, developed interactive QR-enabled packaging, and established strategic wellness influencer partnerships.',
-      image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?q=80&w=2370&auto=format&fit=crop&ixlib=rb-4.0.3'
+      image: '/lovable-uploads/abe06723-3ec5-457d-84cc-d71688e4aa03.png' // Updated to the Automation image
     },
     { 
       step: 'Project Execution',
       title: 'Multi-Phase Campaign Strategy',
       content: 'Outlined a comprehensive campaign spanning from initial teasers to sustained engagement, with focused social media strategies for TikTok and Instagram.',
-      image: '/lovable-uploads/34f55300-b681-49f7-b849-69d16a3f586b.png' // Using the second uploaded image
+      image: '/lovable-uploads/f3c4a637-60ce-46e8-8b62-4331c7de87a3.png' // Updated to the Teatime AI logo again
     },
     { 
       step: 'Budget & Outcomes',
       title: 'Strategic Resource Allocation',
       content: 'Developed a detailed $50k budget plan and provided Bigelow with a robust framework for future marketing efforts and market growth.',
-      image: 'https://images.unsplash.com/photo-1618160702438-9b02ab6515c9?q=80&w=1000&auto=format&fit=crop'
+      image: '/lovable-uploads/740b47c0-7ed3-480b-a2ea-4a5461df91bc.png' // Updated to the Bigelow Benefits logo again
     },
   ];
 
