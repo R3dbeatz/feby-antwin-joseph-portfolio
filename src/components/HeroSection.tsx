@@ -11,13 +11,13 @@ const HeroSection = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   
-  // Apply spring physics to smooth out mouse movement
-  const smoothX = useSpring(mouseX, { damping: 50, stiffness: 300 });
-  const smoothY = useSpring(mouseY, { damping: 50, stiffness: 300 });
+  // Apply spring physics with increased responsiveness
+  const smoothX = useSpring(mouseX, { damping: 30, stiffness: 400 });
+  const smoothY = useSpring(mouseY, { damping: 30, stiffness: 400 });
   
-  // Transform smooth coordinates to values we can use for parallax effect
-  const parallaxX = useTransform(smoothX, (value) => value / 10);
-  const parallaxY = useTransform(smoothY, (value) => value / 10);
+  // Transform smooth coordinates with increased sensitivity for more noticeable movement
+  const parallaxX = useTransform(smoothX, (value) => value / 8);
+  const parallaxY = useTransform(smoothY, (value) => value / 8);
 
   // Handle mouse movement
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -35,8 +35,12 @@ const HeroSection = () => {
       ref={ref}
       onMouseMove={handleMouseMove}
     >
+      {/* The gradient overlay needs to be below the squares but above the background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-lighter to-dark opacity-50 z-0"></div>
+      
+      {/* Move the motion div above the gradient but below the content */}
       <motion.div 
-        className="absolute inset-0"
+        className="absolute inset-0 z-10"
         style={{ x: parallaxX, y: parallaxY }}
       >
         <Squares 
@@ -44,11 +48,12 @@ const HeroSection = () => {
           speed={0.5} 
           squareSize={40} 
           borderColor="#ffffff20" 
-          hoverFillColor="#eb593920" 
-          className="-z-10" 
+          hoverEnabled={false} 
+          className="z-0" 
         />
       </motion.div>
-      <div className="container relative z-10">
+      
+      <div className="container relative z-20">
         <motion.div initial={{
         opacity: 0,
         y: 20
@@ -74,7 +79,6 @@ const HeroSection = () => {
           </motion.button>
         </motion.div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-lighter to-dark opacity-50"></div>
     </section>
   );
 };
