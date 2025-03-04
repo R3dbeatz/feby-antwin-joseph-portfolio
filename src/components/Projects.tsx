@@ -62,14 +62,9 @@ const Projects = () => {
   return (
     <section className="section" id="projects" ref={projectsRef}>
       <div className="container">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-serif font-bold mb-12 text-center"
-        >
-          Featured Projects
-        </motion.h2>
+        <h2 className="text-2xl font-medium text-primary mb-8 text-left">
+          FEATURED PROJECT
+        </h2>
         
         <div className="feature-section mb-16 bg-dark-lighter rounded-xl border border-gray-800 p-8 md:p-12">
           <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-center font-serif">
@@ -103,10 +98,10 @@ const Projects = () => {
         <div className="mt-16">
           <div className="bg-dark-lighter p-8 rounded-lg shadow-xl">
             <h3 className="text-2xl font-bold mb-4 text-primary font-serif">Digital Marketing Strategy Development: Blend Well with Bigelow</h3>
-            <p className="text-white text-lg mb-6">Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea's presence in the wellness market.</p>
+            <p className="text-[#b7ab98] text-lg mb-6">Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea's presence in the wellness market.</p>
             
             <div className="mb-6">
-              <pre className="whitespace-pre-wrap text-gray-300 font-sans text-sm leading-relaxed">
+              <pre className="whitespace-pre-wrap text-[#b7ab98] font-sans text-sm leading-relaxed">
                 As part of my Digital Marketing Capstone Project, I collaborated with Bigelow Tea to develop an innovative marketing strategy, "Blend Well with Bigelow," designed to enhance customer engagement and brand differentiation in the competitive wellness market.
                 
                 Key Strategy Developments:
