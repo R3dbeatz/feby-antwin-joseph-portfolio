@@ -6,7 +6,6 @@ import Timeline from '../components/Timeline';
 import AboutMe from '../components/AboutMe';
 import Experience from '../components/Experience';
 import Projects from '../components/Projects';
-import Certifications from '../components/Certifications';
 import WhatTheySaid from '../components/WhatTheySaid';
 import Motto from '../components/Motto';
 import Contact from '../components/Contact';
@@ -39,9 +38,6 @@ const Index = () => {
       </section>
       <section id="projects">
         <Projects />
-      </section>
-      <section id="certifications">
-        <Certifications />
       </section>
       <section id="testimonials">
         <WhatTheySaid />
