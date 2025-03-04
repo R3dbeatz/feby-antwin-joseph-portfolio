@@ -147,7 +147,7 @@ export function FeatureSteps({
 
           <div
             className={cn(
-              "order-1 md:order-2 relative h-[200px] md:h-[300px] lg:h-[400px] overflow-hidden rounded-lg bg-gray-900"
+              "order-1 md:order-2 relative h-[200px] md:h-[300px] lg:h-[400px] overflow-hidden rounded-lg bg-transparent"
             )}
           >
             <AnimatePresence mode="wait">
@@ -156,7 +156,7 @@ export function FeatureSteps({
                   index === currentFeature && (
                     <motion.div
                       key={`image-${index}-${feature.step}`}
-                      className="absolute inset-0 rounded-lg overflow-hidden"
+                      className="absolute inset-0 rounded-lg overflow-hidden flex items-center justify-center"
                       initial={{ y: 100, opacity: 0, rotateX: -20 }}
                       animate={{ y: 0, opacity: 1, rotateX: 0 }}
                       exit={{ y: -100, opacity: 0, rotateX: 20 }}
@@ -165,14 +165,13 @@ export function FeatureSteps({
                       <img
                         src={imageErrors[index] ? getFallbackImage() : feature.image}
                         alt={feature.title || feature.step}
-                        className="w-full h-full object-contain transition-transform transform"
+                        className="w-full h-full object-contain"
                         onError={(e) => {
                           console.log(`Failed to load image at runtime: ${feature.image}`);
                           e.currentTarget.src = getFallbackImage();
                           setImageErrors(prev => ({ ...prev, [index]: true }));
                         }}
                       />
-                      <div className="absolute bottom-0 left-0 right-0 h-2/3 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
                     </motion.div>
                   ),
               )}
