@@ -2,8 +2,11 @@
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { Squares } from './ui/squares-background';
+import { useState } from 'react';
 
 const HeroSection = () => {
+  const [hoverState, setHoverState] = useState(false);
+
   return <section className="section relative overflow-hidden">
       <div className="absolute inset-0">
         <Squares direction="diagonal" speed={0.5} squareSize={40} borderColor="#ffffff20" hoverFillColor="#eb593920" className="-z-10" />
@@ -25,32 +28,22 @@ const HeroSection = () => {
           <p className="text-lg text-[#aa9e8b] max-w-2xl mx-auto mb-8 md:text-2xl font-normal">
             Creating impactful digital experiences through strategic marketing and creative storytelling.
           </p>
-          <div className="flex gap-4 justify-center">
+          <div className="flex justify-center">
             <motion.a 
               href="https://www.linkedin.com/in/feby-antwin-joseph-934253201" 
               target="_blank"
               rel="noopener noreferrer"
+              onMouseEnter={() => setHoverState(true)}
+              onMouseLeave={() => setHoverState(false)}
               whileHover={{
                 scale: 1.05
               }} 
               whileTap={{
                 scale: 0.95
               }} 
-              className="bg-primary text-white px-8 py-3 rounded-full font-medium"
+              className={`px-8 py-3 rounded-full font-medium transition-colors border border-primary ${hoverState ? 'bg-primary text-white' : 'bg-transparent text-primary'}`}
             >
-              Connect With Me
-            </motion.a>
-            <motion.a 
-              href="#projects" 
-              whileHover={{
-                scale: 1.05
-              }} 
-              whileTap={{
-                scale: 0.95
-              }} 
-              className="border border-primary text-primary px-8 py-3 rounded-full font-medium hover:bg-primary/10 transition-colors"
-            >
-              Explore My Work
+              {hoverState ? "First Explore My Work" : "Connect With Me"}
             </motion.a>
           </div>
         </motion.div>
