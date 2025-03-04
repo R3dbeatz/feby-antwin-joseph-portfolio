@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import DecryptedText from './DecryptedText';
-import { FeatureSteps } from './ui/feature-section';
 import { Button } from './ui/button';
 
 const Projects = () => {
@@ -14,32 +13,27 @@ const Projects = () => {
     { 
       step: 'Brand Identity', 
       title: 'Bigelow Benefits',
-      content: 'Leveraging the established Bigelow brand while emphasizing the wellness benefits of their tea products.', 
-      image: '/lovable-uploads/a8c7fa92-2b24-4365-a780-83afc1df871f.png'
+      content: 'Leveraging the established Bigelow brand while emphasizing the wellness benefits of their tea products.'
     },
     { 
       step: 'Strategy Overview', 
       title: 'Digital Marketing Strategy Development',
-      content: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.', 
-      image: '/lovable-uploads/b195451f-7c6f-4f34-ad46-00129caa77ad.png'
+      content: 'Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea\'s presence in the wellness market.'
     },
     { 
       step: 'Key Developments',
       title: 'Innovative Approaches',
-      content: 'Designed an AI system for personalized tea recommendations, developed interactive QR-enabled packaging, and established strategic wellness influencer partnerships.',
-      image: '/lovable-uploads/4ff0446b-ef0e-4d72-b69f-d560a484641a.png'
+      content: 'Designed an AI system for personalized tea recommendations, developed interactive QR-enabled packaging, and established strategic wellness influencer partnerships.'
     },
     { 
       step: 'Project Execution',
       title: 'Multi-Phase Campaign Strategy',
-      content: 'Outlined a comprehensive campaign spanning from initial teasers to sustained engagement, with focused social media strategies for TikTok and Instagram.',
-      image: '/lovable-uploads/b195451f-7c6f-4f34-ad46-00129caa77ad.png'
+      content: 'Outlined a comprehensive campaign spanning from initial teasers to sustained engagement, with focused social media strategies for TikTok and Instagram.'
     },
     { 
       step: 'Budget & Outcomes',
       title: 'Strategic Resource Allocation',
-      content: 'Developed a detailed $50k budget plan and provided Bigelow with a robust framework for future marketing efforts and market growth.',
-      image: '/lovable-uploads/a8c7fa92-2b24-4365-a780-83afc1df871f.png'
+      content: 'Developed a detailed $50k budget plan and provided Bigelow with a robust framework for future marketing efforts and market growth.'
     },
   ];
 
@@ -77,17 +71,36 @@ const Projects = () => {
           Featured Projects
         </motion.h2>
         
-        <div className="feature-section mb-16">
-          <FeatureSteps 
-            features={projectFeatures}
-            title="Blend Well with Bigelow"
-            autoPlayInterval={5000}
-            className="bg-dark-lighter rounded-xl border border-gray-800"
-          />
+        <div className="feature-section mb-16 bg-dark-lighter rounded-xl border border-gray-800 p-8 md:p-12">
+          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-center font-serif">
+            Blend Well with Bigelow
+          </h3>
+          
+          <div className="space-y-10">
+            {projectFeatures.map((feature, index) => (
+              <motion.div
+                key={`feature-${index}`}
+                className="border-b border-gray-800 pb-8 last:border-0 last:pb-0"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="flex flex-col">
+                  <span className="text-lg text-primary font-medium mb-2">{feature.step}</span>
+                  <h4 className="text-xl md:text-2xl font-semibold text-primary font-serif mb-3">
+                    {feature.title}
+                  </h4>
+                  <p className="text-sm md:text-lg text-gray-300">
+                    {feature.content}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
         
-        {/* Detailed project description for mobile/accessibility - hidden on larger screens */}
-        <div className="mt-16 lg:hidden">
+        {/* Detailed project description for mobile/accessibility - visible on all screens now */}
+        <div className="mt-16">
           <div className="bg-dark-lighter p-8 rounded-lg shadow-xl">
             <h3 className="text-2xl font-bold mb-4 text-primary font-serif">Digital Marketing Strategy Development: Blend Well with Bigelow</h3>
             <p className="text-white text-lg mb-6">Conceptualized a comprehensive digital marketing strategy aimed at revitalizing Bigelow Tea's presence in the wellness market.</p>
