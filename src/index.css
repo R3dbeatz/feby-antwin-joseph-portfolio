@@ -18,7 +18,7 @@
 }
 
 body {
-  @apply bg-dark-lighter text-foreground antialiased overflow-x-hidden;
+  @apply bg-dark-lighter text-[#b7ab98] antialiased overflow-x-hidden;
   margin: 0;
   padding: 0;
 }
