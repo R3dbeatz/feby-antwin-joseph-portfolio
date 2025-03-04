@@ -5,6 +5,7 @@ import LoadingScreen from './LoadingScreen';
 import Navigation from './Navigation';
 import { useSmoothScrolling } from '../hooks/useSmoothScrolling';
 import SEO from './SEO';
+import { useActiveSection } from '../hooks/useActiveSection';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -15,6 +16,8 @@ interface LayoutProps {
 const Layout = ({ children, isLoading, onLoadingComplete }: LayoutProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const mainRef = useRef<HTMLDivElement>(null);
+  const activeSection = useActiveSection();
+  const prevSection = useRef<string | null>(null);
   
   // Initialize smooth scrolling and animations
   useSmoothScrolling(mainRef);
@@ -22,6 +25,22 @@ const Layout = ({ children, isLoading, onLoadingComplete }: LayoutProps) => {
   useEffect(() => {
     setIsLoaded(true);
   }, []);
+
+  // Track page views when section changes
+  useEffect(() => {
+    if (activeSection && activeSection !== prevSection.current) {
+      // Only track if window.gtag exists and sections are different
+      if (window.gtag && typeof window.gtag === 'function') {
+        window.gtag('event', 'page_view', {
+          page_title: activeSection.charAt(0).toUpperCase() + activeSection.slice(1),
+          page_location: `${window.location.origin}/#${activeSection}`,
+          page_path: `/#${activeSection}`
+        });
+        console.log(`Tracked view for section: ${activeSection}`);
+      }
+      prevSection.current = activeSection;
+    }
+  }, [activeSection]);
 
   return (
     <>
