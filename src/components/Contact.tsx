@@ -65,7 +65,7 @@ const Contact = () => {
             CONNECT
           </h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
             {/* Left column - First set of social links */}
             <div className="space-y-10">
               {leftSocialLinks.map(link => <FlowingMenuItem key={link.name} text={link.name} hoverText={link.hoverText} url={link.url} />)}
@@ -153,12 +153,12 @@ const FlowingMenuItem = ({
   return <div ref={itemRef} className="relative overflow-hidden h-16 text-left">
       <div className="flex items-center justify-start">
         <span className="text-[#eb5939] mr-4 text-3xl">▸</span>
-        <a ref={textRef} href={url} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="text-[#a48c76] text-3xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300">
+        <a ref={textRef} href={url} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} className="text-[#a48c76] text-xl sm:text-2xl md:text-3xl font-serif font-bold uppercase tracking-wider relative z-10 cursor-pointer transition-opacity duration-300">
           {text}
         </a>
       </div>
-      <div ref={overlayRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[-101%] flex items-center justify-start pl-12">
-        <span className="text-white font-serif font-bold text-2xl uppercase tracking-wider">{hoverText}</span>
+      <div ref={overlayRef} className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none bg-[#eb5939] translate-y-[-101%] flex items-center justify-start pl-8 md:pl-12">
+        <span className="text-white font-serif font-bold text-lg sm:text-xl md:text-2xl uppercase tracking-wider">{hoverText}</span>
       </div>
     </div>;
 };

@@ -10,7 +10,7 @@ export const NavLinks = () => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col items-end gap-4"
+      className="flex flex-col items-end gap-2 md:gap-4 text-sm md:text-base"
     >
       <a 
         href="#about" 

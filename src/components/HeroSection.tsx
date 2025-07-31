@@ -26,11 +26,11 @@ const HeroSection = () => {
       }} transition={{
         duration: 0.8
       }} className="text-center">
-          <span className="text-primary font-medium mb-6 block text-2xl">Welcome to my world</span>
-          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6 lg:text-8xl">
+          <span className="text-primary font-medium mb-4 md:mb-6 block text-lg md:text-2xl">Welcome to my world</span>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-serif font-bold mb-4 md:mb-6 px-2">
             <TypeAnimation sequence={['Marketing Visionary', 2000, 'Digital Storyteller', 2000, 'Brand Strategist', 2000]} wrapper="span" speed={50} repeat={Infinity} className="gradient-text" />
           </h1>
-          <p className="text-lg text-[#aa9e8b] max-w-2xl mx-auto mb-8 md:text-2xl font-normal">
+          <p className="text-base sm:text-lg md:text-2xl text-[#aa9e8b] max-w-2xl mx-auto mb-6 md:mb-8 font-normal px-4">
             Creating impactful digital experiences through strategic marketing and creative storytelling.
           </p>
           <div className="flex justify-center">
@@ -44,7 +44,7 @@ const HeroSection = () => {
               whileTap={{
                 scale: 0.95
               }} 
-              className={`px-8 py-3 rounded-full font-medium transition-colors border border-primary ${hoverState ? 'bg-primary text-white' : 'bg-transparent text-primary'}`}
+              className={`px-6 py-2 md:px-8 md:py-3 rounded-full font-medium transition-colors border border-primary text-sm md:text-base ${hoverState ? 'bg-primary text-white' : 'bg-transparent text-primary'}`}
             >
               {hoverState ? "First Explore My Work" : "Connect With Me"}
             </motion.button>

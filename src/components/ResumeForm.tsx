@@ -198,15 +198,15 @@ const ResumeForm = () => {
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
-      className="max-w-md mx-auto p-6 bg-dark-lighter/20 backdrop-blur-sm rounded-lg shadow-lg"
+      className="max-w-md mx-auto p-4 md:p-6 bg-dark-lighter/20 backdrop-blur-sm rounded-lg shadow-lg"
     >
-      <h3 className="text-2xl font-semibold text-white mb-6">Download Resume</h3>
-      <p className="text-gray-300 mb-8">
+      <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 md:mb-6">Download Resume</h3>
+      <p className="text-gray-300 mb-6 md:mb-8 text-sm md:text-base">
         Please fill in the form below to download my resume.
       </p>
       
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label htmlFor="firstName" className="block text-gray-300 mb-1">First Name*</label>
             <Input

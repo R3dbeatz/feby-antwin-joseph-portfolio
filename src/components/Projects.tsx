@@ -66,8 +66,8 @@ const Projects = () => {
           FEATURED PROJECT
         </h2>
         
-        <div className="feature-section mb-16 bg-dark-lighter rounded-xl border border-gray-800 p-8 md:p-12">
-          <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-center font-serif">
+        <div className="feature-section mb-16 bg-dark-lighter rounded-xl border border-gray-800 p-4 md:p-8 lg:p-12">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-10 text-center font-serif px-2">
             Blend Well with Bigelow
           </h3>
           
@@ -81,11 +81,11 @@ const Projects = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <div className="flex flex-col">
-                  <span className="text-lg text-primary font-medium mb-2">{feature.step}</span>
-                  <h4 className="text-xl md:text-2xl font-semibold text-primary font-serif mb-3">
+                  <span className="text-base md:text-lg text-primary font-medium mb-2">{feature.step}</span>
+                  <h4 className="text-lg sm:text-xl md:text-2xl font-semibold text-primary font-serif mb-3">
                     {feature.title}
                   </h4>
-                  <p className="text-sm md:text-lg text-[#b7ab98]">
+                  <p className="text-sm sm:text-base md:text-lg text-[#b7ab98] leading-relaxed">
                     {feature.content}
                   </p>
                 </div>

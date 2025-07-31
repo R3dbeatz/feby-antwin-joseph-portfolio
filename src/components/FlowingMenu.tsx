@@ -75,16 +75,16 @@ const FlowingMenu = () => {
   });
 
   return (
-    <div ref={sectionRef} className="py-16 bg-dark">
+    <div ref={sectionRef} className="py-8 md:py-16 bg-dark">
       <div className="container px-4 mx-auto">
         <motion.h2 
           style={{ opacity }}
-          className="text-2xl font-medium text-[#eb5939] mb-12 tracking-wider"
+          className="text-xl md:text-2xl font-medium text-[#eb5939] mb-8 md:mb-12 tracking-wider"
         >
           WHAT I DO
         </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8">
           <div className="md:col-span-5 space-y-4">
             {processedItems.map((item, idx) => (
               <div 
@@ -93,7 +93,7 @@ const FlowingMenu = () => {
                 onMouseEnter={() => setActiveItem(idx)}
                 onMouseLeave={() => setActiveItem(null)}
               >
-                <p className="text-[5rem] font-bold leading-tight tracking-tighter py-2">
+                <p className="text-2xl sm:text-3xl md:text-4xl lg:text-[5rem] font-bold leading-tight tracking-tighter py-2">
                   {item.title.map((char, charIdx) => (
                     <motion.span 
                       key={`char-${idx}-${charIdx}`} 
@@ -110,7 +110,7 @@ const FlowingMenu = () => {
             ))}
           </div>
           
-          <div className="md:col-span-7 p-6 flex items-center">
+          <div className="md:col-span-7 p-3 md:p-6 flex items-center">
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ 
@@ -121,7 +121,7 @@ const FlowingMenu = () => {
               className="text-[#b7ab98] leading-relaxed"
             >
               {activeItem !== null && (
-                <div className="text-xl">
+                <div className="text-sm sm:text-base md:text-xl">
                   <DecryptedText text={menuItems[activeItem].content} />
                 </div>
               )}

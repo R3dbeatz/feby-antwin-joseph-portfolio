@@ -46,7 +46,7 @@ const Experience = () => {
   });
   
   return (
-    <section ref={sectionRef} className="min-h-[80vh] flex items-center justify-center bg-dark py-10 relative">
+    <section ref={sectionRef} className="min-h-[60vh] md:min-h-[80vh] flex items-center justify-center bg-dark py-8 md:py-10 relative">
       {/* Particle background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Particles
@@ -83,7 +83,7 @@ const Experience = () => {
             style={{
               opacity
             }} 
-            className="text-2xl font-medium text-[#eb5939] mb-8"
+            className="text-xl md:text-2xl font-medium text-[#eb5939] mb-6 md:mb-8"
           >
             EXPERIENCE
           </motion.h2>
