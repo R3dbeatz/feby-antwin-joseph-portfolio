@@ -46,7 +46,7 @@ const Experience = () => {
   });
   
   return (
-    <section ref={sectionRef} className="min-h-[60vh] md:min-h-[80vh] flex items-center justify-center bg-dark py-8 md:py-10 relative">
+    <section ref={sectionRef} className="min-h-screen flex items-center justify-center bg-dark py-20 relative" id="expertise" aria-label="Experience Section">
       {/* Particle background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Particles
@@ -83,26 +83,28 @@ const Experience = () => {
             style={{
               opacity
             }} 
-            className="text-xl md:text-2xl font-medium text-[#eb5939] mb-6 md:mb-8"
+            className="text-2xl font-medium text-[#eb5939] mb-8"
           >
             EXPERIENCE
           </motion.h2>
-          <div className="experience-text-container">
-            {textParts.map((line, lineIndex) => (
-              <div key={`line-${lineIndex}`} className="experience-line">
-                {line.split('').map((char, charIndex) => (
-                  <motion.span 
-                    key={`line-${lineIndex}-char-${charIndex}`}
-                    style={{
-                      color: lineColors[lineIndex][charIndex]
-                    }}
-                    className={lineIndex === 0 ? "text-highlight" : "text-regular"}
-                  >
-                    {char === ' ' ? '\u00A0' : char}
-                  </motion.span>
-                ))}
-              </div>
-            ))}
+          <div className="max-w-[95vw] mx-auto">
+            <div className="leading-[1.1] tracking-tight break-words font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl my-0 text-left mx-[4px] px-2 py-[15px]">
+              {textParts.map((line, lineIndex) => (
+                <div key={`line-${lineIndex}`} className="inline">
+                  {line.split('').map((char, charIndex) => (
+                    <motion.span 
+                      key={`line-${lineIndex}-char-${charIndex}`}
+                      style={{
+                        color: lineColors[lineIndex][charIndex]
+                      }}
+                    >
+                      {char === ' ' ? '\u00A0' : char}
+                    </motion.span>
+                  ))}
+                  {lineIndex < textParts.length - 1 && <span> </span>}
+                </div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>
