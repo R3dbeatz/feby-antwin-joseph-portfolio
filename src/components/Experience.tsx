@@ -87,10 +87,10 @@ const Experience = () => {
           >
             EXPERIENCE
           </motion.h2>
-          <div className="max-w-[95vw] mx-auto">
-            <div className="leading-[1.1] tracking-tight break-words font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl my-0 text-left mx-[4px] px-2 py-[15px]">
+          <div className="max-w-[1440px] mx-auto px-4">
+            <div className="leading-[1.1] tracking-tight font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-left">
               {textParts.map((line, lineIndex) => (
-                <div key={`line-${lineIndex}`} className="inline">
+                <div key={`line-${lineIndex}`} className="block mb-2">
                   {line.split('').map((char, charIndex) => (
                     <motion.span 
                       key={`line-${lineIndex}-char-${charIndex}`}
@@ -101,7 +101,6 @@ const Experience = () => {
                       {char === ' ' ? '\u00A0' : char}
                     </motion.span>
                   ))}
-                  {lineIndex < textParts.length - 1 && <span> </span>}
                 </div>
               ))}
             </div>
