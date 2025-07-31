@@ -13,25 +13,32 @@ const AboutMe = () => {
   });
   const opacity = useTransform(scrollYProgress, [0, 0.75], [0.3, 1]);
 
-  // Split text into parts to handle different colors
-  const textParts = ["I'm a ", "strategically focused", " digital marketer with a passion for crafting data-driven campaigns & delivering measurable business growth."];
+  // Split text into four lines to control layout
+  const textParts = [
+    "I'm a", 
+    "strategically focused", 
+    "digital marketer with a passion for crafting", 
+    "data-driven campaigns & delivering measurable business growth."
+  ];
 
-  // Create character arrays for each part
-  const beforeText = textParts[0].split('');
-  const highlightedText = textParts[1].split('');
-  const afterText = textParts[2].split('');
+  // Create line-by-line color transforms
+  const lineColors = textParts.map((line, lineIndex) => {
+    const chars = line.split('');
+    const isSecondLine = lineIndex === 1;
 
-  // Create color transforms for all text parts
-  const createCharacterColors = (chars: string[], startOffset: number = 0, isHighlighted: boolean = false) => {
-    return chars.map((_, index) => {
-      const start = (index + startOffset) / (beforeText.length + highlightedText.length + afterText.length) * 0.75;
-      const end = start + 0.1 / (beforeText.length + highlightedText.length + afterText.length);
-      return useTransform(scrollYProgress, [start, end], isHighlighted ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']);
+    // Calculate different scroll ranges for each line
+    const lineStart = lineIndex * 0.15; // Each line starts animating at different scroll points
+    const lineEnd = lineStart + 0.15;
+    
+    return chars.map((_, charIndex) => {
+      // Each character within the line animates slightly after the previous one
+      const charStart = lineStart + charIndex / chars.length * 0.1;
+      const charEnd = charStart + 0.02;
+
+      // Second line gets the highlight color, other lines get the regular color
+      return useTransform(scrollYProgress, [charStart, charEnd], isSecondLine ? ['#333333', '#eb5939'] : ['#333333', '#aa9e8b']);
     });
-  };
-  const beforeColors = createCharacterColors(beforeText);
-  const highlightedColors = createCharacterColors(highlightedText, beforeText.length, true);
-  const afterColors = createCharacterColors(afterText, beforeText.length + highlightedText.length);
+  });
   
   return (
     <>
@@ -55,21 +62,20 @@ const AboutMe = () => {
             </motion.h2>
             <div className="max-w-[1440px] mx-auto px-4">
               <div className="leading-[1.1] tracking-tight font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-left">
-                {beforeText.map((char, index) => <motion.span key={`before-${index}`} style={{
-                  color: beforeColors[index]
-                }}>
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>)}
-                {highlightedText.map((char, index) => <motion.span key={`highlight-${index}`} style={{
-                  color: highlightedColors[index]
-                }}>
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>)}
-                {afterText.map((char, index) => <motion.span key={`after-${index}`} style={{
-                  color: afterColors[index]
-                }}>
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>)}
+                {textParts.map((line, lineIndex) => (
+                  <div key={`line-${lineIndex}`} className="block mb-2">
+                    {line.split('').map((char, charIndex) => (
+                      <motion.span 
+                        key={`line-${lineIndex}-char-${charIndex}`} 
+                        style={{
+                          color: lineColors[lineIndex][charIndex]
+                        }}
+                      >
+                        {char === ' ' ? '\u00A0' : char}
+                      </motion.span>
+                    ))}
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>
