@@ -6,17 +6,40 @@ import { useRef, useState, useEffect } from 'react';
 export const SocialIcons = () => {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isToggleVisible, setIsToggleVisible] = useState(true);
   const socialIconsRef = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.innerWidth < 768 && isVisible) {
-        setIsVisible(false);
+      if (window.innerWidth < 768) {
+        // Hide social icons when scrolling
+        if (isVisible) {
+          setIsVisible(false);
+        }
+        
+        // Hide toggle button immediately when scrolling starts
+        setIsToggleVisible(false);
+        
+        // Clear existing timeout
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current);
+        }
+        
+        // Show toggle button after scrolling stops
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsToggleVisible(true);
+        }, 150);
       }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current);
+      }
+    };
   }, [isVisible]);
 
   const handleIconMouseMove = (e: React.MouseEvent<HTMLAnchorElement>, iconId: string) => {
@@ -55,8 +78,12 @@ export const SocialIcons = () => {
       {/* Mobile Toggle Button */}
       <motion.button
         initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.5 }}
+        animate={{ 
+          opacity: isToggleVisible ? 1 : 0,
+          x: isToggleVisible ? 0 : -20,
+          pointerEvents: isToggleVisible ? 'auto' : 'none'
+        }}
+        transition={{ duration: 0.3 }}
         onClick={() => setIsVisible(!isVisible)}
         className="fixed bottom-8 left-8 md:hidden p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 z-50"
       >
