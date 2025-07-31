@@ -1,11 +1,23 @@
 
 import { motion } from 'framer-motion';
-import { Mail, Linkedin, Twitter, Instagram, Youtube } from 'lucide-react';
-import { useRef, useState } from 'react';
+import { Mail, Linkedin, Twitter, Instagram, Youtube, Menu, X } from 'lucide-react';
+import { useRef, useState, useEffect } from 'react';
 
 export const SocialIcons = () => {
   const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const socialIconsRef = useRef<{ [key: string]: HTMLAnchorElement | null }>({});
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerWidth < 768 && isVisible) {
+        setIsVisible(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isVisible]);
 
   const handleIconMouseMove = (e: React.MouseEvent<HTMLAnchorElement>, iconId: string) => {
     if (!socialIconsRef.current[iconId]) return;
@@ -39,70 +51,135 @@ export const SocialIcons = () => {
   };
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed bottom-8 left-8 flex flex-col gap-8 z-50"
-    >
-      <a
-        ref={el => socialIconsRef.current['linkedin'] = el}
-        href="https://www.linkedin.com/in/feby-antwin-joseph-934253201"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
-        onMouseMove={(e) => handleIconMouseMove(e, 'linkedin')}
-        onMouseEnter={() => setHoveredIcon('linkedin')}
-        onMouseLeave={() => handleIconMouseLeave('linkedin')}
+    <>
+      {/* Mobile Toggle Button */}
+      <motion.button
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        onClick={() => setIsVisible(!isVisible)}
+        className="fixed bottom-8 left-8 md:hidden p-3 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20 z-50"
       >
-        <Linkedin size={20} />
-      </a>
-      <a
-        ref={el => socialIconsRef.current['twitter'] = el}
-        href="https://x.com/feby_joseph01"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
-        onMouseMove={(e) => handleIconMouseMove(e, 'twitter')}
-        onMouseEnter={() => setHoveredIcon('twitter')}
-        onMouseLeave={() => handleIconMouseLeave('twitter')}
+        {isVisible ? <X size={20} /> : <Menu size={20} />}
+      </motion.button>
+
+      {/* Desktop Social Icons */}
+      <motion.div 
+        initial={{ opacity: 0, x: -20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="fixed bottom-8 left-8 hidden md:flex flex-col gap-8 z-50"
       >
-        <Twitter size={20} />
-      </a>
-      <a
-        ref={el => socialIconsRef.current['instagram'] = el}
-        href="https://www.instagram.com/r3dbeatz_music/"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
-        onMouseMove={(e) => handleIconMouseMove(e, 'instagram')}
-        onMouseEnter={() => setHoveredIcon('instagram')}
-        onMouseLeave={() => handleIconMouseLeave('instagram')}
+        <a
+          ref={el => socialIconsRef.current['linkedin'] = el}
+          href="https://www.linkedin.com/in/feby-antwin-joseph-934253201"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 will-change-transform shadow-lg hover:shadow-primary/20"
+          onMouseMove={(e) => handleIconMouseMove(e, 'linkedin')}
+          onMouseEnter={() => setHoveredIcon('linkedin')}
+          onMouseLeave={() => handleIconMouseLeave('linkedin')}
+        >
+          <Linkedin size={20} />
+        </a>
+        <a
+          ref={el => socialIconsRef.current['twitter'] = el}
+          href="https://x.com/feby_joseph01"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 will-change-transform shadow-lg hover:shadow-primary/20"
+          onMouseMove={(e) => handleIconMouseMove(e, 'twitter')}
+          onMouseEnter={() => setHoveredIcon('twitter')}
+          onMouseLeave={() => handleIconMouseLeave('twitter')}
+        >
+          <Twitter size={20} />
+        </a>
+        <a
+          ref={el => socialIconsRef.current['instagram'] = el}
+          href="https://www.instagram.com/r3dbeatz_music/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 will-change-transform shadow-lg hover:shadow-primary/20"
+          onMouseMove={(e) => handleIconMouseMove(e, 'instagram')}
+          onMouseEnter={() => setHoveredIcon('instagram')}
+          onMouseLeave={() => handleIconMouseLeave('instagram')}
+        >
+          <Instagram size={20} />
+        </a>
+        <a
+          ref={el => socialIconsRef.current['youtube'] = el}
+          href="https://www.youtube.com/@moodfusiontherapy/videos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 will-change-transform shadow-lg hover:shadow-primary/20"
+          onMouseMove={(e) => handleIconMouseMove(e, 'youtube')}
+          onMouseEnter={() => setHoveredIcon('youtube')}
+          onMouseLeave={() => handleIconMouseLeave('youtube')}
+        >
+          <Youtube size={20} />
+        </a>
+        <a
+          ref={el => socialIconsRef.current['mail'] = el}
+          href="mailto:febyantwinjoseph@gmail.com"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 will-change-transform shadow-lg hover:shadow-primary/20"
+          onMouseMove={(e) => handleIconMouseMove(e, 'mail')}
+          onMouseEnter={() => setHoveredIcon('mail')}
+          onMouseLeave={() => handleIconMouseLeave('mail')}
+        >
+          <Mail size={20} />
+        </a>
+      </motion.div>
+
+      {/* Mobile Social Icons */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ 
+          opacity: isVisible ? 1 : 0,
+          y: isVisible ? 0 : 20,
+          pointerEvents: isVisible ? 'auto' : 'none'
+        }}
+        transition={{ duration: 0.3 }}
+        className="fixed bottom-24 left-8 md:hidden flex flex-col gap-4 z-40"
       >
-        <Instagram size={20} />
-      </a>
-      <a
-        ref={el => socialIconsRef.current['youtube'] = el}
-        href="https://www.youtube.com/@moodfusiontherapy/videos"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
-        onMouseMove={(e) => handleIconMouseMove(e, 'youtube')}
-        onMouseEnter={() => setHoveredIcon('youtube')}
-        onMouseLeave={() => handleIconMouseLeave('youtube')}
-      >
-        <Youtube size={20} />
-      </a>
-      <a
-        ref={el => socialIconsRef.current['mail'] = el}
-        href="mailto:febyantwinjoseph@gmail.com"
-        className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-[#eb5939] hover:border-[#eb5939] transition-all duration-300 will-change-transform shadow-lg hover:shadow-[#eb5939]/20"
-        onMouseMove={(e) => handleIconMouseMove(e, 'mail')}
-        onMouseEnter={() => setHoveredIcon('mail')}
-        onMouseLeave={() => handleIconMouseLeave('mail')}
-      >
-        <Mail size={20} />
-      </a>
-    </motion.div>
+        <a
+          href="https://www.linkedin.com/in/feby-antwin-joseph-934253201"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20"
+        >
+          <Linkedin size={18} />
+        </a>
+        <a
+          href="https://x.com/feby_joseph01"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20"
+        >
+          <Twitter size={18} />
+        </a>
+        <a
+          href="https://www.instagram.com/r3dbeatz_music/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20"
+        >
+          <Instagram size={18} />
+        </a>
+        <a
+          href="https://www.youtube.com/@moodfusiontherapy/videos"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20"
+        >
+          <Youtube size={18} />
+        </a>
+        <a
+          href="mailto:febyantwinjoseph@gmail.com"
+          className="p-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-gray-400 hover:text-primary hover:border-primary transition-all duration-300 shadow-lg hover:shadow-primary/20"
+        >
+          <Mail size={18} />
+        </a>
+      </motion.div>
+    </>
   );
 };
