@@ -54,7 +54,7 @@ const AboutMe = () => {
               ABOUT ME
             </motion.h2>
             <div className="max-w-[1440px] mx-auto px-4">
-              <div className="leading-[1.1] tracking-tight font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-left break-words whitespace-normal word-wrap">
+              <div className="leading-[1.1] tracking-tight font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-left">
                 {beforeText.map((char, index) => <motion.span key={`before-${index}`} style={{
                   color: beforeColors[index]
                 }}>
