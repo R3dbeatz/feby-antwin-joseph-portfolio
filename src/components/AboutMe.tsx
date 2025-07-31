@@ -53,8 +53,8 @@ const AboutMe = () => {
             }} className="text-2xl font-medium text-[#eb5939] mb-8">
               ABOUT ME
             </motion.h2>
-            <div className="max-w-[95vw] mx-auto">
-              <p className="leading-[1.1] tracking-tight break-words font-semibold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl my-0 text-left mx-[4px] px-2 py-[15px]">
+            <div className="max-w-[1440px] mx-auto px-4">
+              <div className="leading-[1.1] tracking-tight font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-left break-words whitespace-normal word-wrap">
                 {beforeText.map((char, index) => <motion.span key={`before-${index}`} style={{
                   color: beforeColors[index]
                 }}>
@@ -70,7 +70,7 @@ const AboutMe = () => {
                 }}>
                   {char === ' ' ? '\u00A0' : char}
                 </motion.span>)}
-              </p>
+              </div>
             </div>
           </motion.div>
         </div>
