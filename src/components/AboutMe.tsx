@@ -15,10 +15,10 @@ const AboutMe = () => {
 
   // Split text into four lines to control layout
   const textParts = [
-    "I'm a", 
-    "strategically focused", 
-    "digital marketer with a passion for crafting", 
-    "data-driven campaigns & delivering measurable business growth."
+    "I'm a strategically focused", 
+    "digital marketer with a passion for", 
+    "crafting data-driven campaigns", 
+    "& delivering measurable business growth."
   ];
 
   // Create line-by-line color transforms
