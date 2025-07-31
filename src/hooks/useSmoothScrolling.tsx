@@ -16,13 +16,13 @@ export const useSmoothScrolling = (ref: React.RefObject<HTMLDivElement>) => {
 
     // Initialize Lenis with slower duration
     const lenis = new window.Lenis({
-      duration: 2.2,
+      duration: 3.5,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smooth: true,
       smoothTouch: false,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
     });
 
     // Integrate GSAP with Lenis
