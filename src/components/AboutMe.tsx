@@ -61,9 +61,9 @@ const AboutMe = () => {
               ABOUT ME
             </motion.h2>
             <div className="max-w-[1440px] mx-auto px-4">
-              <div className="leading-[1.1] tracking-tight font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-left">
+              <div className="leading-[1.1] tracking-tight font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-left">
                 {textParts.map((line, lineIndex) => (
-                  <div key={`line-${lineIndex}`} className="block mb-2">
+                  <div key={`line-${lineIndex}`} className="block mb-2 whitespace-nowrap overflow-x-auto">
                     {line.split('').map((char, charIndex) => (
                       <motion.span 
                         key={`line-${lineIndex}-char-${charIndex}`} 
